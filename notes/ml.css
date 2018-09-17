@@ -15,6 +15,13 @@ body {
 	margin: 0;    
 }
 
+.highlight {
+    background-color: white;
+    color: red;
+    font-size: 1.2em;
+    text-transform: bold;
+}
+
 #title {
     color: #ff6666;
 }
