@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Machine Learning for Pedestrians</title>
+	<title>Shape Recognition: Machine Learning application</title>
 	<link rel="stylesheet" type="text/css" href="ml.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Source+Sans+Pro:400" rel="stylesheet">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
 </head>
 <body>
 <div class="container">
 <!--*******************************************-->
-<h1 id="title">Machine Learning for Pedestrians <img src="https://cdn-images-1.medium.com/max/1200/1*3CXBOKNql4qS-lRyHT3pqw.png" width="300" align="right" ></h1> 
+<h1 id="title">Shape Recognition: a Machine Learning Demo </h1> 
+<!--<img src="https://cdn-images-1.medium.com/max/1200/1*3CXBOKNql4qS-lRyHT3pqw.png" width="300px" align="right" >-->
 <br/><br/><br/>
 <h1> <i class="far fa-lightbulb"></i> What is Machine Learning?</h1>
 <p>Machine learning is a field in computer science that uses statistical techniques to enables computer systems to <spam class="highlight"> "learn" with data </spam>, without being explicitly programmed.</p>
@@ -19,18 +22,48 @@
 
 
 
+
 <!--*******************************************-->
 <br/>
 <h1> <i class="fas fa-search-plus"></i> Where do we use Machine Learning?</h1>
 <ul>
     <li>Spam Detection</li>
-    <li>Audio/Visual Recognition</li>
+    <li>Audio/Visual Recognition <span class="highlight">--> Shape Recognition</span></li>
     <li>Web Search Engine</li>
     <li>Autonomous Driving</li>
     <li>Fundamental Research in Science</li>
+    <li>(more)</li>
     
 </ul>
 
+<!--*******************************************-->
+<br/>
+<h1> <i class="fas fa-shapes"></i> Data Acquisition:</h1>
+<p> Collecting <span class="highlight">useful and clean data</span> proves to be a challenging task. For the current project, we have asked <span class="highlight_num">10</span> volunteers to draw a total of <span class="highlight_num">640</span> shapes.</p>
+<p> Every participant needs to draw <span class="highlight_num">8</span> shapes for each of the following <span class="highlight_num">eight</span> categories: <span style="font-weight: 700"><i class="far fa-circle"></i> (Circle), Triangle, <i class="far fa-square"></i> (Square), Pentagon, Rhombus, <i class="far fa-star"></i> (Star), Trefoil, <i class="far fa-heart"></i> (Heart)</span></p>
+<p> All Images are taken by IPhone (initial total size = <span class="highlight_num">543.4 MB</span>) and then processed into grayscale, dimensionally-reduced numpy packages. (final size = <span class="highlight_num">8.2 MB</span>)</p>
+<ul>
+    <li>
+        <p>Selected unprocessed raw images:</p>
+        <img src="raw.png">
+    </li>
+    <li>
+        <p> Grayscaled images using Python Imaging Library (PIL): <span class="highlight" style="font-size:0.9em; font-weight:100;">--> for the moment, color is not a feature!</span></p>
+        <img src="gs2448.png">
+    </li>
+    <li>
+        <p> Dimensionality reduction of images from <span class="highlight_num">2448 X 2448 </span> = 5992704 pixels to <span class="highlight_num">40 X 40 = 1600 </span>pixels:</p>
+        <img src="gs40.png">
+    </li>
+    <li>
+        <p> Flattening these images as two numpy arrays/packages, <span class="highlight">data </span> and <span class="highlight">label </span>: </p>
+        <a href="datasets/data.npy"><i class="far fa-file-alt"></i> <span class="highlight"> data.npy </span>  </a>
+        <a href="datasets/label.npy"><i class="far fa-file-alt"></i> <span class="highlight"> label.npy </span>  </a>
+        <p> Correct dimensions: <span class="code"> data.shape = (640, 1600), label.shape = (640,) </span> </p>
+        <p> PS: Be free to download and use the datasets. I also developed additional datasets with much-reduced dimensions of <span class="highlight_num">25 X 25 = 625 </span> : <a href="datasets/data_DIM625.npy"><i class="far fa-file-alt"></i> <span class="highlight" style="font-size:1em;" > data_DIM625.npy </span>  </a><a href="datasets/label_DIM625.npy"><i class="far fa-file-alt"></i> <span class="highlight" style="font-size:1em;"> label_DIM625.npy </span>  </a></p>
+    </li>
+    
+</ul>
 
 
 <!--*******************************************-->
@@ -43,18 +76,6 @@
 
 <p> placeholder </p>
 
-<h2 class="h2hover"> Generative Approach -- multivariate Gaussian</h2>
-
-<p> placeholder </p>
-
-
-<h2 class="h2hover"> Regression Method -- linear, logistic, ridge</h2>
-
-<p> placeholder </p>
-
-<!--*******************************************-->
-
-<h1> <i class="fas fa-crown"></i> Hot Topic:</h1>
 
 
 

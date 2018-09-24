@@ -1,15 +1,16 @@
 body {
 	background-color: #cce6ff;
-	max-width: 1100px;
-	width: 80%;
+	/*max-width: 1100px;*/
+	width: 90%;
 	padding: 0;
 	margin: 30px auto;
 	border: solid #bdc2c7 28px;
-	font-size: 17px;
+	font-size: 18px;
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
 .container {
+	/*background-color: #fefbd8;*/
 	background-color: #ffffe6;
 	padding: 28px;
 	margin: 0;    
@@ -19,15 +20,34 @@ body {
     background-color: white;
     color: red;
     font-size: 1.2em;
-    text-transform: bold;
+    font-weight: bold;
+}
+
+.code {
+    background-color: white;
+    color: black;
+    font-size: 1.1em;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+}
+
+.highlight_num {
+    background-color: white;
+    color: blue;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 #title {
-    color: #ff6666;
+    color: red;
+    font-size: 50px;
+	font-family: 'Indie Flower', cursive;
 }
+
 img {
-	width:25%;
-	height:auto;
+	width:80%;
+	margin-left: 50px;
+	height: auto;
 	min-width:120px;
 	padding: 10px;
 }
