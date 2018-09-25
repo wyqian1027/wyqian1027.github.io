@@ -54,14 +54,21 @@ body {
 	font-family: 'Indie Flower', cursive;
 }
 
-img {
-	width:80%;
-	margin-left: 50px;
-	height: auto;
-	min-width:120px;
-	padding: 10px;
-}
+/*img {*/
+/*	width:80%;*/
+/*	margin-left: 50px;*/
+/*	height: auto;*/
+/*	min-width:120px;*/
+/*	padding: 10px;*/
+/*}*/
 
+
+.logo {
+	height: 100px;
+	margin-left: 10px;
+	min-width:120px;
+	padding: 10px;	
+}
 .code_img {
 	width:60%;
 	margin-left: 50px;
@@ -70,7 +77,7 @@ img {
 	padding: 10px;	
 }
 .code_img_sm {
-	width:40%;
+	width:38%;
 	margin-left: 50px;
 	height: auto;
 	min-width:120px;
@@ -141,6 +148,12 @@ h1 {
 	font-size: 35px;
 }
 
+.subtitle {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 25px;
+	color: green;
+}
+
 li {
 	line-height: 1.5;
 }
@@ -162,5 +175,12 @@ p {
 
 .noBullet {
 	list-style: none;
+}
+
+.tab_lg {
+	margin-left: 25%;
+}
+.tab_sm {
+	margin-left: 5%;
 }
 

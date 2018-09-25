@@ -12,9 +12,10 @@
 <body>
 <div class="container">
 <!--*******************************************-->
-<h1 id="title">Shape Recognition: a Machine Learning Demo </h1> 
-<p>All codes are in Python.</p>
-<!--<img src="https://cdn-images-1.medium.com/max/1200/1*3CXBOKNql4qS-lRyHT3pqw.png" width="300px" align="right" >-->
+<h1 id="title">Shape Recognition: a Machine Learning Demo <img src="qiqiao.png" width="30%" align="right" > </h1>
+<h1 class="subtitle"> -- Can we train machines to recognize different shapes?</h1>
+<!--<h1 class="subtitle">All codes are in Python 3.6.1</h1>-->
+
 <br/><br/><br/>
 <h1> <i class="far fa-lightbulb"></i> What is Machine Learning?</h1>
 <p>Machine learning is a field in computer science that uses statistical techniques to enables computer systems to <spam class="highlight"> "learn" with data </spam>, without being explicitly programmed.</p>
@@ -29,12 +30,10 @@
 <h1> <i class="fas fa-search-plus"></i> Where do we use Machine Learning?</h1>
 <ul>
     <li>Spam Detection</li>
-    <li>Audio/Visual Recognition <span class="highlight" style="color:red;">--> Shape Recognition</span></li>
+    <li>Audio/Visual Recognition <span class="highlight" style="color:red;">--> Shape Recognition is our focus!</span></li>
     <li>Web Search Engine</li>
     <li>Autonomous Driving</li>
     <li>Fundamental Research in Science</li>
-    <li>(more)</li>
-    
 </ul>
 
 <!--*******************************************-->
@@ -73,7 +72,7 @@
 <p> If the computer is trained with the knowledge of labels, then it is <span class="highlight">supervised learning</span>. Otherwise, it is called <span class="highlight">unsupervised learning</span>. For this project, most methods I show here will be in the former category.</p>
 <p> Test size of <span class="highlight_num">0.25</span> is used --> test set = 160, training set = 480. Varied random seed is used to produce different masks on the test set and training set. For example,</p>
 <p> <span class="code"> trainx, trainy, testx, testy = train_test_split(data, labels, split_size=0.25, random_seed=1, split_window=0)</span></p>
-<p> <strong>4-fold Cross Validations</strong> are done for each method introduced below. Same random seed = 2 is used.</p>
+<p> <strong>4-fold Cross Validations</strong> are done for each method. Same random seed = 2 is used.</p>
 
 <!--*******************************************-->
 <br/>
@@ -81,10 +80,10 @@
 <p>kNN is probably the simpliest machine learning method. </p>
 <p>One need first define a proper distance function to compute the relative closeness between two image arrays. Then for each test data, scan all training data to find the closest image array and return its corresponding label. For example, </p>
 <img class="code_img" src="method_file/knn-1.png">
-<p>Final Result, averaged error rate ~ <span class="highlight_num">6.56 %</span>, not bad at all!</p>
+<p>Final Result: averaged error rate ~ <span class="highlight_num">6.56 %</span>, not bad at all!</p>
 <img class="code_img" src="method_file/knn-result.png">
-<p>Example of a misclassified pentagon: test image #118, and its nearest neighbor training image #457</p>
-<img class="case_img" src="method_file/knn-case.png">
+<p>Example of a misclassified pentagon:<span class="tab_sm"><span class="tab_sm"> test image #118 <span class="tab_sm"><span class="tab_sm"><span class="tab_sm"> its nearest neighbor training image #457</p>
+<span class="tab_sm"><span class="tab_sm"><span class="tab_sm"><img class="case_img" src="method_file/knn-case.png"><span class="tab_sm"></span>
 <img class="case_img" src="method_file/knn-case2.png">
 <p>One can also directly use kNN from library, such as <span class="code"> sklearn.neighbors.BallTree, sklearn.neighbors.KDTree</span> and get the same result.</p>
 
@@ -98,25 +97,75 @@
 <p> where \(\text{Probablity}\Big(x\Big|\text{label}=j\Big)\) is the value of Gaussian distribution for label j of data x.</p>
 <p> One can either use multivariate Gaussian from library <span class="code"> from scipy.stats import multivariate_normal </span> or define your own:</p>
 <img class="code_img_lg" src="method_file/GGM-1.png">
-<p> Final Result, averaged error rate ~ <span class="highlight_num">1.25 %</span>, <span class="highlight"> significant improvement!</span></p>
+<p> Final Result: averaged error rate ~ <span class="highlight_num">1.25 %</span>, <span class="highlight"> significant improvement!</span></p>
 <img class="code_img" src="method_file/GGM-result.png">
 
 <!--*******************************************-->
 <br/>
 <h1> <i class="fas fa-wrench"></i> Method 3: Multi-class Perceptron (MP)</h1>
-<p> <span class="highlight">Background </span>: For a binary classification problem, one can use Perceptron method to predict the test labels. Perceptron uses basic linear algebra. It predicts the label by evaluating the sign of a linear estimator function. For example, </p>
+<p> Perceptron algorithm uses basic linear algebra. It predicts the label by evaluating the sign of a linear estimator function. For instance of a simple binary classification problem, we define </p>
 <p> $$ y = W \cdot \vec{x} + b, \text{ where $W$ is the weight matrix, $\vec{x}$ is an instance from the data, $b$ is the bias.} $$</p>
-<p> The loss function is then (\(y\) - label) for each data x. We can find the optimal \(W\) and \(b\), by using gradient descent method.</p>
-<p> What we have is a multi-class (8 classes) classification problem, so we extend the Perceptron algorithm to find and return the label with the highest score. One possible estimator can be:</p>
+<p> The predicted label = \(\text{sign}(y)\), and the loss function = \(\text{sign}(y)\) - label, for each data x. We can find the optimal \(W\) and \(b\), by using gradient descent method.</p>
+<p> What we have is a multi-class (8 classes) classification problem, so the Perceptron algorithm is extended to find and return the label with the highest score. One possible estimator can be:</p>
 <img class="code_img_sm" src="method_file/perc-1.png">
-<p> Then we can train the training set using gradient descent. <span class="highlight">One important note</span>: For more complicated data, one might need to use Stochastic gradient descent or mini-batch Stochastic gradient descent.</p>
+<p> Then we can train the Perceptron on the training set using gradient descent. <span class="highlight">One important note: </span> For more complicated data, one might need to use other variants of gradient descent to speed up the training, such as Stochastic gradient descent or mini-batch Stochastic gradient descent.</p>
 <img class="code_img" src="method_file/perc-2.png">
-<p> Keeping track of dimensions is a key: <span class="code"> w.shape = (8, 1600), b.shape = (8)</p>
-<p> Final Result, averaged error rate ~ <span class="highlight_num">8.75 %</span>, convergences of training set is <span class="highlight_num">9 - 12</span> iterations, surprisingly fast! </p>
+<p> Keep track of our dimensions: <span class="code"> w.shape = (8, 1600), b.shape = (8)</p>
+<p> Final Result: averaged error rate ~ <span class="highlight_num">8.75 %</span>, convergences of training set is <span class="highlight_num">9 - 12</span> iterations, surprisingly fast! </p>
 <img class="code_img" src="method_file/perc-result.png">
 
+<!--*******************************************-->
+<br/>
+<h1> <i class="fas fa-wrench"></i> Method 4: Support Vector Machine (SVM)</h1>
+
+<p>In a nutshell, SVM is an advanced version of <span class="highlight">Perceptron algorithm, where margin between labels is maximized.</span> The optimization requires the loss function to be a convex function, which is true for most machine learning scenarios. </p>
+<img class="code_img_sm" src="svm-ill3.png">
+<p>The beauty of SVM method is that the <span class="highlight">final result only depends on the "support vectors"</span>, the points on the margins of the decision boundary.</p>
+<p>The process can be sped up substantially, using Dual Form of the algorithm, with much reduced dimensionality.</p>
+<p>One can also use Kernel trick to classify data with quadratic decision boundaries or even higher degree polynomial, as in our quadratic SVM approach below.</p>
+<p>The penalty for misclassified points can be tuned via a "slack" variable to improve the performance. </p>
+<img class="code_img_sm" src="method_file/lin-svm-1.png">
+<img class="code_img_sm" src="method_file/quad-svm-1.png" >
+<p> Final Results: <span class="tab_sm"></span>Linear SVM averaged error rate ~ <span class="highlight_num">7.03 %</span> <span class="tab_lg"></span>Quadratic SVM averaged error rate ~<span class="highlight_num">4.22 %</span></p>
+<img class="code_img_sm" src="method_file/lin-svm-result.png">
+<img class="code_img_sm" src="method_file/quad-svm-result.png">
 
 
+<!--*******************************************-->
+<br/>
+<h1> <i class="fas fa-sitemap"></i> Method 5: Artificial Neural Network, with TensorFlow</h1>
+<p><a href="https://www.tensorflow.org"><strong>TensorFlow</strong></a> is an amazing open source machine learning framework developed by Google for high performance numerical computation. It excels at computing neutral networks. </p>
+<p> In our brain, every neuron is connected with many more neurons. Each neuron process the signals from previous neurons and relay the signal to neurons in the next layer, and so forth. </p>
+<img class="code_img_sm" src="neuron.jpg">
+<p> <span class="highlight">Neutral network is inspired directly by how neurons pass signals in our brain. </span> In a naive analogy, weights are the length of nerve fiber (axon), activation functions are like the action potential to excite synaptic connections, and so forth. </p>
+<p> Here, I will mainly focus on Densely-connected Neural Network (DNN). It is dense because every node is connected to every node in the next layer. The internal layer \( z_i = \sum_j W_{i,j} x_j + b_i\) and final output layer \( y =\text{softmax}(\vec{z})_i = \frac{\text{exp}(z_i)}{\sum_j \text{exp}(z_j)} \).</p>
+<img class="code_img" src="DNN-sk.png">
+<p> Creating variables, placeholders, and operations:</p>
+<img class="code_img_sm" src="method_file/tf1.png">
+<p> Setting loss function and optimizer:</p>
+<img class="code_img_lg" src="method_file/tf2.png">
+<p> Training, with maximum 2000 steps, feeding batch size = 10,</p>
+<img class="code_img" src="method_file/tf3.png">
+<p> Final Results: Accuracy stablizes after <span class="highlight_num"> 650 </span> steps, accuracy rate ~ <span class="highlight_num">84.38 %</span></p>
+<img class="code_img" src="method_file/NN-res2.png">
+<p> Another popular method is CNN, short for Convolutional Neural Network. The idea is to render image as two dimensional array similar to how our eyes perceive things. In this way, information of neighboring points is saved. Then, apply various filters and train the machine at each layer. </p>
+<p> The advantage is phenomenal. CNN accuracy stablizes after around <span class="highlight"> 700 </span> steps, accuracy rate ~ <span class="highlight">99.38 %</span>, fluctuations due to batch size. </p>
+
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<p style="color: grey;">Feel free to contact me at wyqian1027 at gmail if you have any questions or suggestions.</p>
+<img class="logo" src="logo/logo0.gif">
+<img class="logo" src="logo/logo1.png">
+<img class="logo" src="logo/logo2.jpg">
+<img class="logo" src="logo/logo3.png">
+<img class="logo" src="logo/logo4.png">
+<img class="logo" src="logo/logo5.png">
 </div>
 <script type="text/javascript" src="ml.js"></script>
 
