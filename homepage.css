@@ -68,6 +68,17 @@ img {
 	padding-left: 16px;
 }
 
+.linspace2 {
+	line-height: 2;
+	padding-left: 16px;
+}
+
+.linspace3 {
+	line-height: 2;
+	padding-left: 16px;
+	font-size: 1.5em;
+}
+
 .space {
 	padding-left: 7px;
 }
