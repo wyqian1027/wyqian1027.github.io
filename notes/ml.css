@@ -1,17 +1,18 @@
 body {
-	background-color: #cce6ff;
-	/*max-width: 1100px;*/
-	width: 90%;
+	background-color: #CEF0FF;
+	/*max-width: 1000px;*/
+	width: 85%;
 	padding: 0;
 	margin: 30px auto;
-	border: solid #bdc2c7 28px;
+	/*border: solid #bdc2c7 28px;*/
 	font-size: 18px;
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
 .container {
 	/*background-color: #fefbd8;*/
-	background-color: #ffffe6;
+	/*background-color: #ffffe6;*/
+	background-color: #CEF0FF;
 	padding: 28px;
 	margin: 0;    
 }

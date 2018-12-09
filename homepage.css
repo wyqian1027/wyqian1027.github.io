@@ -1,11 +1,12 @@
 body {
-	background-color: white;
-	max-width: 800px;
+	background-color: #CEF0FF;
+	max-width: 1000px;
 	width: 80%;
 	padding: 28px;
 	margin: 30px auto;
-	border: solid #bdc2c7 28px;
-	font-size: 17px;
+	/*border: solid #bdc2c7 28px;*/
+	/*background: #FDF1BD;*/
+	font-size: 18px;
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
