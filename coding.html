@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang Qian's Coding</title>
+	<link rel="shortcut icon" href="public/img/favicon-96x96.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="public/css/homepage.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<!--<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>-->
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+</head>
+<body>
+
+<h1 id="title">Wenyang Qian's Coding</h1> 
+<p class="Aclass">
+    Wenyang is experienced with developing codes in <strong>Python</strong>, <strong>JavaScript</strong>, <strong>Mathematica</strong>, <strong>Java</strong>, and <strong>Fortran</strong>.
+</p>
+
+<!--Data Structures-->
+<h2 class="section">
+    <a id="data-structure" href="#data-structure">Data Structures</a>
+</h2>
+
+
+
+<!--Package-->
+<h2 class="section">
+	<a id="packages" href="#packages">Packages</a>
+</h2>
+<ul class="Aclass">
+	<li class="coding-text">
+	    <a href="https://www.npmjs.com/package/stats-lib" target="_blank">stats-lib</a><br>
+         Fast and light-weight statistical <strong>JavaScript</strong> package of frequently used operations on arrays. <br>
+         In particular, stats-lib also supports zScore, quartile, nLargest, nSmallest operations on arrays, and linear fit, covariance, correlation calculations on multiple arrays. Dec 2018.
+         <p></p>
+<pre class="prettyprint lang-javascript">
+//installation with Node Package Manager (NPM)
+npm install stats-lib
+
+//how to use
+var stats = require('stats-lib');
+var X = [4, 4, 3, 2, 1, 0];
+console.log(stats.quartile(X));     //[ 1, 2.5, 4 ]
+console.log(stats.kthMoment(X, 2));  //1, standardized moment of degree 2
+</pre>
+    </li>
+
+    <li id="toolkit-feyman" class="coding-text">
+	    <a href="#toolkit-feyman">Mathematical Toolkit for Many-body Interaction.</a><br>
+         Fast <strong>Mathematica</strong> package to symbolically compute interaction matrix element directly out of Feynman diagrams. <br>
+         It serves as great tool for cross-checking analytical results. This package also supports both Minkowski and Light-front coordinate systems. Convention follows this <a href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.91.105009"> publication</a>. Dec 2016.
+         <p></p>
+    </li>
+    <li id="ascii-art" class="coding-text">
+	    <a href="public/img/ascii-art/generate_ascii_img.py">ASCII Art Generator.</a><br>
+         Fast <strong>Python</strong> package to convert images to <a href="https://en.wikipedia.org/wiki/ASCII_art">ASCII Art</a>. Feb 2019.<br>
+         <p></p>
+<pre class="prettyprint lang-python">
+#how to use
+python generate_ascii_img.py "target_file.jpg" size "output_file_name.txt" //all parametres are optional
+</pre>
+    </li>
+
+<table class="preview">
+<tbody>
+    <tr style="display: flex; flex-wrap: wrap;">
+        <td class="image">
+            <img width="300" height="300" src="public/img/ascii-art/original1.jpg"></a>
+        </td>
+        <td class="image">
+            <img width="310" height="300" src="public/img/ascii-art/ascii-art1.png"></a>
+        </td>
+        <td class="image">
+            <img width="300" height="300" src="public/img/ascii-art/original2.jpg"></a>
+        </td>
+        <td class="image">
+            <img width="300" height="300" src="public/img/ascii-art/ascii-art2.png"></a>
+        </td>
+    </tr> 	
+</tbody>
+</table>
+</ul>
+
+<div class="footer">
+    <a title="Back to Homepage" href="https://wyqian1027.github.io/public/"><i class="fas fa-igloo"></i></a>
+	<em>Last updated February 9, 2019 by Wenyang Qian.</em>
+</div>
+
+</body>
+</html>

@@ -1,84 +1,187 @@
+/*default theme color : 440099*/
+/*This variable setting helps me play with color before I settle down...*/
+:root {
+    /*--main-bg-color: #440099;*/
+    /*--section-font-color: yellow;*/
+    /*--box-bg-color: #dacceb;*/
+    
+    --main-bg-color: black;
+    --box-bg-color: #BCE5FF;
+    --section-font-color: white;
+    --link-default-color: brown;
+    /*--item-heading-color: #0D51E5;*/
+    --item-heading-color: #21006E;
+}
+
+
 body {
-	background-color: #CEF0FF;
-	max-width: 1000px;
-	width: 70%;
-	padding: 28px;
-	margin: 30px auto;
+	/*background-color: #CEF0FF;*/
+	/*max-width: 1000px;*/
+	/*width: 70%;*/
+	/*padding: 28px;*/
+	margin: 20px;
 	/*border: solid #bdc2c7 28px;*/
-	/*background: #FDF1BD;*/
-	font-size: 18px;
-	font-family: 'Source Sans Pro', sans-serif;
-    /*font-family: 'Gentium Book Basic', Cambria, Georgia, serif;*/
+	background: #f5f9fa;
+	font-size: 16px;
+	/*font-family: 'Source Sans Pro', sans-serif;*/
+    font-family: 'Gentium Book Basic', Cambria, Georgia, serif;
     display: block;
 }
 
-H1 {
+#title {
     font-variant: small-caps;
     text-shadow: 2px 2px 2px #aaa;
     text-align: center;
-    font-size: 400%;
+    font-size: 250%;
     margin-bottom: 0ex;
     margin-top: 1.5ex;
-    padding-left: 0.21em;
-    color: #440099;
+    /*padding-left: 0.21em;*/
+    color: var(--main-bg-color);
+    padding-top:4px;
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    /*font-family: 'Roboto Slab', serif;*/
+    /*font-family: 'Gentium Book Basic', Cambria, Georgia, serif;*/
+
+}
+#title A {
+    text-decoration: none;  
+}
+#title A:hover {
+    text-decoration: none;  
 }
 
-hr {
-    border: none;
-    border-top: 3px double #333;
-    color: #333;
-    overflow: visible;
-    text-align: center;
-    height: 5px;
-}
-
-hr:after {
-    background: #fff;
-    content: ;
-    padding: 0 4px;
-    position: relative;
-    top: -13px;
-}
-
-.purplebox {
-    font-size: large;
-    background-color: #440099;
+.Aclass A:hover {
+    background-color: var(--main-bg-color);
     color: white;
-    padding: 1ex 1em;
-    font-weight: bold;
-}
-
-
-.purplebox A {
-    color: yellow;
-    text-decoration: none;
 }
 
 A {
 	text-decoration: none;
-	color: black;
+	color: brown;
 }
-A:-webkit-any-link {
-    cursor: pointer;
+A:hover { 
+    text-decoration: none;
 }
-
-.h2hover {
-	font-size: 22px;
-	color: #d64199;
+A:visited {
+    text-decoration: none;
 }
 
-.ulhover {
-	font-size: 19px;
+
+.image A IMG, .image A TABLE{
+    border: var(--main-bg-color) solid 4px;
+    position: relative;
+    left: -3px;
+    top: -3px;
+}
+
+.image A IMG:hover {
+    border: var(--box-bg-color) solid 4px;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    text-decoration: none;
+}
+
+.purplebox {
+    font-size: large;
+    background-color: var( --main-bg-color);
+    color: white;
+    padding: 1ex 1em;
+    font-weight: bold;
+}
+.purplebox A {
+    color: var(--section-font-color);
+    text-decoration: none;
+    font-size: 1.4em;
+}
+.purplebox A:hover { 
+    background-color: var(--section-font-color);
+    color: var( --main-bg-color);
+}
+
+
+.stackpreview {
+    display: inline-block;
+    margin: 3ex 1em;
+    padding: 4px;
+    clear: both;
+    /*font-family: 'Gentium Book Basic', serif;*/
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+    background-color: var(--box-bg-color);
+    vertical-align: top;
+    box-shadow: 2px 2px #aaa;
+}
+.stackpreview P {
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+.stackpreview P + P, .stackpreview DIV + P {
+    margin-bottom: 0.5em;
+}
+/*.stackpreview P A:hover{*/
+/*    text-decoration: none;*/
+/*    background-color: var(--box-bg-color);*/
+/*}*/
+.stackpreview:hover{
+    box-shadow: 7px 7px #aaa;
+}
+
+
+.heading {
+    margin-top: 0.5ex; 
+    text-align: center;
+    margin-bottom: 4ex; 
+    color: var( --main-bg-color);
+    font-size: x-large;
+    font-weight: bold;
+}
+.heading A {
+    color: var( --main-bg-color);
+}
+.heading A:hover, .biography div span A:hover, .caption A:hover { 
+    background-color: var( --main-bg-color);
+    color: white;
+}
+
+.caption A {
+    font-style: italic;
+    color:  var( --main-bg-color);
+}
+
+
+.biography {
+    margin-left: 15px;
+    margin-bottom: 45px;
+}
+.biography div {
+    text-align: left;
+    font-size: 1.2em;
+    /*padding-left:10px;*/
+    padding-bottom: 10px;
+} 
+.biography .myinfo {
+    padding-left: 10px;
 }
 
 h2 {
-	text-transform: uppercase;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 20px;
-	letter-spacing: .2rem;	
-	color: #d64161;
+    display: block;
+    font-size: 1.4em;
+    font-weight: bold;
 }
+
+.section {
+    color: white;
+    background-color: var(--main-bg-color);
+    padding: 1ex 0.5em;
+    font-weight: bold;
+    clear: both;
+    text-transform: uppercase;
+}
+.section A {
+    color: white;
+}
+
 
 .paper {
 	font-style: italic;
@@ -88,53 +191,189 @@ h2 {
 	text-decoration: underline;
 }
 
+.footer {
+    background-color: var(--main-bg-color);
+    color: white;
+    padding: 1ex 1em;
+    font-weight: bold;
+    clear: both;
+    text-align: right;
+    font-size: medium;
+    font-family: 'Gentium Book Basic', Cambria, Georgia, serif;
+}
+.footer A {
+    float: left;
+    color: white;
+}
+.footer A:hover {
+    color: silver;
+}
+
 ul {
-	line-height: 1.2;
-/*	list-style: none;
-*/}
-
-h1 {
-	font-family: 'Montserrat', sans-serif;
-	font-size: 40px;
+    display: block;
+    list-style-type: disc;
 }
-
+ul A {
+	text-decoration: none;
+	/*color: black;*/
+}
 li {
-	line-height: 1.5;
+    display: list-item;
+    font-size: 16px;
 }
 
-p {
-	line-height: 1.5;
+.coding-text {
+    font-size: 20px;
+}
+.coding-text A:first-child {
+    color: var(--item-heading-color);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.coding-text A:hover{
+    background-color: var(--main-bg-color);
+    color: #ACFF1D;    
 }
 
-img {
-	width:25%;
-	height:auto;
-	min-width:120px;
+
+table {
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-size: medium;
+    font-style: normal;
+    color: -internal-quirk-inherit;
+    text-align: start;
+    font-variant: normal;
 }
 
-.linspace {
-	line-height: 1.5;
-	padding-left: 16px;
+.description {
+    padding-left: 2em;
 }
 
-.linspace2 {
-	line-height: 2;
-	padding-left: 25px;
+.preview {
+    margin-bottom: 1ex;
+    clear: right;
+}
+pre {
+    white-space: pre-wrap;
+}
+.prettyprint {
+    font-size: .85em;
+    word-wrap: break-word;
 }
 
-.linspace3 {
-	line-height: 2;
-	padding-left: 16px;
-	font-size: 1.5em;
+.item {
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+.item h2 A:first-child, #recent {
+    font-weight: bold;
+    /*color: var(--main-bg-color);*/
+    color: var(--item-heading-color);
+}
+.item A:hover, .item h2 A:hover, #recent:hover{
+    background-color: var(--main-bg-color);
+    color: white;   
 }
 
-.space {
-	padding-left: 7px;
+/*Animation*/
+/*.slideshow { */
+/*  position: relative;*/
+/*  height:300px;*/
+/*  width:300px;*/
+/*  margin:0;*/
+/*}*/
+
+/*.slideshow img { */
+/*  position: absolute;*/
+/*  top: -3px;*/
+/*  left: -3px;*/
+/*  opacity: 0;*/
+/*  z-index: 0;*/
+/*  animation: imageAnimation 10s infinite;*/
+/*  border: var(--main-bg-color) solid 4px;*/
+/*}*/
+/*.slideshow img:hover {*/
+/*    border: var(--box-bg-color) solid 4px;*/
+/*    opacity: 0.5;*/
+/*    filter: alpha(opacity=50);  /*For IE8 and earlier 
+/*}*/
+
+
+/*.slideshow img:nth-child(1) { */
+/*}*/
+/*.slideshow img:nth-child(2) { */
+/*  animation-delay: 5s; */
+/*}*/
+/*.slideshow img:nth-child(3) { */
+/*  animation-delay: 10s; */
+/*}*/
+/*.slideshow img:nth-child(4) { */
+/*  animation-delay: 15s; */
+/*}*/
+/*.slideshow img:nth-child(5) { */
+/*  animation-delay: 20s; */
+/*}*/
+/*Now we can create the keyframes for the animation:*/
+/*@keyframes imageAnimation { */
+/*    0% {*/
+/*        opacity:1;*/
+/*    }*/
+/*    48% {*/
+/*        opacity:1;*/
+/*    }*/
+/*    52% {*/
+/*        opacity:0;*/
+/*    }*/
+/*    100% {*/
+/*        opacity:0;*/
+/*    }*/
+/*}*/
+
+/*hovering text*/
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /*border-bottom: 1px dotted black;*/
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 400px;
+  background-color: #A6FFB7;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  font-weight: bold;
+  z-index: 1;
+
+  /*position*/
+  position: absolute;
+  top: -5px;
+  left: 105%;
+  
+  /*fade in*/
+  opacity: 0;
+  transition: opacity 2s;
+}
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  color: green;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 
-.noBullet {
-	list-style: none;
-}
 
 
 
