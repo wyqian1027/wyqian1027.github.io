@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang Qian's Coding</title>
+	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+</head>
+<body>
+
+
+<h2 class="section">
+    <a style="margin: 0 auto;" id="union-find" href="#union-find">Disjoint Set, or Union Find</a>
+</h2>
+<ul class="Aclass">
+	<li class="coding-text">
+	    <a>Intuitions</a><br>
+        <p>Union-find is an efficient data structure to track of set of elements partitioned into 
+        a number of disjoint subsets. It has the following key operations: </p>
+        <p>1. <span class="method">MakeSet</span>: Associate each element in the set with a unique <strong>id</strong>, a <strong>rank (size)</strong> of 0, and a <strong>parent</strong> pointing to itself. 
+        This serves as the initialization setup for union-find.</p> 
+        <p>2. <span class="method">Find(x)</span>: Follow the chain of parent pointers from element x up until it reaches the root element, whose parent is itself. 
+        This root element is the <strong>representative</strong> of the set in which x belongs to. Path compression is one technique commonly used to flatten the structure of the tree. 
+        The basic idea is that once a root a found, parents of all chained elements are changed to point to that root.</p>
+        <p>3. <span class="method">Union(x, y)</span>: Find the roots of element x and element y respectively. 
+        If the roots are different, <strong>combine</strong> the trees by changing the parent of one root point to the other root.
+        In the worst case, the height of the trees can grow up to \( O(n) \). To prevent this, union by rank or union by size are used. </p>
+        <p>
+        <strong>Time Complexity</strong>: <br>
+        Without neither path compression nor union by rank, the time complexity of both operations will be \( O(n) \). Using both ensures the amortized time per operation is only 
+        \( O(\alpha(n)) \), where the inverse Ackermann function \( \alpha(n) \) is a constant.
+        </p>
+        </p>
+        
+        <p></p>
+<!--<pre class="prettyprint lang-python3">-->
+
+<!--</pre>-->
+    </li>
+    <li class="coding-text">
+	    <a>Python Implementation</a><br>
+        <p></p>
+<pre class="prettyprint lang-python3">
+class UF:
+    
+    #MakeSet, init parents and sizes
+    def __init__(self, numberOfElements):
+        self.p = list(range(numberOfElements))
+        self.size = [0] * numberOfElements
+
+    #find(x)
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])  #Recursion is used to compress the tree
+        return self.p[x]
+
+    #union(x,y)
+    def union(self, x, y):
+        xr, yr = self.find(x), self.find(y)
+        if xr == yr:
+            return False
+        if self.size[xr] <= self.size[yr]:  #union by size
+            self.p[xr] = yr
+            self.size[yr] += 1
+        else:
+            self.p[yr] = xr
+            self.size[xr] += 1
+        return True
+        
+        
+</pre>
+    </li>
+    <li class="coding-text">
+	    <a>Applications</a><br>
+	    <p></p>
+         <a href="https://en.wikipedia.org/wiki/Kruskal%27s_algorithm">Kruskal's algorithm of minimum-spanning-tree</a>
+    </li>
+    <p></p>
+    <li class="coding-text">
+	    <a>Resources</a><br>
+	    <p></p>
+         <a href="https://www.youtube.com/watch?v=ibjEGG7ylHk">Intro with Visualization Demo</a>
+    </li>
+</ul>
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i></a>
+	<em>Last updated February 27, 2019 by Wenyang Qian.</em>
+</div>
+
+</body>
+</html>

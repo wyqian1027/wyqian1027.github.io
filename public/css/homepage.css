@@ -374,7 +374,10 @@ pre {
   opacity: 1;
 }
 
-
+.method {
+    font-weight: bold;
+    color: #FF535A;
+}
 
 
 
