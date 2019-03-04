@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang Qian's Data Science</title>
+	<link rel="shortcut icon" href="../../public/img/favicon-96x96.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../../public/css/homepage.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>-->
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="sc2_analysis.css">
+</head>
+<body>
+
+
+<h2 class="section">
+    <a style="margin: 0 auto;" id="sc2" href="#sc2">Data Analysis of Professional Starcraft 2.</a>
+</h2>
+<ul class="Aclass">
+	<li class="coding-text">
+	    <a>Predictions</a><br>
+	    
+	    <p>IEM Season XIII - Katowice, Feb 25 - March 03, 2019 (Using Premium Match Data Only)</p>
+	    <p></p>
+	    
+	    
+<!--================================================================================================    -->
+	    
+        <!--<p>Union-find is an efficient data structure to track of set of elements partitioned into -->
+        <!--a number of disjoint subsets. It has the following key operations: </p>-->
+        <!--<p>1. <span class="method">MakeSet</span>: Associate each element in the set with a unique <strong>id</strong>, a <strong>rank (size)</strong> of 0, and a <strong>parent</strong> pointing to itself. -->
+        <!--This serves as the initialization setup for union-find.</p> -->
+        <!--<p>2. <span class="method">Find(x)</span>: Follow the chain of parent pointers from element x up until it reaches the root element, whose parent is itself. -->
+        <!--This root element is the <strong>representative</strong> of the set in which x belongs to. Path compression is one technique commonly used to flatten the structure of the tree. -->
+        <!--The basic idea is that once a root a found, parents of all chained elements are changed to point to that root.</p>-->
+        <!--<p>3. <span class="method">Union(x, y)</span>: Find the roots of element x and element y respectively. -->
+        <!--If the roots are different, <strong>combine</strong> the trees by changing the parent of one root point to the other root.-->
+        <!--In the worst case, the height of the trees can grow up to \( O(n) \). To prevent this, union by rank or union by size are used. </p>-->
+        <!--<p>-->
+        <!--<strong>Time Complexity</strong>: <br>-->
+        <!--Without neither path compression nor union by rank, the time complexity of both operations will be \( O(n) \). Using both ensures the amortized time per operation is only -->
+        <!--\( O(\alpha(n)) \), where the inverse Ackermann function \( \alpha(n) \) is a constant.-->
+        <!--</p>-->
+        <!--</p>-->
+        
+        
+<div class="prediction">       
+        <div style="width:665px" class="bracket bracket-width-4col-20">
+    <div class="bracket-column bracket-column-matches" style="width:150px">
+      <div style="height:52px;margin-top:0px">
+        <div class="bracket-header">Round of 12 (Bo5)</div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 30px; right: 16px;"></div>
+        <div class="bracket-cell-r1" style="font-weight:bold">
+          <div class="bracket-player-top" style="background: rgb(184, 242, 184); padding-right: 23px;  " data-highlightingkey="herO">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">herO</span>
+            <div class="bracket-score" style="width:50px">82.7%</div>
+          </div>
+        </div>
+        <div class="bracket-cell-r1" style="">
+          <div class="bracket-player-bottom" style="background: rgb(184, 242, 184); padding-right: 23px;  " data-highlightingkey="Trap">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Trap</span>
+            <div class="bracket-score" style="width:50px">17.3%</div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 30px; right: 16px;"></div>
+        <div class="bracket-cell-r1" style="font-weight:bold">
+          <div class="bracket-player-top" style="background: rgb(184, 242, 184); padding-right: 23px;  " data-highlightingkey="Zest">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Zest</span>
+            <div class="bracket-score" style="width:50px">54.9%</div>
+          </div>
+        </div>
+        <div class="bracket-cell-r1" >
+          <div class="bracket-player-bottom" style="background: rgb(242, 184, 184); padding-right: 23px;  "data-highlightingkey="soO">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">soO</span>
+            <div class="bracket-score" style="width:50px">45.1%</div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 30px; right: 16px;"></div>
+        <div class="bracket-cell-r1" style="font-weight:bold">
+          <div class="bracket-player-top" style="background: rgb(184, 242, 184); padding-right: 23px;  " data-highlightingkey="Neeb">&nbsp;<img alt="USA" src="https://liquipedia.net/commons/images/2/2f/Us.png"  width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Neeb</span>
+            <div class="bracket-score" style="width:50px">59.1%</div>
+          </div>
+        </div>
+        <div class="bracket-cell-r1" style="">
+          <div class="bracket-player-bottom" style="background: rgb(242, 184, 184); padding-right: 23px;  "data-highlightingkey="RagnaroK">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">RagnaroK</span>
+            <div class="bracket-score" style="width:50px">40.9%</div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 30px; right: 16px;"></div>
+        <div class="bracket-cell-r1"  style="font-weight:bold">
+          <div class="bracket-player-top" style="background: rgb(184, 184, 242); padding-right: 23px; cursor: pointer;" data-background-color="rgb(184, 184, 242)" data-background-color-hover="rgb(217, 217, 250)" data-highlightingkey="TY">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">TY</span>
+            <div class="bracket-score" style="width:50px">63.7%</div>
+          </div>
+        </div>
+        <div class="bracket-cell-r1">
+          <div class="bracket-player-bottom" style="background: rgb(242, 184, 184); padding-right: 23px;  "data-highlightingkey="Solar">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Solar</span>
+            <div class="bracket-score" style="width:50px">36.3%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bracket-column" style="width:20px">
+      <div style="float:left;width:9px;clear:left">
+        <div style="width:9px;height:40px;"> </div>
+        <div style="width:9px;height:47px;border-bottom:solid #aaa 2px"> </div>
+        <div style="width:9px;height:23px"> </div>
+      </div>
+      <div style="float:left;width:9px;">
+        <div style="width:9px;height:52px;"> </div>
+        <div style="width:9px;height:12px;border-bottom-left-radius:3px;border:solid #aaa;border-width:0 0 2px 2px"> </div>
+        <div style="width:11px;height:21px;border-bottom:solid #aaa 2px"> </div>
+        <div style="width:9px;height:23px;"> </div>
+      </div>
+      <div style="float:left;width:9px;clear:left">
+        <div style="width:9px;height:47px;border-bottom:solid #aaa 2px"> </div>
+        <div style="width:9px;height:23px"> </div>
+      </div>
+      <div style="float:left;width:9px;">
+        <div style="width:9px;height:12px;"> </div>
+        <div style="width:9px;height:12px;border-bottom-left-radius:3px;border:solid #aaa;border-width:0 0 2px 2px"> </div>
+        <div style="width:11px;height:21px;border-bottom:solid #aaa 2px"> </div>
+        <div style="width:9px;height:23px;"> </div>
+      </div>
+      <div style="float:left;width:9px;clear:left">
+        <div style="width:9px;height:47px;border-bottom:solid #aaa 2px"> </div>
+        <div style="width:9px;height:23px"> </div>
+      </div>
+      <div style="float:left;width:9px;">
+        <div style="width:9px;height:12px;"> </div>
+        <div style="width:9px;height:12px;border-bottom-left-radius:3px;border:solid #aaa;border-width:0 0 2px 2px"> </div>
+        <div style="width:11px;height:21px;border-bottom:solid #aaa 2px"> </div>
+        <div style="width:9px;height:23px;"> </div>
+      </div>
+      <div style="float:left;width:9px;clear:left">
+        <div style="width:9px;height:47px;border-bottom:solid #aaa 2px"> </div>
+        <div style="width:9px;height:23px"> </div>
+      </div>
+      <div style="float:left;width:9px;">
+        <div style="width:9px;height:12px;"> </div>
+        <div style="width:9px;height:12px;border-bottom-left-radius:3px;border:solid #aaa;border-width:0 0 2px 2px"> </div>
+        <div style="width:11px;height:21px;border-bottom:solid #aaa 2px"> </div>
+        <div style="width:9px;height:23px;"> </div>
+      </div>
+    </div>
+    <div class="bracket-column bracket-column-matches" style="width:150px">
+      <div style="height:40px;margin-top:0px">
+        <div class="bracket-header">Quarterfinals (Bo5)</div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 30px; right: 16px;"></div>
+        <div class="bracket-cell-r1" style="">
+          <div class="bracket-player-top" style="background: rgb(184, 242, 184); padding-right: 23px;  " data-highlightingkey="Dear">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Dear</span>
+            <div class="bracket-score" style="width:50px">2.9%</div>
+          </div>
+        </div>
+
+        <div class="bracket-cell-r1" style="font-weight:bold">
+          <div class="bracket-player-bottom" style="background: rgb(184, 242, 184); padding-right: 23px;  " data-highlightingkey="herO">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">herO</span>
+            <div class="bracket-score" style="width:50px">97.1%</div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 30px; right: 16px;"></div>
+        <div class="bracket-cell-r1" style="font-weight:bold">
+          <div class="bracket-player-top" style="background: rgb(242, 184, 184); padding-right: 23px;  "data-highlightingkey="Serral">&nbsp;<img  src="https://liquipedia.net/commons/images/7/70/Fi.png"  width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Serral</span>
+            <div class="bracket-score" style="width:50px">57.8%</div>
+          </div>
+        </div>
+
+        <div class="bracket-cell-r1" >
+          <div class="bracket-player-bottom" style="background: rgb(242, 184, 184); padding-right: 23px;  "data-highlightingkey="soO">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Zest</span>
+            <div class="bracket-score" style="width:50px">42.2%</div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 30px; right: 16px;"></div>
+        <div class="bracket-cell-r1">
+          <div class="bracket-player-top" style="background: rgb(184, 242, 184); padding-right: 23px;  " data-highlightingkey="Stats">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Stats</span>
+            <div class="bracket-score" style="width:50px">10.3%</div>
+          </div>
+        </div>
+
+        <div class="bracket-cell-r1"  style="font-weight:bold">
+          <div class="bracket-player-bottom" style="background: rgb(184, 242, 184); padding-right: 23px;  " data-highlightingkey="Neeb">&nbsp;<img alt="USA" src="https://liquipedia.net/commons/images/2/2f/Us.png"  width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Neeb</span>
+            <div class="bracket-score" style="width:50px">89.7%</div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 30px; right: 16px;"></div>
+        <div class="bracket-cell-r1" style="font-weight:bold">
+          <div class="bracket-player-top" style="background: rgb(242, 184, 184); padding-right: 23px;  "data-highlightingkey="Dark">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Dark</span>
+            <div class="bracket-score" style="width:50px">68.3%</div>
+          </div>
+        </div>
+
+        <div class="bracket-cell-r1" style="">
+          <div class="bracket-player-bottom" style="background: rgb(242, 184, 184); padding-right: 23px;  "data-highlightingkey="Solar">&nbsp;<img   src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Solar</span>
+            <div class="bracket-score" style="width:50px">31.7%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bracket-column" style="width:20px">
+      <div style="float:left;width:9px">
+        <div style="width:9px;height:75px"> </div>
+        <div style="width:9px;height:16px;border-top-right-radius:3px;border:solid #aaa;border-width:2px 2px 0 0"> </div>
+        <div style="width:9px;height:38px"> </div>
+        <div style="width:9px;height:16px;border-bottom-right-radius:3px;border:solid #aaa;border-width:0 2px 2px 0"> </div>
+        <div style="width:9px;height:33px"> </div>
+      </div>
+      <div style="float:left;width:9px;">
+        <div style="width:9px;height:93px;"> </div>
+        <div style="width:9px;height:6px;border-bottom-left-radius:3px;border:solid #aaa;border-width:0 0 2px 2px"> </div>
+        <div style="width:9px;height:22px;"> </div>
+        <div style="width:9px;height:6px;border-top-left-radius:3px;border:solid #aaa;border-width:2px 0 0 2px"> </div>
+        <div style="width:9px;height:51px;"> </div>
+      </div>
+      <div style="float:left;width:9px">
+        <div style="width:9px;height:37px"> </div>
+        <div style="width:9px;height:16px;border-top-right-radius:3px;border:solid #aaa;border-width:2px 2px 0 0"> </div>
+        <div style="width:9px;height:38px"> </div>
+        <div style="width:9px;height:16px;border-bottom-right-radius:3px;border:solid #aaa;border-width:0 2px 2px 0"> </div>
+        <div style="width:9px;height:33px"> </div>
+      </div>
+      <div style="float:left;width:9px;">
+        <div style="width:9px;height:55px;"> </div>
+        <div style="width:9px;height:6px;border-bottom-left-radius:3px;border:solid #aaa;border-width:0 0 2px 2px"> </div>
+        <div style="width:9px;height:22px;"> </div>
+        <div style="width:9px;height:6px;border-top-left-radius:3px;border:solid #aaa;border-width:2px 0 0 2px"> </div>
+        <div style="width:9px;height:51px;"> </div>
+      </div>
+    </div>
+    <div class="bracket-column bracket-column-matches" style="width:150px">
+      <div style="height:40px;margin-top:0px">
+        <div class="bracket-header">Semifinals (Bo5)</div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 66px; right: 16px;"></div>
+        <div class="bracket-cell-r2" style="">
+          <div class="bracket-player-top" style="background: rgb(184, 242, 184); padding-right: 23px; " >&nbsp;<img src="https://liquipedia.net/commons/images/3/36/Kr.png"   width="18" height="12">&nbsp;<span style="vertical-align:-1px;">herO</span>
+            <div class="bracket-score" style="width:50px">47.7%</div>
+          </div>
+        </div>
+
+        <div class="bracket-cell-r2" style="font-weight:bold">
+          <div class="bracket-player-bottom" style="background: rgb(242, 184, 184); padding-right: 23px; " >&nbsp;<img  src="https://liquipedia.net/commons/images/7/70/Fi.png"  width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Serral</span>
+            <div class="bracket-score" style="width:50px">52.3%</div>
+          </div>
+        </div>
+      </div>
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 66px; right: 16px;"></div>
+        <div class="bracket-cell-r2" style="font-weight:bold">
+          <div class="bracket-player-top" style="background: rgb(184, 242, 184); padding-right: 23px; " >&nbsp;<img src="https://liquipedia.net/commons/images/2/2f/Us.png" width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Neeb</span>
+            <div class="bracket-score" style="width:50px">60.6%</div>
+          </div>
+        </div>
+
+        <div class="bracket-cell-r2" style="">
+          <div class="bracket-player-bottom" style="background: rgb(242, 184, 184); padding-right: 23px; " >&nbsp;<img  src="https://liquipedia.net/commons/images/3/36/Kr.png" width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Dark</span>
+            <div class="bracket-score" style="width:50px">39.4%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bracket-column" style="width:20px">
+      <div style="float:left;width:9px">
+        <div style="width:9px;height:111px"> </div>
+        <div style="width:9px;height:52px;border-top-right-radius:3px;border:solid #aaa;border-width:2px 2px 0 0"> </div>
+        <div style="width:9px;height:38px"> </div>
+        <div style="width:9px;height:52px;border-bottom-right-radius:3px;border:solid #aaa;border-width:0 2px 2px 0"> </div>
+        <div style="width:9px;height:69px"> </div>
+      </div>
+      <div style="float:left;width:9px;">
+        <div style="width:9px;height:165px;"> </div>
+        <div style="width:9px;height:6px;border-bottom-left-radius:3px;border:solid #aaa;border-width:0 0 2px 2px"> </div>
+        <div style="width:9px;height:22px;"> </div>
+        <div style="width:9px;height:6px;border-top-left-radius:3px;border:solid #aaa;border-width:2px 0 0 2px"> </div>
+        <div style="width:9px;height:123px;"> </div>
+      </div>
+    </div>
+    <div class="bracket-column bracket-column-matches" style="width:150px">
+      <div style="height:40px;margin-top:0px">
+        <div class="bracket-header">Finals (Bo7)</div>
+      </div>
+
+      <div class="bracket-game">
+        <div class="icon" style="margin-top: 138px; right: 16px;"></div>
+        <div class="bracket-cell-r3">
+          <div class="bracket-player-top" style="background: rgb(242, 184, 184); padding-right: 23px; ">&nbsp;<img src="https://liquipedia.net/commons/images/7/70/Fi.png"  width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Serral</span>
+            <div class="bracket-score" style="width:50px">34.7%</div>
+          </div>
+        </div>
+
+        <div class="bracket-cell-r1" style="font-weight:bold">
+          <div class="bracket-player-bottom" style="background: rgb(184, 242, 184); padding-right: 23px; ">&nbsp;<img src="https://liquipedia.net/commons/images/2/2f/Us.png"  width="18" height="12">&nbsp;<span style="vertical-align:-1px;">Neeb</span>
+            <div class="bracket-score" style="width:50px">65.3%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="clear:left"> </div>
+  </div>
+  </div> 
+        
+        
+        
+<!--================================================================================================    -->
+
+        <p></p>
+<!--<pre class="prettyprint lang-python3">-->
+
+<!--</pre>-->
+    </li>
+    
+    <li class="coding-text">
+	    <a>Learning From Statistics</a><br>
+        <p></p>
+<pre class="prettyprint lang-python3">
+</pre>
+    </li>
+    
+    <li class="coding-text">
+	    <a>Web Scrapper</a><br>
+        <p></p>
+<pre class="prettyprint lang-python3">
+</pre>
+    </li>
+    
+    <li class="coding-text">
+	    <a>Data with Pandas </a><br>
+        <p></p>
+<pre class="prettyprint lang-python3">
+</pre>
+    </li>
+    <!--<li class="coding-text">-->
+	   <!-- <a>Applications</a><br>-->
+	   <!-- <p></p>-->
+    <!--     <a href="https://en.wikipedia.org/wiki/Kruskal%27s_algorithm">Kruskal's algorithm of minimum-spanning-tree</a>-->
+    <!--</li>-->
+    <!--<p></p>-->
+    <!--<li class="coding-text">-->
+	   <!-- <a>Resources</a><br>-->
+	   <!-- <p></p>-->
+    <!--     <a href="https://www.youtube.com/watch?v=ibjEGG7ylHk">Intro with Visualization Demo</a>-->
+    <!--</li>-->
+</ul>
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/project.html#data-science"><i class="fas fa-igloo"></i></a>
+	<em>Last updated February 9, 2019 by Wenyang Qian.</em>
+</div>
+
+</body>
+</html>

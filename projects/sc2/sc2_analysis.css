@@ -1,0 +1,103 @@
+.bracket-column {
+  float: left;
+  position: relative;
+}
+
+ 
+/*.bracket {*/
+/*  font-size: 11px;*/
+/*  color: #000;*/
+/*  background: transparent;*/
+/*  display: table;*/
+/*  -webkit-transform-origin: left top 0px;*/
+/*  transform-origin: left top 0px;*/
+/*}*/
+ 
+
+.bracket-header {
+  border-radius: 2px;
+  border: 1px solid #aaa;
+  padding: 2px 0 2px 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  line-height: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+  /*background: #ebebeb;*/
+}
+
+img {
+  vertical-align: middle;
+}
+
+.bracket-score {
+  text-align: center;
+  background: #ebebeb;
+  border-left: 1px solid #aaa;
+  position: absolute;
+  line-height: 22px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.bracket-player-top,
+.bracket-player-bottom {
+  border-radius: 0 0 2px 2px;
+  border: solid #aaa 1px;
+  position: absolute;
+  padding: 1px;
+  min-height: 20px;
+  line-height: 18px;
+  left: 0;
+  right: 0;
+}
+
+.bracket-player-top {
+  bottom: 0;
+}
+
+.bracket-player-bottom {
+  top: 0;
+}
+
+.bracket-game .icon,
+.table-battleroyale-results .icon,
+.match-row-icon {
+  position: absolute;
+}
+
+.bracket-cell-r1 {
+  height: 36px;
+}
+
+.bracket-cell-r2 {
+  height: 72px;
+}
+
+.bracket-cell-r3 {
+  height: 144px;
+}
+
+.bracket-game {
+  position: relative;
+}
+
+.bracket-cell-r1,
+.bracket-cell-r2,
+.bracket-cell-r3,
+.bracket-cell-r4,
+.bracket-cell-r5,
+.bracket-cell-r6,
+.bracket-cell-r7 {
+  position: relative;
+}
+
+.prediction {
+  font-family: "Open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.42857143;
+  color: #444444;
+  /*background-color: #e5e5e5;*/
+}
