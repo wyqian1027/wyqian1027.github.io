@@ -7,7 +7,7 @@ Highcharts.chart('shapeRecognition-main-chart', {
     chart: {
         type: 'column',
         borderColor: 'black',
-        borderWidth: 2,
+        borderWidth: 1,
         // style: {
         //     fontFamily: 'Signika, serif'
         // }
