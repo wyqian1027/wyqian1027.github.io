@@ -376,7 +376,12 @@ pre {
 
 .method {
     font-weight: bold;
-    color: #FF535A;
+    color: #CB090C;
+}
+
+.method2 {
+    font-weight: bold;
+    color: #3B50D6;
 }
 
 

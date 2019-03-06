@@ -21,12 +21,12 @@
 	    <a>Intuitions</a><br>
         <p>Union-find is an efficient data structure to track of set of elements partitioned into 
         a number of disjoint subsets. It has the following key operations: </p>
-        <p>1. <span class="method">MakeSet</span>: Associate each element in the set with a unique <strong>id</strong>, a <strong>rank (size)</strong> of 0, and a <strong>parent</strong> pointing to itself. 
-        This serves as the initialization setup for union-find.</p> 
-        <p>2. <span class="method">Find(x)</span>: Follow the chain of parent pointers from element x up until it reaches the root element, whose parent is itself. 
+        <p>1. <span class="method">MakeSet</span>: <strong class="method2">Initialization Step. </strong> Associate each element in the set with a unique <strong>id</strong>, a <strong>rank (size)</strong> of 0, and a <strong>parent</strong> pointing to itself. 
+        </p> 
+        <p>2. <span class="method">Find(x)</span>: <strong class="method2">Find the root/representative.</strong> Follow the chain of parent pointers from element x up until it reaches the root element, whose parent is itself. 
         This root element is the <strong>representative</strong> of the set in which x belongs to. Path compression is one technique commonly used to flatten the structure of the tree. 
         The basic idea is that once a root a found, parents of all chained elements are changed to point to that root.</p>
-        <p>3. <span class="method">Union(x, y)</span>: Find the roots of element x and element y respectively. 
+        <p>3. <span class="method">Union(x, y)</span>: <strong class="method2">Merge the roots if different.</strong> Find the roots of element x and element y respectively. 
         If the roots are different, <strong>combine</strong> the trees by changing the parent of one root point to the other root.
         In the worst case, the height of the trees can grow up to \( O(n) \). To prevent this, union by rank or union by size are used. </p>
         <p>

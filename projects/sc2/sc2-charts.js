@@ -1,10 +1,14 @@
 
 // Create the chart
 Highcharts.chart('sc2-earnings', {
-    colors: ['#f45b5b', '#8085e9', '#8d4654', '#7798BF', '#aaeeee',
-        '#ff0066', '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+    // colors: ['#f45b5b', '#8085e9', '#8d4654', '#7798BF', '#aaeeee',
+    //     '#ff0066', '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+        
+    colors : ['#8d4654', "rgb(184, 184, 242)", "rgb(242, 184, 184)", "rgb(184, 242, 184)"],
+        
     
     chart: {
+        // height: (9 / 16 * 100) + '%', // 16:9 ratio,
         type: 'column',
         borderColor: 'black',
         borderWidth: 1,
@@ -212,6 +216,8 @@ Highcharts.chart('sc2-country', {
 
 
 Highcharts.chart('sc2-age', {
+    colors : ["rgb(184, 184, 242)", "rgb(242, 184, 184)", "rgb(184, 242, 184)"],
+
     chart: {
         type: 'scatter',
         zoomType: 'xy'
@@ -322,7 +328,7 @@ Highcharts.chart('sc2-age', {
     // '#f45b5b', '#8085e9', '#8d4654'
     series: [{
         name: 'Terran',
-        color: 'rgba(244, 91, 91, 0.5)',
+        color: "rgb(184, 184, 242)", //'rgba(244, 91, 91, 0.5)',
         data: [[21.613698630136987, 692700.0],
  [24.473972602739725, 543280.0],
  [26.5972602739726, 196551.0],
@@ -369,7 +375,7 @@ Highcharts.chart('sc2-age', {
     },
     {
         name: 'Zerg',
-        color: 'rgba(128, 133, 233, .5)',
+        color: "rgb(242, 184, 184)" ,//'rgba(128, 133, 233, .5)',
         data: [[23.424657534246574, 455443.0],
  [25.153424657534245, 623797.0],
  [22.156164383561645, 475744.0],
@@ -425,7 +431,7 @@ Highcharts.chart('sc2-age', {
 
     }, {
         name: 'Protoss',
-        color: 'rgba(141, 70, 84,0.5)',
+        color: "rgb(184, 242, 184)", //'rgba(141, 70, 84,0.5)',
         data: [[26.81917808219178, 437546.0],
  [26.663013698630138, 418510.0],
  [27.284931506849315, 382541.0],

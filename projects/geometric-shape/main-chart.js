@@ -72,7 +72,7 @@ Highcharts.chart('shapeRecognition-main-chart', {
 
     tooltip: {
         style: {
-            fontSize: '23px'
+            fontSize: '18px'
         },
         headerFormat: '<span style="font-size:19px">{series.name}</span><br>',
         pointFormat: '<span style="font-size:19px;color:{point.color}">{point.name}</span><span style="font-size:19px;">: <strong>{point.y:.3f}%</strong> of 160 test samples<br/> </span>'
