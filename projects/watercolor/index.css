@@ -1,0 +1,96 @@
+body {
+    background-color: #f5f9fa;
+    width: 100%;
+    font-size: 17px;
+}
+
+.rgb-input {
+    width: 100px;
+    height: 1.5em;
+    margin: 10px 0;
+    font-size: 1.1em;
+
+}
+
+.color-box, #mix-box, #mix-box-2 {
+    width: 200px;
+    height: 50px;
+    background-color: red;
+    /* border-radius: 5%; */
+    border: 2px solid indigo;
+}
+
+.left-column {
+    margin-left: 5%;
+    float: left;
+    width: 40%;
+}
+.right-column {
+    float: left;
+    width: 55%;
+}
+  
+  /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.square {
+    width: 11%;
+    /* background-color: rgb(255, 255, 255); */
+    /* height: 10%; */
+	/* background: white; */
+/*	height: 30%;
+*/	padding-bottom: 11%;
+    float: left;
+    /* position: absolute; */
+	margin: 0.3%;
+    font-size: 50px;
+    border-radius: 5%;
+    border: 2px solid white;
+	/*browser compatibility*/
+	/* transition: background 0.7s;
+	-webkit-transition: background 0.7s;
+	-moz-transition: background 0.7s; */
+}
+
+
+.square:hover {
+    border: 2px solid black;
+    /* width: 10%; */
+}
+
+#mixing-chart{
+    padding-top: 15px;
+    width: 80%;
+    min-width: 500px;
+    /* margin-right: 10px; */
+    /* min-width: 520px; */
+}
+
+button {
+    font-size: 1.1em;
+    background-color: white;
+}
+
+#mix-label, #mix-label-2{
+    font-size:1.5em;
+    font-weight: bold;
+}
+
+/* 
+.picker{
+    padding: 0px;
+} */
+
+.chart-toggle{
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.chart-toggle-highlight {
+    background-color: black;
+    color: white;
+}
