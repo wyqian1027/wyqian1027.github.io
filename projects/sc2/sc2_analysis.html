@@ -3,12 +3,12 @@
 <head>
 	<title>Data Analysis of Professional Starcraft 2</title>
 	<link rel="shortcut icon" href="../../public/img/favicon-96x96.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="../../public/css/homepage.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>-->
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../public/css/homepage.css">
 	<link rel="stylesheet" type="text/css" href="sc2_analysis.css">
 </head>
 <body>
@@ -380,13 +380,13 @@ def makeSoup(url):
       uClient = uReq(req)
   except HTTPError:
       print("HTTPError...")
-      return -1
+      return False
   except URLError:
       print("URLError...")
-      return -1
+      return False
   except:
       print("Something bad happend...")
-      return -1
+      return False
   else:
       pageHTML = uClient.read()
       uClient.close()
