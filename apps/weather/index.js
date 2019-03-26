@@ -117,7 +117,7 @@ class WeatherItem { //built base on API returned items in "list"
     this.windspd = item.wind.speed;
     this.windeg = item.wind.deg;
     this.windir = Angle2Dir(item.wind.deg);
-    this.rainvol = (item.rain["3h"] == undefined ? 0 : item.rain["3h"]); //mm
+    this.rainvol = ((item.rain == undefined || item.rain["3h"] == undefined) ? 0 : item.rain["3h"]); //mm
     this.iconID = item.weather[0].icon;
   }
 }
