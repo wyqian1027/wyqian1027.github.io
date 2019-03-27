@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang Qian's Mathematics</title>
+	<link rel="shortcut icon" href="public/img/favicon-96x96.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="public/css/homepage.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <!--<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>-->
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+</head>
+<body>
+
+<!--<img style="float:left; vertical-align: bottom;" width="300" height="300" src="public/img/physics/lightfront.png">-->
+<!--<img style="float:right; vertical-align: bottom;" width="300" height="400" src="public/img/physics/degrees.png">-->
+<h1 id="title">Wenyang Qian's Mathematics</h1> 
+<div style="margin-bottom: 10px;">
+    <h2 class="heading" style="margin-top:32px; margin-bottom:2px"></h2>
+    <div class="heading" style="margin-bottom: 0;">
+    	<a href="#math">Mathematics</a>&nbsp; |
+    	<a href="#story">Math Stories</a>
+    </div>
+</div>
+
+
+<!--Mathematics-->
+<h2 class="section">
+    <a id="math" href="#math">Mathematics</a>
+</h2>    
+
+<ul>
+    <li class="item">
+        <h2>
+    	<a>Hankel Transform of Linear Combinations of Catalan Numbers.</a> <a href="public/img/math/presentation.pdf"> (Seminar Talk in 2010)</a>
+        </h2>
+        <p>Catalan numbers or the <a href="https://oeis.org/A000108" target="_blank"></a>sequence of 1, 1, 2, 5, 14, <strong>42</strong>, 132, 429 is one of the most widely used sequence in the world. <br>
+        Its recurrence relation can be defined as \( C_{n+1} = \sum_{i=0}^{n} C_i C_{n-i} \) for \( n >= 1 \) and the base case is \( C_0 = 1. \) 
+        The sequence holds a vast number of interpretations from mathematics to computer science. For example, 
+        \( C_n \) is the number of different monotonic path in an n-by-n square, the number of ways to cut a (n+2)-sided convex polygon into n triangles, 
+        or the number of full binary trees with n+1 leaves... <br>
+        <img style="padding-top:20px; padding-right:10px;" height="160" src="public/img/math/catalan1.jpg">
+        <img style="padding-top:20px; padding-right:10px;" height="160" src="public/img/math/catalan2.png">
+        <img style="padding-top:20px; padding-right:10px;" height="160" src="public/img/math/catalan3.png">
+        </p>
+        <p>
+        Given an integer sequence \( A = {a_0, a_1, a_2, ...}\), the <strong>Hankel matrix</strong> \( H \) can be defined as an infinite square matrix, <br>
+        $$H = \begin{pmatrix}a_0 & a_1 & a_2 & ...\\\ a_1 & a_2 & a_3 & ...\\\ a_2 & a_3 & a_4 & ... \\\ \vdots & \vdots & \vdots & \ddots \end{pmatrix}$$
+        </p>
+        <p>
+        The <strong>Hankel determinant</strong> \( h_n \) of order \( n \) is the determinant of the upper-left \( n \) by \( n \) submatrix of \( H \). For examples:
+        </p>
+        $$h_1 = \begin{vmatrix}a_0 \end{vmatrix}=a_0, \quad h_2 = \begin{vmatrix}a_0 & a_1 \\\ a_1 & a_2\end{vmatrix}=a_0a_2-a_1a_1, ...$$
+        <p>In mathematics, we define <strong>Hankel transform</strong> as a sequence transform that returns successive Hankel determinants formed by the original sequence, \( H\{A\} = \{h_1, h_2, h_3, ...\}. \)
+        </p>
+        <p>Now, you must be wondering, what is the Hankel transform of the Catalan number sequence? What is the Hankel transform of the adjacent Catalan number sequences... and more?</p>
+        <p>Miraculously...</p>
+        $$ H\{C_n\} = \{1, 1, 1, 1, ...\}$$
+        $$ H\{C_n+C_{n+1}\} = \{2, 5, 13, 34, ...\} \quad \text{every other Fibonacii number!}$$
+        $$\vdots$$
+        <p>Can we prove them? <a target="_blank" href="public/img/math/presentation.pdf"> (Seminar Talk in 2010)</a></p>
+        
+    </li>
+</ul>
+
+<!--story-->
+<h2 class="section">
+    <a id="story" href="#story">Math Stories</a>
+</h2>  
+
+
+<div class="footer">
+    <a title="Back to Homepage" href="https://wyqian1027.github.io/public/"><i class="fas fa-igloo"></i></a>
+	<span><em>Last updated February 9, 2019 by Wenyang Qian.</em></span>
+</div>
+<div style="color:purple; text-align:center; padding-top: 5px; font-weight: bold; font-size:18px; "> Materials on this page are subject to the copyright of the authors and publishers.</div>
+
+<script type="text/javascript" src="public/js/research.js"></script>
+</body>
+</html>
