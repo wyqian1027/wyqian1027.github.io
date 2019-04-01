@@ -182,7 +182,32 @@ h2 {
     color: white;
 }
 
+.article-title {
+    color: white;
+    background-color: var(--main-bg-color);
+    padding: 1ex 0.5em;
+    font-weight: bold;
+    clear: both;
+    /*text-transform: uppercase;*/
+    /*border: solid black 1px;*/
+    /*text-decoration: underline;*/
+    text-align: center;
+    font-size: 26px;
+    /*font-family: 'Indie Flower', cursive*/
 
+}
+.article-title A {
+    color: var(--main-bg-color);
+}
+
+.article-item A:hover {
+    background-color: var(--main-bg-color);
+    color: white;
+}
+
+ul .Aclass {
+    list-style-type: circle;
+}
 .paper {
 	font-style: italic;
 }
@@ -222,8 +247,12 @@ li {
     font-size: 16px;
 }
 
-.coding-text {
+.coding-text  {
     font-size: 20px;
+}
+
+.coding-text ol {
+    font-size: 40px;
 }
 .coding-text A:first-child {
     color: var(--item-heading-color);
@@ -388,11 +417,14 @@ pre.prettyprint {
 .method {
     font-weight: bold;
     color: #CB090C;
+    background-color: white;
 }
 
 .method2 {
     font-weight: bold;
     color: #3B50D6;
+    background-color: white;
+
 }
 
 .credits {

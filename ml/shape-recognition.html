@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shape Recognition</title>
+	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+</head>
+<body>
+
+
+<h2 class="article-title">
+    Shape Recognition of Handwritten Images
+</h2>
+
+
+<ul class="Aclass">
+    
+    <li class="coding-text">
+        <a>What is Machine Learning?</a> 
+        <p>Machine learning is a field in computer science that uses statistical techniques to enables computer systems to <spam class="method2"> "learn" with data </spam>, without being explicitly programmed.</p>
+        <p>Machine learning is usually advantageous in complex systems where traditional algorithmic methods cannot be easily or even possibly defined.</p>
+        <p>Data is usually separated into <span class="method2"> Training set</span> where inputs and outcome (or labels, response, expectations) are known beforehand and <span class="method2"> Test set</span> where the computers are expected to predict the outcome based on the input.</p>
+        <p>Generally speaking of the methods in machine learning, if the computer is trained with the knowledge of labels, then it is supervised learning. Otherwise, it is called unsupervised learning. </p>
+        <p>This project is an investigation into <span class="method2">supervised machine learning </span>.</p>
+    </li>
+    <br><!--*******************************************-->
+	<li class="coding-text">
+	    <a>Data Acquisition</a>
+        <p> Collecting <span class="method">useful and clean data</span> proves to be a challenging task. For the current project, we have asked <span class="method">10</span> volunteers to draw a total of <span class="method">640 shapes</span>.</p>
+        <p> Every participant needs to draw <span class="method">8 shapes</span> for each of the following <span class="highlight_num">eight</span> categories: <span style="font-weight: 700"><i class="far fa-circle"></i> (Circle), Triangle, <i class="far fa-square"></i> (Square), Pentagon, Rhombus, <i class="far fa-star"></i> (Star), Trefoil, <i class="far fa-heart"></i> (Heart)</span></p>
+        <p> All Images are taken by iPhone (initial total size = <span class="method2">543.4 MB</span>) and then processed into grayscale, dimensionally-reduced numpy packages. (final size = <span class="method2">8.2 MB</span>)</p>
+        <ol>
+            <li>
+                <p>Selected unprocessed raw images:</p>
+                <img src="assets/img/shape-recog/original-images.png">
+                </li>
+            <li>
+                <p> Grayscaled images using Python Imaging Library (PIL): [for the moment, color is not a feature!]</p>
+                <img src="assets/img/shape-recog/gs2448.png">
+            </li>
+            <li>
+                <p> Dimensionality reduction of images from <span class="method2">2448 X 2448 </span> = 5992704 pixels to <span class="method2">40 X 40 = 1600 </span>pixels:</p>
+                <img src="assets/img/shape-recog/gs40.png">
+            </li>
+        </ol>
+        <p> Finally, flattening these images as two numpy arrays/packages, <span class="highlight">data </span> and <span class="highlight">label </span>: </p>
+        <a href="assets/datasets/geoshape/data.npy"><i class="far fa-file-alt"></i> <span class="download"> data.npy </span>  </a>
+        <a href="assets/datasets/geoshape/label.npy"><i class="far fa-file-alt"></i> <span class="download"> label.npy </span>  </a>
+        <a href="assets/datasets/geoshape/label_dict.png"><i class="far fa-file-alt"></i> <span class="download"> label dictionary </span> </a>
+        <p> Dimensions: <span class="method2"> data.shape = (640, 1600), label.shape = (640,) </span> </p>
+        <p> Be free to download and use the datasets. I also developed additional datasets with much-reduced dimensions of <span class="method2">25 X 25 = 625 </span> : <a href="assets/datasets/geoshape/data_DIM625.npy"><i class="far fa-file-alt"></i> <span class="download" style="font-size:1em;" > data_DIM625.npy </span>  </a><a href="assets/datasets/geoshape/label_DIM625.npy"><i class="far fa-file-alt"></i> <span class="download" style="font-size:1em;"> label_DIM625.npy </span></a></p>
+<pre class="prettyprint lang-python3 ">
+    # How to load the dataset:
+    import numpy as np
+    data = np.load('./data.npy')
+    labels = np.load('./label.npy')
+    
+    # Label Dictionary:
+    LABEL_DICT={0: 'Circle', 1: 'Heart', 2: 'Pentagon', 3: 'Rhombus', 4: 'Square', 5: 'Star', 6: 'Trefoil', 7: 'Triangle'}
+
+
+</pre>
+    </li>
+    <br><!--*******************************************-->
+    <li class="coding-text">
+	    <a>Train Test Split</a>
+	    <p>We need to divide all the data and label into training set and test set. Then, machine can be trained by various methods on the training set to make predictions on the test set.</p>
+        <p><span class="method2"> 4-fold Cross Validations </span> are also used for each method, in order to obtain a <span class="method2">less biased and more accurate measure</span> of each model.</p>
+<pre class="prettyprint lang-python3">
+    # Use Random Seed to reproduce the performance
+    np.random.seed(1)
+    perm = np.random.permutation(640) 
+    
+    # Choose your favorite train-test-split, say 160 test data, 480 train data
+    trainx = data[perm[0:480],:]
+    trainy = labels[perm[0:480]]
+    testx = data[perm[480:640],:]
+    testy = labels[perm[480:640]]
+    
+    # Or use sklearn Library
+    from sklearn.model_selection import train_test_split
+    trainx, testx, trainy, testy = train_test_split(data, labels, test_size=0.25, random_state=1)
+</pre>
+    </li>
+    <br>
+
+    <li class="coding-text">
+        <a>Result Summary</a>
+        <p>Comparison of varioius machine learning methods used on hand-drawn shape dataset. The winners are <span class="method">Gaussian Generattive Model</span> and <span class="method"> Artificial Neural Network </span> (both DNN and CNN are used). </p>
+        <div id="shapeRecognition-main-chart" style="min-width: 500px; height: 500px; margin: 40px auto; width: 50%"></div>
+        <p>Descriptions of each methods are listed below, along with their 4-fold Cross Validations results.</p>
+    </li>
+    
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
+    <li class="coding-text">
+        <a> <i class="fas fa-wrench"></i> Method 1: K-Nearest Neighbors (kNN)</a>
+        <p>kNN is probably the simpliest supervised machine learning method. </p>
+        <p>kNN uses distance function to compute the relative closeness between two image arrays. Then, for each test data, scan all training data to find the closest image array and return its corresponding label. For example, </p>
+<pre class="prettyprint lang-python3">
+    # My Distance Function
+    def squared_dist(x,y):
+        return np.sum(np.square(x-y))
+    
+    # Find label of closest image in the training set   
+    def find_NN(x):
+        distances = [squared_dist(x,trainx[i,]) for i in range(len(trainy))]
+        index = np.argmin(distances)
+        return trainy[index]
+        
+    # Or simply use "sklearn.neighbors.BallTree", "sklearn.neighbors.KDTree"
+
+</pre>
+        <p>Below is an example of a misclassified pentagon: test image #10 (Pentagon) and its nearest neighbor training image #438 (Circle).</p>
+        <div style='text-align:center'>
+            <img style="height: 200px;" src="assets/img/shape-recog/knn-test10.png">
+            <img style="height: 200px;" src="assets/img/shape-recog/knn-test10-neighbor.png">
+        </div>
+        <p>These two images can be confusing for a computer given the small sample size we have.</p>
+        <p>One can also directly use kNN from sklearn:  <span class="method2"> sklearn.neighbors.BallTree </span>, <span class="method2"> sklearn.neighbors.KDTree</span>, and achieve more or less the same accuracy. Below is the 4-Fold Cross-Validation with Average error rate ~ <span class="method2"> 6.56 %</span>.</p>
+        <div style='text-align:center'>
+            <img style="height: 350px" src="assets/img/shape-recog/knn-cross-result.png">
+        </div>
+        
+    </li>
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
+    <li class="coding-text">
+        <a> <i class="fas fa-wrench"></i> Method 2: Gaussian Generative Model (GGM)</a>
+        <p> Generative model uses statistical techniques to find the highest probable label for the test data.</p>
+        <p> Here, by learning the training data and training label, we generate a <span class="method">statistical multivariate Gaussian distribution</span> for each pattern. Then, for each test data, we compute the probablity for each label according to the distribution, and pick the highest one. 
+        This is direct application of <span class="method2">Bayes' Theorem</span>.</p>
+        <p> $$ \text{Probablity}\Big(\text{label}=j\Big|x\Big) = \frac{\text{Probablity}(\text{label}=j)\cdot \text{Probablity}\Big(x\Big|\text{label}=j\Big)}{\text{Probablity}(x)} \quad \propto \quad \text{Probablity}\Big(x\Big|\text{label}=j\Big),$$</p>
+        <p> where \(\text{Probablity}\Big(x\Big|\text{label}=j\Big)\) is the probability of Gaussian distribution for label j of data x.</p>
+        <p> One can either use multivariate Gaussian from library, such as <span class="method2"> from scipy.stats import multivariate_normal</span>, or define your own:</p>
+<pre class="prettyprint lang-python3">
+    c = 1.0 # some guess for regularization 
+    def fit_generative_model(x,y):
+        k = 8  # labels 0,1,...,k-1
+        d = (x.shape)[1]  # number of features
+        mu = np.zeros((k,d))
+        sigma = np.zeros((k,d,d))
+        pi = np.zeros(k)
+        for label in range(0,k):
+            indices = (y == label)
+            mu[label] = np.mean(x[indices,:], axis=0)
+            sigma[label] = np.cov(x[indices,:], rowvar=0, bias=1) + c*np.identity(IMAGE_SIZE**2)
+            pi[label] = float(sum(indices))/float(len(y))
+        return mu, sigma, pi
+    
+    mu, sigma, pi = fit_generative_model(trainx, trainy)
+</pre>
+        <p> After the fit, mu (\( \mu \)) serves as the "average" or "representative" of all the images of the same kind. Here are the mu for Heart, Diamond, Trefoil, and Triangle respectively.</p>
+        <div style="text-align:center">
+            <img style="height: 200px" src="assets/img/shape-recog/ggm-mu1.png">
+            <img style="height: 200px" src="assets/img/shape-recog/ggm-mu3.png">
+            <img style="height: 200px" src="assets/img/shape-recog/ggm-mu6.png">
+            <img style="height: 200px" src="assets/img/shape-recog/ggm-mu7.png">
+        </div>
+    <p>In practice, GGM turns out amazing in learning the shapes. With a couple of seconds, we reached 159 accurate predictions for the 160 test images in the first train-test-split. Here is the performance in 4-Fold Cross Validations. Average error rate ~ <span class="method2"> 1.25 %</span>.</p>
+        <div style="text-align:center;">
+            <img style="height: 350px" src="assets/img/shape-recog/ggm-cross-result.png">
+        </div>
+    </li>
+    
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
+
+    <li class="coding-text">
+        <a> <i class="fas fa-wrench"></i> Method 3: Multi-class Perceptron (MP)</a>
+        <p> <a style="font-size:1em;" href="https://en.wikipedia.org/wiki/Perceptron" target="_blank">Perceptron algorithm</a> uses basic linear algebra. It predicts the label by evaluating the sign of a linear estimator function, so typically used <span class="method2">for a simple binary classification</span>: </p>
+        <p> $$ y = W \cdot \vec{x} + b, \text{ where $W$ is the weight matrix, $\vec{x}$ is an instance from the data, $b$ is the bias.} $$</p>
+        <p> The predicted label = \(\text{sign}(y)\), and the loss function = \(\text{sign}(y)\) - label, for each data x. We can find the optimal \(W\) and \(b\), by using gradient descent method.</p>
+        <p> What we have is a <span class="method"> multi-class (8 classes) classification problem </span>, so the vanilla Perceptron algorithm is extended to find and return the label with the highest score. One possible classifier can be:</p>
+<pre class="prettyprint lang-python3">
+    def evaluate_classifier(w,b,x):
+        k = len(b)
+        scores = np.zeros(k)
+        for j in range(k):
+            scores[j] = np.dot(w[j,:],x) + b[j]
+        return int(np.argmax(scores))
+</pre>
+        <p> Then we can train the Perceptron on the training set using gradient descent. For more complicated data, other variants of gradient descent should be used to speed up the training, such as Stochastic gradient descent or mini-batch Stochastic gradient descent. Here, basic gradient descent is sufficient. <span class="method2">Convergence is around 8~12 iterations</span>.</p>
+<pre class="prettyprint lang-python3">
+    def train_multiclass_perceptron(x,y,k=8,n_iters=100):
+        n,d = x.shape        # n = 480, d= 1600
+        w = np.zeros((k,d))  # w.shape = (8, 1600)
+        b = np.zeros(k)      # b.shape = (8)
+        done = False
+        converged = True
+        iters = 0
+        np.random.seed(None)
+        while not done:
+            done = True
+            I = np.random.permutation(n)
+            for j in I:
+                pred_y = evaluate_classifier(w,b,x[j,:])
+                true_y = int(y[j])
+                if pred_y != true_y: # vanilla gradient descent for MP
+                    w[true_y,:] = w[true_y,:] + x[j,:]
+                    b[true_y] = b[true_y] + 1.0
+                    w[pred_y,:] = w[pred_y,:] - x[j,:]
+                    b[pred_y] = b[pred_y] - 1.0
+                    done = False
+            iters = iters + 1
+            if iters > n_iters:
+                done = True
+                converged = False
+        if converged:
+            print("Converged at {} iterations.".format(iters))
+        else:
+            print("Failed to converge within {} iterations...".format(n_iters))
+        return w, b, converged
+</pre>
+    <p>Despite fast convergences, the accuracy is not very high. Average error rate ~ <span class="method2"> 8.75 %</span>.</p>
+        <div style="text-align:center;">
+            <img style="height: 350px" src="assets/img/shape-recog/mp-cross-result.png">
+        </div>
+    </li>
+
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
+
+    <li class="coding-text">
+        <a> <i class="fas fa-wrench"></i> Method 4: Support Vector Machine (SVM)</a>
+        <p><a style="font-size:1em;" href="https://en.wikipedia.org/wiki/Support-vector_machine" target="_blank">Support Vector Machine</a> is an advanced version of <span class="method">Perceptron algorithm, where margin between labels is maximized.</span> The optimization requires the loss function to be a convex function, which is true for most machine learning scenarios. </p>
+        <div style="text-align:center;">
+            <img style="height: 350px" src="assets/img/shape-recog/svm-model.png">
+        </div>
+        <p>The beauty of SVM method is that the <span class="method2">final result only depends on the "support vectors"</span>, the points on the margins of the decision boundary.</p>
+        <p>The process can be sped up substantially, using Dual Form of the algorithm, with much reduced dimensionality. One can also use Kernel trick to classify data with quadratic decision boundaries or even higher degree polynomial, as in our quadratic SVM approach below.</p>
+        <p>The penalty for misclassified points can be tuned via a "slack" variable to improve the performance. Fast Implementation with sklearn:</p>
+<pre class="prettyprint lang-python3">
+    # Linear SVM Classifier
+    from sklearn.svm import LinearSVC
+    C_value = 0.1
+    model_linear = LinearSVC(loss='hinge', C=C_value)
+    model_linear.fit(trainx, trainy)
+    predictions_linear = model_linear.predict(testx)
+    
+    # Quadratic SVM Classifier
+    from sklearn.svm import SVC
+    C_value = 0.1
+    model_quad = SVC(kernel='poly', degree=2, C=C_value)
+    model_quad.fit(trainx, trainy)
+    predictions_quad = model_quad.predict(testx)
+</pre>
+        <p> Final Results: Linear SVM averaged error rate ~ <span class="method2">7.03 %</span>, while Quadratic SVM averaged error rate ~<span class="method2"> 4.22 %</span>.</p>
+        <div style="text-align:center;">
+            <img style="height: 350px" src="assets/img/shape-recog/lin-svm-cross-result.png">
+            <img style="height: 350px" src="assets/img/shape-recog/quad-svm-cross-result.png">
+        </div>
+        
+    </li>
+   <br><!--*******************************************-->
+    <br><!--*******************************************-->
+
+    <li class="coding-text">
+        <a> <i class="fas fa-wrench"></i> Method 5: Artificial Neural Network, with TensorFlow </a>
+        <p>In our brain, every neuron is connected with many more neurons. Each neuron process the signals from previous neurons and relay the signal to neurons in the next layer, and so forth (left). </p>
+        <div style="text-align:center;">
+            <img style="height: 300px; width: 400px" src="assets/img/shape-recog/neuron_pic.jpg">
+            &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
+            <img style="height: 300px" src="assets/img/shape-recog/DNN-model.png">
+        </div>
+        <p> <span class="method2">Neutral network is inspired directly by how neurons pass signals in our brain. </span> In analogy, weights are the length of nerve fiber (axon), activation functions are like the action potential to excite synaptic connections, and so forth. (right)</p>
+        <p>Above on the right is the model of Densely-connected Neural Network (DNN) that I will use. Every node is connected to every node in the next layer. The internal layer \( z_i = \sum_j W_{i,j} x_j + b_i\) and final output layer \( y =\text{softmax}(\vec{z})_i = \frac{\text{exp}(z_i)}{\sum_j \text{exp}(z_j)} \).</p>
+        <p>We could write the neural network on our own, but <a href="https://www.tensorflow.org" target="_blank" style="font-size:1em;">TensorFlow</a> is an amazing open source machine learning framework developed by Google for high performance numerical computation. So we will just use that.</p>
+
+        <p> </p>
+<pre class="prettyprint lang-python3">
+    # Creating variables, placeholders, and operations:
+    
+    import tensorflow as tf
+    x = tf.placeholder(tf.float32,shape=[None,1600])
+    W = tf.Variable(tf.zeros([1600,8]))
+    b = tf.Variable(tf.zeros([8]))
+    y = tf.matmul(x,W) + b 
+</pre>
+<pre class="prettyprint lang-python3">
+    # Setting loss function and optimizer:
+    
+    y_true = tf.placeholder(tf.float32,[None,8])
+    cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_true, logits=y))
+    optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.5)
+    train = optimizer.minimize(cross_entropy)
+</pre>
+<pre class="prettyprint lang-python3">
+    # Use One-Hot Encoding and Write customized batch function:: 
+
+    trainy_mod, testy_mod = np.zeros((480,8)), np.zeros((160,8))
+    for i, label in enumerate(testy):
+        testy_mod[i, label] = 1
+    for i, label in enumerate(trainy):
+        trainy_mod[i, label] = 1
+
+    def produce_batch(batch_size=10):
+        mask = np.random.randint(480, size = batch_size)
+        return trainx[mask], trainy_mod[mask]
+</pre>
+<pre class="prettyprint lang-python3">
+    # Training, with maximum 2000 steps, feeding batch size = 10: 
+    
+    steps = []; history = []
+    with tf.Session() as sess:
+        sess.run(init)    
+        for step in range(2000):
+            
+            batch_x , batch_y = produce_batch(batch_size=10)
+            
+            sess.run(train,feed_dict={x:batch_x,y_true:batch_y})
+            
+            if step%50 == 0:  #test every 50 steps, for plotting results
+    
+                matches = tf.equal(tf.argmax(y,1),tf.argmax(y_true,1))    
+                acc = tf.reduce_mean(tf.cast(matches,tf.float32))
+                rate = sess.run(acc,feed_dict={x : testx, y_true : testy_mod})
+                print('Currently on step: {}\nAccuracy is: {}\n'.format(step, rate))
+                steps.append(step)
+                history.append(rate*100)
+</pre>
+
+        <p> For DNN: Accuracy stablizes after <span class="method2"> 550 steps</span> , accuracy rate ~ <span class="method">84.38 %</span></p>
+        <p> We can greatly improve the neural network by using Convolutional Neural Network (CNN). The idea is to render image as two dimensional array and feed into the neural network. In this way, information of neighboring points is saved. Then, apply various filters and train the machine at each layer. </p>
+        <p> The advantage is phenomenal. CNN accuracy stablizes after around <span class="method2"> 700 steps</span> , accuracy rate ~ <span class="method">99.38 %</span>, fluctuations due to batch size, obtainging several <span class="method">100 % </span>accuracy, earliest at <span class="method2">400 steps</span>.</p>
+        <div style="text-align:center;">
+            <img style="height: 400px;" src="assets/img/shape-recog/NN-both-res.png">
+        </div>    
+    </li>
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
+</ul>
+
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/machine-learning.html"><i class="fas fa-igloo"></i></a>
+	<em>Last updated in Sept 2018, by Wenyang Qian.</em>
+</div>
+
+<!--Using HighCharts-->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<!--<script src="https://code.highcharts.com/modules/data.js"></script> -->
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="assets/js/shape-recog.js" type="text/javascript"></script>
+
+</body>
+</html>
