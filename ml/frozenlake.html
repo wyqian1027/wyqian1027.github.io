@@ -8,7 +8,6 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
 </head>
 <body>
@@ -17,17 +16,82 @@
 <h2 class="article-title">
     Q-Learning on FrozenLake with OpenAI
 </h2>
-
-
+<div style="background-color: #35bbc7;text-align: center">
+    <p style="padding-top: 10px; font-size:20px; color:white"><a href="https://gym.openai.com/envs/FrozenLake-v0/" target="_blank">The problem:</a></p>
+    <img width=1000px; src="assets/img/frozenlake/frozenlake-description.png">
+</div>
 <ul class="Aclass">
     
     <li class="coding-text">
-	    <a>Complete Python Implementation</a><br>
+	    <a>Description of the Game:</a>
+	    <p>Basically, the agent (the player) will be given a 2D map of a default size 4-by-4, with letter code on each location, where <br><br>
+	    S = starting point, safe; <br> F = frozen surface, safe;<br> H = hole, fall to your doom;<br> G = goal, where the frisbee is located.</p>
+	    <p>Your goal is to traverse from the starting point to the goal location to pick up the frisbee. For the above given map, one possible route is</p>
+	    <p style="text-align: center">
+            <table align="center" style="color:grey; width:30px; text-align: center">
+              <tr>
+                <th><span style="background-color: red; color: white">S</span></th>
+                <th>F</th> 
+                <th>F</th>
+                <th>F</th>
+              </tr>
+              <tr>
+                <td><span style="background-color: red; color: white">F</span></td>
+                <td>H</td>
+                <td>F</td>
+                <td>H</td>
+              </tr>
+              <tr>
+                <td><span style="background-color: red; color: white">F</span></td>
+                <td><span style="background-color: red; color: white">F</span></td>
+                <td><span style="background-color: red; color: white">F</span></td>
+                <td>H</td>
+              </tr>
+              <tr>
+                <td>H</td>
+                <td>F</td>
+                <td><span style="background-color: red; color: white">F</span></td>
+                <td><span style="background-color: red; color: white">G</span></td>
+              </tr>
+            </table>
+	    </p>
+	    <p>What makes the problem interesting is that, the agent are <span class="method2">NOT always able to choose his direction</span>. The probability of the chosen direction takes place is 33% by default. 
+	    The agent might wander around back and forth for a couple of steps/episodes and finally get to the goal; or may simply missteped and fell into the hole.</p>
+	    
+	    <p>The game ends when you reach the goal or fall in a hole. <span class="method">You receive a reward of 1 if you reach the goal, and zero otherwise.</span></p>
+<!--<pre class="prettyprint lang-python3 ">-->
+<!--#Python Code goes here!-->
+<!--</pre>-->
 
-<pre class="prettyprint lang-python3 ">
-#Python Code goes here!
-</pre>
-
+    </li>
+    
+    <li class="coding-text">
+	    <a>Introducing Q-learning</a>
+	    <p>Q-learning is a model-free value-based Reinforcement Learning (RF) method. </p>
+	    <p>In RF, each game forms a (finite) sequence of <span class="method">state(s)</span>, <span class="method">action(a)</span>, <span class="method">reward(r)</span> chain (known as the Markov Decision Process). 
+	    In theory, Q-learning defines a function \( Q(s, a) \) to <span class="method">represent/evaluate the discounted future reward</span>.
+	    </p>
+    </li>
+    
+    <li class="coding-text">
+	    <a>Solving the problem with vanilla Q-learning</a>
+	    <div style="text-align:center">
+            <img height=450px; src="assets/img/frozenlake/QL-vanilla.png">
+	    </div>
+    </li>
+    
+    <li class="coding-text">
+	    <a>Q-learning with TensorFlow </a>
+	    <div style="text-align:center">
+            <img height=450px; src="assets/img/frozenlake/QL-TF-2.png">
+	    </div>
+    </li>
+    
+        <li class="coding-text">
+	    <a>Genetic Algorithm</a>
+	    <div style="text-align:center">
+            <img height=450px; src="assets/img/frozenlake/genetic.png">
+	    </div>
     </li>
 </ul>
 
