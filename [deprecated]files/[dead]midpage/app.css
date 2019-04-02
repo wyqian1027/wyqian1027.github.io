@@ -1,0 +1,70 @@
+body {
+  text-align: left;
+  width: 80%;
+  text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+  font-family: 'Roboto Slab', serif;
+  /*color: rgb(66,69,86);*/
+  color: white;
+  /*height: 100%;*/
+  padding: 15px;
+  /*background-color: #bce6ff;*/
+  /*background-image: url('http://backgroundcheckall.com/wp-content/uploads/2017/12/ecosystem-background-1.jpg');*/
+  /*background-color: white;*/
+  /*border: 5px black solid;*/
+  background-size: 100%;
+  /*background-repeat: no-repeat;*/
+  font-weight: 300;
+  opacity: 1;
+  margin: 20px auto;
+  background: #FFEFBA;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+img {
+  margin-top: 15px;
+  padding-left: 5px;
+  float: top;
+  width: 100%;
+  border-radius: 5%;
+}
+
+#visitor {
+  font-size: 1.2em;
+  color: #ccccff;
+  margin-top: 30px;
+}
+#visitor span {
+    margin: 0 15px;
+}
+
+/*.flex-container {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  flex-direction: column;*/
+/*  height: 100%;*/
+/*}*/
+
+h1{
+  margin: 15px auto;
+  font-size: 40px;
+  line-height: 100px;
+  font-weight: 100;
+  color: #067fdb;
+}
+
+h2{
+  margin: 15px auto;
+  font-size: 30px;
+  line-height: 100px;
+  font-weight: 100;
+  color: black;
+}
+
+p {
+  margin: 10 auto 0 auto;
+  font-size: 25px;
+  color: orange;
+}

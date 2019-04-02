@@ -14,8 +14,8 @@
 <body>
 
 
-<h2 class="section">
-    <a style="margin: 0 auto;" id="sc2" href="#sc2">Data Analysis of Professional Starcraft 2.</a>
+<h2 class="article-title">
+    Data Analysis of Professional Starcraft 2.
 </h2>
 <ul class="Aclass">
   <li class="coding-text">
@@ -35,24 +35,7 @@
 	    
 <!--================================================================================================    -->
 	    
-        <!--<p>Union-find is an efficient data structure to track of set of elements partitioned into -->
-        <!--a number of disjoint subsets. It has the following key operations: </p>-->
-        <!--<p>1. <span class="method">MakeSet</span>: Associate each element in the set with a unique <strong>id</strong>, a <strong>rank (size)</strong> of 0, and a <strong>parent</strong> pointing to itself. -->
-        <!--This serves as the initialization setup for union-find.</p> -->
-        <!--<p>2. <span class="method">Find(x)</span>: Follow the chain of parent pointers from element x up until it reaches the root element, whose parent is itself. -->
-        <!--This root element is the <strong>representative</strong> of the set in which x belongs to. Path compression is one technique commonly used to flatten the structure of the tree. -->
-        <!--The basic idea is that once a root a found, parents of all chained elements are changed to point to that root.</p>-->
-        <!--<p>3. <span class="method">Union(x, y)</span>: Find the roots of element x and element y respectively. -->
-        <!--If the roots are different, <strong>combine</strong> the trees by changing the parent of one root point to the other root.-->
-        <!--In the worst case, the height of the trees can grow up to \( O(n) \). To prevent this, union by rank or union by size are used. </p>-->
-        <!--<p>-->
-        <!--<strong>Time Complexity</strong>: <br>-->
-        <!--Without neither path compression nor union by rank, the time complexity of both operations will be \( O(n) \). Using both ensures the amortized time per operation is only -->
-        <!--\( O(\alpha(n)) \), where the inverse Ackermann function \( \alpha(n) \) is a constant.-->
-        <!--</p>-->
-        <!--</p>-->
-        
-        
+ 
 <div class="prediction">
   <div style="width:665px" class="bracket bracket-width-4col-20">
     <div class="bracket-column bracket-column-matches" style="width:150px">
@@ -362,9 +345,9 @@
       </p>
       <p>In this application, a seed player is first selected and parsed (for example, "Maru" from JinAir Greenwings Club). Then, by using Breath-First Search (BFS) recursively on all his tournament opponents, match information and player information of all players from each premium tournament is scrapped successfully. </p>
       
-      Jupyter Notebook: <a href="Starcraft2LiquidPedia_Scrapper.ipynb">Starcraft2LiquidPedia_Scrapper.ipynb</a> <br><br>
-      Player csv file: <a href="playerInfo.csv">playerInfo.csv</a><br>
-      Match Record csv file: <a href="playerMatchRecord.csv">playerMatchRecord.csv</a>
+      Jupyter Notebook: <a href="assets/data/sc2/Starcraft2LiquidPedia_Scrapper.ipynb">Starcraft2LiquidPedia_Scrapper.ipynb</a> <br><br>
+      Player csv file: <a href="assets/data/sc2/playerInfo.csv">playerInfo.csv</a><br>
+      Match Record csv file: <a href="assets/data/sc2/playerMatchRecord.csv">playerMatchRecord.csv</a>
       
 <pre class="prettyprint lang-python3">
 from urllib.request import urlopen as uReq

@@ -197,7 +197,7 @@ h2 {
 
 }
 .article-title A {
-    color: var(--main-bg-color);
+    color: white;
 }
 
 .article-item A:hover {

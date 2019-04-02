@@ -1,0 +1,76 @@
+body {
+    margin: auto;
+    text-align: center;
+    background-color: #DEF5F2;
+}
+
+#output {
+	padding: 0;
+	margin: auto;
+}
+
+.element {
+    padding: 0;
+    margin: 5px 0;
+}
+
+li {
+    display: inline-block;
+    text-align: right;
+}
+
+#output {
+    font-size: 1.5em;
+    cursor: crosshair;
+}
+
+.element:hover {
+
+}
+
+.selected {
+	color: #3601CB;
+	background-color: #E8DF00;
+	font-weight: bold;
+}
+
+#view-btn {
+	font-size: 1.2em;
+	color: #3601CB;
+	font-weight: bold;
+}
+
+.dummy-block {
+	color: #DEF5F2;
+}
+
+#row-num, #col-num {
+	color: red;
+}
+/*
+#info {
+	display: none;
+}*/
+
+#mySaved {
+	margin: 100px auto 5px auto;
+}
+
+#savedList {
+	margin: 15px auto 50px auto;
+	text-align: center;
+	width: 45%;
+	line-height: 1.6;
+
+}
+
+.saved-item {
+	margin: 40px 10px;
+	color: grey;
+	cursor: grab;
+}
+
+
+body {
+	font-size: 1.1em;
+}
