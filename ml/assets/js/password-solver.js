@@ -80,35 +80,58 @@ function updateMsg(content){
     msg.innerHTML = content;
 }
 
-function displayEachGen(fittest, maxGens){
+
+//THE CORRECT WAY OF DOING SETINTERVALS!!!!!!
+function displayEachGen(fittest, maxGens, password){
     var i = 0;
-    setInterval(function() { 	
+    var curIntervalID = setInterval(function() { 	
+      intervalIDs.push(curIntervalID);    //add to a list of IntervalIDs
     	if (i < (fittest.length)) {
-        	msg2.innerHTML = `Replaying Geneation ${i+1} fittest: <span style="color:green; font-weight:bold">${fittest[i]}</span>`;
-        } else {
-            clearInterval(displayEachGen);
-        }
+      	  msg2.innerHTML = `Replaying Geneation ${i+1} fittest: ${pwdComparer(fittest[i], password)}`;
+      } else {
+          clearInterval(curIntervalID);   //clear currentID
+      }
     	i++
     }, 2500/maxGens)
 }
+function pwdComparer(word, password){
+   var out = ``;
+   for (var i=0; i<password.length; i++){
+     if (word[i] == password[i]){
+       out += `<span style="color:green; font-weight:bold">${word[i]}</span>`;
+     } else {
+       out += `<span style="color:grey; font-weight:bold">${word[i]}</span>`;
+     }
+   }
+   return out;
+}
+
+// var simulating = false;
+var intervalIDs = [];
+// var simulateBtn = document.querySelector("#simulate");
+// simulateBtn.addEventListener("click", function(el){
+//   simulating = true;
+// })
+
 function cleanBoards(){
     msg.innerHTML ="";
     msg2.innerHTML = "";
+    for(var i = 0; i < intervalIDs.length; i++){
+      clearInterval(intervalIDs[i]);   //clear all intervalIDs
+    }
 }
 
-var intervalID;
 //MAIN FUNCTION
 function passwordSolver(){
     
     // clear
-    if (intervalID != undefined) clearInterval(intervalID);
     cleanBoards();
 
     //default
     var maxGens=maxGenInput.value;
     var popSize=popSizeInput.value; 
     var mutationRate=muteRateInput.value/100.0;
-    console.log(maxGens, popSize, mutationRate)
+    // console.log(maxGens, popSize, mutationRate)
     var topRate = 0.22;
     var luckyRate = 0.03;
     var childrenNum = 8;
@@ -194,33 +217,34 @@ function passwordSolver(){
     
 
     var start = new Date().getTime();
-    console.log("starting Genetic Solver...");
-    console.log("All possibles: "+possible);
+    // console.log("starting Genetic Solver...");
+    // console.log("All possibles: "+possible);
     console.log("\n");
     while (found == false && numGen <= maxGens) {
 
         if (numGen == 1){
           pop = getInitPop(pwd, popSize, possible);
         }
-        console.log("\tChecking "+numGen+" Generation...");
+        // console.log("\tChecking "+numGen+" Generation...");
         pop = getNextPop(pwd, pop, topRate, luckyRate, childrenNum, mutationRate, possible);
         var sortedPop = getSortedPop(pwd, pop);
         fittest.push(sortedPop[0]);
         if (sortedPop[0] == pwd){
             var totalTime = (new Date().getTime() - start);
-            console.log("\t\tFound your password! It is "+sortedPop[0]+".\n\t\tDone!\n");
-            console.log("Number of Mutation = " + numMutation);
-            console.log("Number of Children = " + numChildren);
-            console.log("Total Elapsed Time = " + totalTime + " miliseconds.");
+            // console.log("\t\tFound your password! It is "+sortedPop[0]+".\n\t\tDone!\n");
+            // console.log("Number of Mutation = " + numMutation);
+            // console.log("Number of Children = " + numChildren);
+            // console.log("Total Elapsed Time = " + totalTime + " miliseconds.");
             found = true;
         }
-        console.log("number of population: "+pop.length);
         numGen++;
         mutationRate -= mutationRate/maxGens;
     }
+    
     var totalTime = (new Date().getTime() - start);
+    // simulating = false;
     showMsg(sortedPop[0], numGen, numMutation, numChildren, totalTime, found);
-    intervalID = displayEachGen(fittest, maxGens);
+    displayEachGen(fittest, maxGens, pwd);
     return false;
 }
 
