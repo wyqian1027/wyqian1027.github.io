@@ -83,7 +83,17 @@
         The water is mostly frozen, but there are a few holes where the ice has melted. If you step into one of those holes, you'll fall into the freezing water. 
         At this time, there's an international frisbee shortage, so it's absolutely imperative that you navigate across the lake and retrieve the disc. 
         However, the ice is slippery, so you won't always move in the direction you intend" (OpenAI FrozenLake Problem)</p>
-
+        <div style="text-align:center"> 
+          <button onclick="playPause()">Play/Pause</button> 
+          <button onclick="makeBig()">Big</button>
+          <button onclick="makeSmall()">Small</button>
+          <button onclick="makeNormal()">Normal</button>
+          <br><br>
+          <video id="demo" width="420">
+            <source src="ml/assets/img/frozenlake/frozenlake_success.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div> 
         <a href="ml/frozenlake.html">Read More... </a>
     </li>
 </ul>
@@ -103,5 +113,9 @@
 <!--<script src="https://code.highcharts.com/modules/data.js"></script> -->
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 <script src="ml/assets/js/shape-recog.js" type="text/javascript"></script>
+
+<!--frozenlake-->
+<script src="assets/js/frozenlake.js" type="text/javascript"></script>
+
 </body>
 </html>
