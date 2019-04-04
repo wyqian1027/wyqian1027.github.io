@@ -65,7 +65,7 @@ var msg2 = document.querySelector("#msgBoard2");
 function showMsg(pwd, numGen, numMutation, numChildren, totalTime, found=true){
     if (found){
         msg.innerHTML = `<span style="color: purple;font-weight: bold;">The Password is found: </span>&nbsp;&nbsp; <span style="font-weight: bold; color:green">${pwd}</span><br> 
-                        Found at Generation: &nbsp;<span style="font-weight: bold; color: red">${numGen}</span> &nbsp;&nbsp; 
+                        Found at Generation: &nbsp;<span style="font-weight: bold; color: red">${numGen-1}</span> &nbsp;&nbsp; 
                         Total Mutations: &nbsp;<span style="font-weight: bold; color: red">${numMutation}</span>&nbsp;&nbsp; 
                         Total Children: &nbsp;<span style="font-weight: bold; color: red">${numChildren}</span><br>
                         Elapsed Time: &nbsp;<span style="font-weight: bold; color: red">${totalTime/1000}</span> &nbsp;seconds.`;
