@@ -16,15 +16,15 @@
 <h2 class="article-title">
     Q-Learning on FrozenLake with OpenAI
 </h2>
-<div style="background-color: #35bbc7;text-align: center">
-    <p style="padding-top: 10px; font-size:20px; color:white"><a href="https://gym.openai.com/envs/FrozenLake-v0/" target="_blank">The problem:</a></p>
+<div style="background-color: #35bbc7;text-align: center; opacity:0.9">
+    <p style="padding-top: 10px; font-size:25px; color:white"><a href="https://gym.openai.com/envs/FrozenLake-v0/" target="_blank">The official problem</a></p>
     <img width=1000px; src="assets/img/frozenlake/frozenlake-description.png">
 </div>
 <ul class="Aclass">
     
     <li class="coding-text">
 	    <a>Description of the Game:</a>
-	    <p>Basically, the agent (the player) will be given a 2D map of a default size 4-by-4, with letter code on each location, where <br><br>
+	    <p>Basically, the agent (the player or you) will be given a 2D map of a default size 4-by-4, with letter code on each location, where <br><br>
 	    S = starting point, safe; <br> F = frozen surface, safe;<br> H = hole, fall to your doom;<br> G = goal, where the frisbee is located.</p>
 	    <p>Your goal is to traverse from the starting point to the goal location to pick up the frisbee. For the above given map, one possible route is</p>
 	    <p style="text-align: center">
@@ -55,49 +55,225 @@
               </tr>
             </table>
 	    </p>
-	    <p>What makes the problem interesting is that, the agent are <span class="method2">NOT always able to choose his direction</span>. The probability of the chosen direction takes place is 33% by default. 
-	    The agent might wander around back and forth for a couple of steps/episodes and finally get to the goal; or may simply missteped and fell into the hole.</p>
-	    
+	    <p>What makes the problem interesting/hard is that, the agent are <span class="method2">NOT always able to choose his direction</span>. The probability of the chosen direction takes place is 33% by default. 
+	    The agent will probably wander around back and forth for a couple of steps/episodes and finally get to the goal; or may simply missteped and fell into the hole.</p>
+	    <!--<p text-align>insert video campture</p>-->
 	    <p>The game ends when you reach the goal or fall in a hole. <span class="method">You receive a reward of 1 if you reach the goal, and zero otherwise.</span></p>
 <!--<pre class="prettyprint lang-python3 ">-->
 <!--#Python Code goes here!-->
 <!--</pre>-->
 
     </li>
-    
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
     <li class="coding-text">
-	    <a>Introducing Q-learning</a>
-	    <p>Q-learning is a model-free value-based Reinforcement Learning (RF) method. </p>
-	    <p>In RF, each game forms a (finite) sequence of <span class="method">state(s)</span>, <span class="method">action(a)</span>, <span class="method">reward(r)</span> chain (known as the Markov Decision Process). 
-	    In theory, Q-learning defines a function \( Q(s, a) \) to <span class="method">represent/evaluate the discounted future reward</span>.
+	    <a>Reinforcement Learning (RF):</a>
+	    <p>We want to write a computer program to control our agent to accomplish the task. The agent is going to start off without any knowledge of the environment,
+	    and gradually learn the best moves base on mistakes or rewards, which eventually leads to expertise in the environment. This type of machine learning is categorized as <a href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank">Reinforcement Learning (RF)</a>. List of some <a href="RF-news.html" target="_blank">applications</a>. 
 	    </p>
+
+      <p>Here is a great illustration I found online for RF:</p>
+      <div style="text-align:center"> <img height="330px" src="assets/img/frozenlake/RF-diagram.png"></div>
+      
+      <p>For each stage (step or episode), the agent learns the <span class="method">State(s)</span> of the environment and its associated <span class="method">Reward(r)</span>, and decides the type of <span class="method">Action(a)</span> to take in the next stage. The decision process is where RF takes place. 
+      Luckily for us, we do not need to implement the game Environment nor the "Interpreter" as it is already written with OpenAI Gym Library.
+      </p>
+<pre class="prettyprint lang-python3 ">
+import gym
+
+def some_random_games(num_games=1):
+    '''
+        probability is set to 1, by using is_slippery=True, otherwise 0.33
+
+        observation/state = current location, counting by columns then rows, starting with 1
+        reward = 1 only G(Goal) is reached, otherwise 0
+        done = True when reach H(hole) or G
+        info = 0.33 by default
+    '''
+    env = gym.make('FrozenLake-v0', map_name="4x4", is_slippery=False)
+    for game in range(num_games):
+        env.reset()    #reset and init the game env
+        print("\n=============================\nGame: {}".format(game))
+        print('Initial state/obs:')
+        env.render()   #renders the plot
+        i, maxEpisodes = 0, 10
+        while i < maxEpisodes:  
+            time.sleep(1)
+            i += 1
+            action = env.action_space.sample()     #pick a random action from action space
+            observation, reward, done, info = env.step(action)
+            print("\n=============================")
+            print('episode {}\naction took: {}'.format(i, action))
+            print('\tobservation: {}\n\treward: {}\n\tdone: {}\n\tinfo: {}'.format(observation, reward, done, info)) 
+            env.render()
+            if done: 
+                break
+</pre>
+<p>To help anyone understand the environment, above is a simple generic function for generating some random games. It can be easily adapted to other OpenAI Gym Environment, or be useful to understand how to build one's own environment. For this particular one, <span class="method2">observation
+is a location of the agent (starting with 1, 2, 3 up till 16)</span>, and <span class="method2">action is represented by integers (0=Left, 1=Down, 2=Right, 3=Up)</span>. 
+</p>
+<p>Note: "is_slippery=False" is used only to better illustrate the problem to new users. To get back to the original condition that "ice is slippery", simply use default value.
+</p>
+      
     </li>
-    
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->    
+    <li class="coding-text">
+	    <a href="">Introducing Q-learning (Theory)</a>
+	    <p>As you have seen, each game forms a (finite) sequence of <span class="method">state(s)</span>, <span class="method">action(a)</span>, <span class="method">reward(r)</span>, <span class="method">state(s')</span>, <span class="method">action(a')</span>, <span class="method">reward(r')</span>... chain (known as the Markov Decision Process). 
+	    If we are able to estimate the most suitable action to take base on the chain, then we can optimize our action and complete the game. We can use \( R_t \) as the total reward after an episode/step \( t \):
+	    $$ R_t = r_t + r_{t+1} + \cdots + r_n $$
+	    
+	    However, the more into the future, the less likely the total rewards dependent on the future reward. Hence, we introduce a discount factor \( \gamma \), (usually set near 1, for example 0.9), and promote <span class="method"> \( R_t \) as the discounted future reward </span>:
+	    
+	    $$   \begin{align*}
+      R_t &= r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots + \gamma^{n-t}r_n \\
+          &= r_t + \gamma R_{t+1}
+      \end{align*} 
+      $$
+	    In Q-learning, we wish to <span class="method2">define a omnipotent function \( Q(s, a) \) to simply tell us the discounted future reward when we perform an action \(a\) in a state \(s\)</span>, so we can always take the best action. In that case, 
+	    $$ Q(s,a) = r + \gamma \cdot \text{max}_{a'} Q(s', a').$$
+	    
+	    This is the Bellman equation, the necessary condition for optimality with dynamic programming.
+	    </p>
+	    
+	    <p>In practice, we can always start our \(Q\) with some random initial, and evolve its values by playing the game again and again. It is like using <a href="https://en.wikipedia.org/wiki/Newton%27s_method" target="_blank">Newton's Method </a>to find the \(\sqrt{2}\)...</p>
+	    
+	    <span class="method" style="font-size: 1.1em">
+	    $$
+	    Q(s_t, a_t) \leftarrow \underbrace{Q(s_t, a_t)}_{\text{old value}} + \alpha \Big (\underbrace{r_{t+1} + \gamma \cdot \text{max}_{a_{t+1}} Q(s_{t+1}, a_{t+1})}_{\text{learnt value}} - Q(s_t, a_t) \Big )
+	    $$
+	    </span>
+	    Here, \( \alpha \) is the learning rate, behaving just like the slope you used in Newton's method.
+	    
+	    <p>This is the theory behind Q-learning. What makes it super powerful is that Q-learning is a model-free value-based RF method. We can easily adapt this method to most problems. </p>
+
+    </li>
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
     <li class="coding-text">
 	    <a>Solving the problem with vanilla Q-learning</a>
-	    <div style="text-align:center">
-            <img height=450px; src="assets/img/frozenlake/QL-vanilla.png">
-	    </div>
+	    <p>We solved the problem with the exact equation above. <span class="method2">We started with an 16-by-4 zero matrix as our Q-table, </span> for we have 16 different states and 4 actions for each state. We introduced <span class="method2">a small value \(\epsilon\), or "mutation rate" to prevent the local minimum</span>. In each episode, the agent 
+	    need to decide if it will pick the best action according to current Q table or explore unknown region with a random action picked from the action space. Part of the codes are shown here:
+      </p>
+<pre class="prettyprint lang-python3 ">
+    epsilon = [0.1]     # mutation rate
+    lr_rate = 0.81      # learning rate
+    gamma = 0.9         # discount factor
+    
+    def choose_action(state):
+        if np.random.uniform(0, 1) < epsilon[0]:
+            action = env.action_space.sample()            # explore new action 
+            epsilon[0] -= 1e-4                            # prevent over estimation
+        else:
+            action = np.argmax(Q[state, :])               # exploit current best
+        return action
+
+    def learn(state, state2, reward, action):
+        predict = Q[state, action]                        # old value
+        target = reward + gamma * np.max(Q[state2, :])    # learnt value
+        Q[state, action] = Q[state, action] + lr_rate * (target - predict)      # updating the Q-table
+</pre>
+<p>Training using Gym environment:</p>
+<pre class="prettyprint lang-python3 ">
+    def Q_train(Q, train_size = 200, max_steps = 100):
+
+        for episode in range(train_size):
+            state = env.reset()
+            t = 0
+            while t < max_steps:
+                action = choose_action(state)  
+                state2, reward, done, info = env.step(action)  
+                learn(state, state2, reward, action)
+                state = state2
+                t += 1
+                if done: break
+        return Q
+</pre>
+<p>At each 200 training, we test 100 games and record the number of games we reach the goal within 100 steps. Here is our results with vanilla Q-learning. </p>
+<p><span class="method">Total time: 7.4795 seconds. We reached a maximum winning rate of 80% at 5000 training games</span>. It should be noticed that more training actually deteriorates the performance due to overfitting the model.</p>
+    <div style="text-align:center">
+          <img height=450px; src="assets/img/frozenlake/QL-vanilla.png">  &nbsp; &nbsp;
+          <img style="vertical-align:top;" height=320px; src="assets/img/frozenlake/QL-vanilla-matrix.png">
+    </div>
     </li>
     
     <li class="coding-text">
 	    <a>Q-learning with TensorFlow </a>
-	    <div style="text-align:center">
-            <img height=450px; src="assets/img/frozenlake/QL-TF-2.png">
-	    </div>
-    </li>
+	    <p>Instead of vanilla Q-learning, we can use TensorFlow to build a densely connected neural network to optimize the Weight matrices by minimizing the learnt value and old value in each iteration. Here is one working setup:</p>
+<pre class="prettyprint lang-python3 ">
+    # TensorFlow Network Model for Q-learning:
     
+    x = tf.placeholder(shape=[1,16],dtype=tf.float32)               # Input Layer, feeding "location of agent" as unit vector
+    weights = tf.Variable(tf.random_uniform([16,4],0,0.1))          # Hidden Layer of Weights, same as "Q-Table"
+    Q1 = tf.matmul(x,weights)                                       
+    predict = tf.argmax(Q1,1)                                       # Output Layer
+    Q2 = tf.placeholder(shape=[1,4],dtype=tf.float32)               # Placeholder Layer used for Loss Function
+    
+    loss = tf.reduce_sum(tf.square(Q2 - Q1))
+    trainer = tf.train.GradientDescentOptimizer(learning_rate=lr_rate)
+    updatedweights = trainer.minimize(loss)
+    
+    lr_rate = 0.1   # Model parameters
+    gamma = 0.9
+    epsilon = 0.1
+</pre>	    
+
+        <p>For each training:</p>
+<pre class="prettyprint lang-python3">
+    state_now = env.reset()
+    
+    for j in range(max_steps):
+
+        # Exploit from current network:
+        action, Y = sess.run([predict, Q1], feed_dict = {x:[np.eye(16)[state_now]]})
+        # Explore from random action:
+        if np.random.rand() < epsilon: action[0] = env.action_space.sample()
+
+        # Go to next step, get "learnt value", stored as "change_Y"
+        state_next, reward, done, info = env.step(action[0])
+        Y1 = sess.run(Q1, feed_dict = {x:[np.eye(16)[state_next]]})
+        change_Y = Y
+        change_Y[0, action[0]] = reward + gamma*np.max(Y1)
+
+        # Use Gradient Descent Optimizer
+        _, new_weights = sess.run([updatedweights,weights],feed_dict={x:[np.eye(16)[state_now]], Q2:change_Y})
+
+        state_now = state_next     # Update state
+        if done and reward == 1:
+            print ('Training {} was successful!'.format(i))
+            epsilon -= 10**-3
+</pre>
+        <p><span class="method">Total time: 276.2445 seconds. We reached a maximum winning rate of 81% at 800 training games</span>. We also observe similar heavy fluctuations for the rewards even after 1000 games. 
+        It is probably due to the probablistic nature of the moves our agent takes. (We tested when "is_slippery=False" turned on, the agent quickly reached 100% winning rate and remained.)</p>
+
+	    <div style="text-align:center">
+            <img height=450px; src="assets/img/frozenlake/QL-TF-2.png"> &nbsp; &nbsp;
+            <img style="vertical-align:top;" height=320px; src="assets/img/frozenlake/QL-TF-weight-matrix.png">
+	    </div>
+
+    </li>
+    <br><!--*******************************************-->
+    <br><!--*******************************************-->
         <li class="coding-text">
-	    <a>Genetic Algorithm</a>
+	    <a>Genetic Algorithm </a>
+	    <p>Of course, this problem can be solved using genetic algorithm, and as a matter of fact, it is simplier and have better performance. The code is very similar to my earlier <a title="Password Solver with Genetic Algorithm" href="https://wyqian1027.github.io/public/ml/password-solver.html" target="_blank">Post</a>.
+	    Here, our population is simply a <span class="method">policy: 1-D array of 16 elements</span>, which decides the action of the agent at each location. 
+	    Speaking of the fitness function, we simply return the winning rate of the policy over 100 games. 
+	    </p>
+	    <p>For the results below, I used 100 policies to run 20 generations with a decreasing mutation rate of 0.01. <span class="method">Total time: 60.8728 seconds. We reached a maximum winning rate of 80% at 15th Generation.</span> Interestly, the flucations are much smaller in comparison, and the result actually convenged, unlike the Q-learning.
+	    </p>
 	    <div style="text-align:center">
             <img height=450px; src="assets/img/frozenlake/genetic.png">
+            <img style="vertical-align:top;" src="assets/img/frozenlake/QL-GA-best-policy.png">
 	    </div>
     </li>
 </ul>
 
+
 <div class="footer">
     <a title="Back to Previous" href="https://wyqian1027.github.io/public/machine-learning.html"><i class="fas fa-igloo"></i></a>
-	<em>Under construction... by Wenyang Qian.</em>
+	<em>last updated on April 2nd 2019 by Wenyang Qian.</em>
 </div>
 
 </body>

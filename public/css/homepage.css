@@ -19,7 +19,7 @@ body {
 	/*max-width: 1000px;*/
 	/*width: 70%;*/
 	/*padding: 28px;*/
-	margin: 20px;
+	margin: 10px ;
 	/*border: solid #bdc2c7 28px;*/
 	background: #f5f9fa;
 	font-size: 16px;
@@ -254,11 +254,13 @@ li {
 .coding-text ol {
     font-size: 40px;
 }
-.coding-text A:first-child {
+.coding-text > A{  
+    /*direct descendant*/
     color: var(--item-heading-color);
     font-size: 1.2em;
     font-weight: bold;
 }
+
 .coding-text A:hover{
     background-color: var(--main-bg-color);
     color: #ACFF1D;    
@@ -290,6 +292,7 @@ pre {
 }
 pre.prettyprint {
     padding: 20px;
+    margin-right: 40px;
 }
 .prettyprint {
     font-size: .85em;
