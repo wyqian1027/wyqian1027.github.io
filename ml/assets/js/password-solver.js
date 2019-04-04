@@ -64,16 +64,23 @@ var msg2 = document.querySelector("#msgBoard2");
 
 function showMsg(pwd, numGen, numMutation, numChildren, totalTime, found=true){
     if (found){
-        msg.innerHTML = `The Password: &nbsp;&nbsp; <span style="font-weight: bold; color:green">${pwd}</span><br> Found at Generation: &nbsp;<span style="font-weight: bold; color: red">${numGen}</span> &nbsp;&nbsp; Total Mutations: &nbsp;<span style="font-weight: bold; color: red">${numMutation}</span><br>Elapsed Time: &nbsp;<span style="font-weight: bold; color: red">${totalTime/1000}</span> &nbsp;seconds.`;
+        msg.innerHTML = `<span style="color: purple;font-weight: bold;">The Password is found: </span>&nbsp;&nbsp; <span style="font-weight: bold; color:green">${pwd}</span><br> 
+                        Found at Generation: &nbsp;<span style="font-weight: bold; color: red">${numGen}</span> &nbsp;&nbsp; 
+                        Total Mutations: &nbsp;<span style="font-weight: bold; color: red">${numMutation}</span>&nbsp;&nbsp; 
+                        Total Children: &nbsp;<span style="font-weight: bold; color: red">${numChildren}</span><br>
+                        Elapsed Time: &nbsp;<span style="font-weight: bold; color: red">${totalTime/1000}</span> &nbsp;seconds.`;
     } else {
-        msg.innerHTML = `The Password is NOT found...  Try again!`;
+        msg.innerHTML = `<span style="color: purple;font-weight: bold;">The Password is NOT found...  Try again!</span><br> 
+                        Total Mutations: &nbsp;<span style="font-weight: bold; color: red">${numMutation}</span>&nbsp;&nbsp; 
+                        Total Children: &nbsp;<span style="font-weight: bold; color: red">${numChildren}</span><br>
+                        Elapsed Time: &nbsp;<span style="font-weight: bold; color: red">${totalTime/1000}</span> &nbsp;seconds.`;
     }
 }
 function updateMsg(content){
     msg.innerHTML = content;
 }
 
-function displayEachGen(fittest){
+function displayEachGen(fittest, maxGens){
     var i = 0;
     setInterval(function() { 	
     	if (i < (fittest.length)) {
@@ -82,7 +89,7 @@ function displayEachGen(fittest){
             clearInterval(displayEachGen);
         }
     	i++
-    }, 100)
+    }, 2500/maxGens)
 }
 function cleanBoards(){
     msg.innerHTML ="";
@@ -211,8 +218,9 @@ function passwordSolver(){
         numGen++;
         mutationRate -= mutationRate/maxGens;
     }
+    var totalTime = (new Date().getTime() - start);
     showMsg(sortedPop[0], numGen, numMutation, numChildren, totalTime, found);
-    intervalID = displayEachGen(fittest);
+    intervalID = displayEachGen(fittest, maxGens);
     return false;
 }
 
