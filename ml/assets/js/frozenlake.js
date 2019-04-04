@@ -1,4 +1,4 @@
-var myVideo = document.getElementById("demo"); 
+var myVideo = document.getElementById("frozenlake-demo"); 
 
 function playPause() { 
   if (myVideo.paused) 

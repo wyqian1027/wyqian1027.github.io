@@ -9,6 +9,7 @@
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+
 </head>
 <body>
 
@@ -18,7 +19,7 @@
 </h2>
 <div style="background-color: #35bbc7;text-align: center; opacity:0.9">
     <p style="padding-top: 10px; font-size:25px; color:white"><a href="https://gym.openai.com/envs/FrozenLake-v0/" target="_blank">The official problem</a></p>
-    <img width=1000px; src="assets/img/frozenlake/frozenlake-description.png">
+    <img width=95% style="max-width:1000px" src="assets/img/frozenlake/frozenlake-description.png">
 </div>
 <ul class="Aclass">
     
@@ -279,7 +280,7 @@ is a location of the agent (starting with 1, 2, 3 up till 16)</span>, and <span 
       <button onclick="makeSmall()">Small</button>
       <button onclick="makeNormal()">Normal</button>
       <br><br>
-      <video id="demo" width="420">
+      <video id="frozenlake-demo" width="420" muted>
         <source src="assets/img/frozenlake/frozenlake_success.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
       </video>
@@ -293,8 +294,7 @@ is a location of the agent (starting with 1, 2, 3 up till 16)</span>, and <span 
 	<em>last updated on April 2nd 2019 by Wenyang Qian.</em>
 </div>
 
+
 <script src="assets/js/frozenlake.js" type="text/javascript"></script>
-
-
 </body>
 </html>

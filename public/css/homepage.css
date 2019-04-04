@@ -438,5 +438,9 @@ pre.prettyprint {
     font-size: 0.95em;
 }
 
+.mouse-hover-pointer:hover{
+ cursor: pointer;
+}
+
 
 
