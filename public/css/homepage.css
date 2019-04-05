@@ -434,9 +434,9 @@ pre.prettyprint {
     font-style: italic
 }
 
-.smaller-ul li {
-    font-size: 0.95em;
-}
+/*.smaller-ul li {*/
+/*    font-size: 0.95em;*/
+/*}*/
 
 .mouse-hover-pointer:hover{
  cursor: pointer;
