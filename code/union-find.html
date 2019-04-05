@@ -42,28 +42,61 @@
 <!--</pre>-->
     </li>
     <li class="coding-text">
-	    <a>Python Implementation</a><br>
-        <p></p>
-<pre class="prettyprint lang-python3 ">
+	    <a>Python Implementation by: &nbsp;&nbsp;</a>
+        <p style="display: inline; color: DarkGreen; font-size: 1.2em; "><span class="toggle-btn mouse-hover-pointer" style="text-decoration:underline; font-weight: bold">List</span> or <span class="toggle-btn mouse-hover-pointer">Dictionary</span></p>
+<pre id="uf-list" class="prettyprint lang-python3 ">
 class UF:
     
-    #MakeSet, init parents and sizes
-    def __init__(self, numberOfElements):
-        self.p = list(range(numberOfElements))
-        self.size = [0] * numberOfElements
+    # makeset: init parents and sizes
+    def __init__(self, num):   
+        self.p = list(range(num))   # num is number of elements
+        self.size = [0] * num
 
-    #find(x)
+    # find(x) returns the parent of x
     def find(self, x):
         if self.p[x] != x:
-            self.p[x] = self.find(self.p[x])  #Recursion is used to compress the tree
+            self.p[x] = self.find(self.p[x]) # recursion to compress path
         return self.p[x]
-
-    #union(x,y)
+        
+        
+    # union(x,y) merge x and y if they are different
     def union(self, x, y):
         xr, yr = self.find(x), self.find(y)
         if xr == yr:
             return False
-        if self.size[xr] <= self.size[yr]:  #union by size
+        if self.size[xr] <= self.size[yr]:   # union by size
+            self.p[xr] = yr
+            self.size[yr] += 1
+        else:
+            self.p[yr] = xr
+            self.size[xr] += 1
+        return True
+        
+</pre>
+
+<pre id="uf-dict" style="display: none" class="prettyprint lang-python3 ">
+class UF:
+    
+    # makeset: init parents and sizes
+    def __init__(self):
+        self.p = {}
+        self.size = {}
+
+    # find(x) returns the parent of x
+    def find(self, x):
+        self.p.setdefault(x, x)
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x]) # recursion to compress path
+        return self.p[x]
+
+    # union(x,y) merge x and y if they are different
+    def union(self, x, y):
+        self.size.setdefault(x, 1)
+        self.size.setdefault(y, 1)
+        xr, yr = self.find(x), self.find(y)
+        if xr == yr:
+            return False
+        if self.size[xr] <= self.size[yr]:   # union by size
             self.p[xr] = yr
             self.size[yr] += 1
         else:
@@ -90,5 +123,30 @@ class UF:
 	<em>Last updated February 27, 2019 by Wenyang Qian.</em>
 </div>
 
+<script>
+    var toggleBtns = document.querySelectorAll(".toggle-btn");
+    var ufList = document.querySelector("#uf-list");
+    var ufDict = document.querySelector("#uf-dict");
+    toggleBtns.forEach(function(el){
+        el.addEventListener("click", function(){
+            // console.log("clicked")
+            // console.log("el.innerHTML: " + el.innerHTML)
+            // console.log("this.innerHTML: " + this.innerHTML)
+            if (this.innerHTML == "List") {
+               ufList.setAttribute("style", "display: block");
+               ufDict.setAttribute("style", "display: none");
+               toggleBtns[0].setAttribute("style", "font-weight:bold; text-decoration:underline");
+               toggleBtns[1].setAttribute("style", "font-weight:normal");
+            }
+            if (this.innerHTML == "Dictionary"){
+               ufList.setAttribute("style", "display: none");
+               ufDict.setAttribute("style", "display: block");   
+               toggleBtns[1].setAttribute("style", "font-weight:bold; text-decoration:underline");
+               toggleBtns[0].setAttribute("style", "font-weight:normal");
+            }
+        });        
+    }); 
+
+</script>
 </body>
 </html>
