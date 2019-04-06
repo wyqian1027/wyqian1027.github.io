@@ -297,13 +297,15 @@ pre.prettyprint {
 .prettyprint {
     font-size: .85em;
     word-wrap: break-word;
+    font-family: monaco;
     /*background-color: #E3F6FE;*/
     /*background-color: #E3ECFE;*/
     background-color: #E4F1FF;
     border: none !important;
     width: auto;
     overflow: auto;
-    max-height: 600px
+    max-height: 600px;
+    /*font: courier;*/
 }
 
 .item {
