@@ -50,7 +50,7 @@ class UF:
     # makeset: init parents and sizes
     def __init__(self, num):   
         self.p = list(range(num))   # num is number of elements
-        self.size = [0] * num
+        self.rank = [0] * num
 
     # find(x) returns the parent of x
     def find(self, x):
@@ -64,12 +64,11 @@ class UF:
         xr, yr = self.find(x), self.find(y)
         if xr == yr:
             return False
-        if self.size[xr] <= self.size[yr]:   # union by size
-            self.p[xr] = yr
-            self.size[yr] += 1
-        else:
-            self.p[yr] = xr
-            self.size[xr] += 1
+        if self.rank[xr] < self.rank[yr]:   # union by rank
+            xr, yr = yr, xr
+        self.p[yr] = xr
+        if self.rank[xr] == self.rank[yr]:
+            self.rank[xr] += 1
         return True
         
 </pre>
@@ -80,7 +79,7 @@ class UF:
     # makeset: init parents and sizes
     def __init__(self):
         self.p = {}
-        self.size = {}
+        self.rank = {}
 
     # find(x) returns the parent of x
     def find(self, x):
@@ -91,17 +90,16 @@ class UF:
 
     # union(x,y) merge x and y if they are different
     def union(self, x, y):
-        self.size.setdefault(x, 1)
-        self.size.setdefault(y, 1)
+        self.rank.setdefault(x, 0)
+        self.rank.setdefault(y, 0)
         xr, yr = self.find(x), self.find(y)
         if xr == yr:
             return False
-        if self.size[xr] <= self.size[yr]:   # union by size
-            self.p[xr] = yr
-            self.size[yr] += 1
-        else:
-            self.p[yr] = xr
-            self.size[xr] += 1
+        if self.rank[xr] < self.rank[yr]:   # union by rank
+            xr, yr = yr, xr
+        self.p[yr] = xr
+        if self.rank[xr] == self.rank[yr]:
+            self.rank[xr] += 1
         return True
         
 </pre>
