@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang Qian's Coding</title>
+	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+	<style>
+	    #edit-dist, #word1, #word2 {
+	        font-size: 20px;
+	        padding: 8px;
+	    }
+	    /*#edit-dist {*/
+	    /*    color: black;*/
+	    /*    background-color: rgba(0, 255, 0, 0.2);*/
+     /*       box-shadow: 0 4px 4px #ccc;*/
+	    /*}*/
+	    /*#edit-dist:hover{*/
+	    /*    background-color: rgba(0, 255, 128, 0.5);*/
+	    /*}*/
+	    #word1 {
+	        color: #7F7AFF;
+        }	    
+        #word2 {
+	        color: #FF6E69;
+	    }
+	    #message {
+	        text-align: center;
+	        font-size: 1.1em;
+	        font-weight: bold;
+	    }
+	    #board {
+	        margin: 25px auto;
+	    }
+	    table tr:nth-child(even) {
+            background-color: #eee;
+        }
+        table tr:nth-child(odd) {
+            background-color: #fff;
+        }
+	</style>
+</head>
+<body>
+
+
+<h2 class="article-title">
+    Word Correction (Spell Check) with Dynamic Programming
+</h2>
+<p style="font-weight: bold; font-size: 20px; text-align: center; color: darkred">Have you ever wondered how spell check program works?</p>
+<br>
+<div style="text-align: center">
+    <img src="assets/img/dp-edit-dist/grammarly-spell-check.jpg">
+</div>
+<ul class="Aclass">
+	<li class="coding-text">
+	    <a>Define the problem:</a><br>
+        <p>Spell checkers make suggestions for misspelled words. 
+        Given a misspelled string, a spell checker return the words in the dictionary which are closest to the misspelled string.</p>
+        <p>How do we measure the distance between any two words? In 1967, Vladimir Levenshtein defined the the distance between two words as
+        minimum number of "edits" it takes to transform one word to the other, as known as the <span class="method">Levenshtein(Edit) distance</span>, where a single edit is one of the three operations: <span class="method2">insertion, deletion, and substitution</span>.</p>
+        <p>So, our problem reduces to implementing an efficient function to check the Levenshtein distance between two given words.</p>
+    </li>
+    <br>
+	<li class="coding-text">
+	    <a>Intuition:</a><br>
+        <p>1. Brute-force approach is to enumerate all the strings that are distance 1, 2, 3, ... from the first string, and stop when we reach the second string. The time complexity is huge, around
+        \( O(2^n) \) where n is length of the string. This is not practical at all!</p>
+        <p>2. Observation: If we know the all Edit distance of between two substrings of length \( i \), we can easily find out the Edit distance of the substring of length \( (i+1) \). 
+        We just need to pick the previous minimum Edit distances and decide which operations is optimal. </p>
+        <p>3. Illustration of word1 = "money", word2 = "monkey". Edit Distance represented as a matrix:</p>
+        <div style="text-align: center"><img style="min-width: 50px; max-width:250px; width=15%" src="assets/img/dp-edit-dist/edit-distance-example2.png"></div>
+        <p style="margin-left:15%">Element M(i,j) represents the Edit Distance between two substrings at index i and j of the two words. Starting from the top left. </p>
+        <p style="margin-left:15%" class="method">- Base case: Empty strings have Edit distance = 0. All substrings of index i have Edit distance = i with empty string.<br>
+        - Recursion steps: For substring at index i of word1, substring at index j of word2, or M(i, j), our options are:</p>
+        <p class="method2" style="margin-left:15%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Insertion at index i. Cost = M(i-1, j) + 1.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deletion at index j.&nbsp; Cost = M(i, j-1) + 1.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Substitution at index i, j. If word1[i] equals word1[j], Cost = M(i-1, j-1). Otherwise, Cost=M(i-1, j-1) + 1.</p>
+        <p>4. In this way, we break down the big problem into smaller subproblems, and recursively find the optimal solution. The intermediate results are also stored. This method is called <span class="method">Dynamic Programming</span>.
+        Time complexity in this problem is reduced to the dimension of the matrix: \( O(n^2) \).</p>
+    </li> 
+    <br>
+    
+    <li class="coding-text">
+	    <a>Playground: </a><br><br>
+        <form style="text-align:center" onsubmit="return main()">
+            <label style="font-weight: bold" for="word1">Word1: &nbsp;&nbsp;</label>
+            <input type="text" id="word1" minlength="0" maxlength="20" size="15" value="monkey"></input>&nbsp;&nbsp;
+            <label style="font-weight: bold" for="word2">Word2: &nbsp;&nbsp;</label>
+            <input type="text" id="word2" minlength="0" maxlength="20" size="15" value="money"></input>&nbsp;&nbsp;
+            <!--<input type="submit" value="Check Edit Distance" id="edit-dist"></input><br><br>-->
+            <span style="padding-left: 20px" id="message">
+                Edit Distance = 0
+            </span>
+            <div id="board">
+            </div>
+        </form>
+        
+        <!--<input type="file" name="file" id="file">-->
+
+    </li>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <li class="coding-text">
+	    <a>JavaScript Implementation:</a>
+<pre id="uf-list" class="prettyprint lang-javascript ">
+    const getEditDist = (word1, word2) => {
+        
+        const l1 = word1.length, l2 = word2.length;
+    
+        // Initialization dp matrix
+        let dp = [];
+        dp[0] = [];
+        dp[0][0] = 0;
+        
+        // Base case, word2 on the rows
+        for (let i=1; i < l2+1; i++){
+            dp[i] = [];
+            dp[i][0] = i;
+        }
+        for (let i=1; i < l1+1; i++){
+            dp[0][i] = i;
+        }
+        
+        // Recursion steps:
+        for (let i=1; i < l2+1; i++){
+            for (let j=1; j < l1+1; j++){
+                if (word2[i-1] === word1[j-1]){
+                    dp[i][j] = Math.min(dp[i][j-1]+1, dp[i-1][j]+1, dp[i-1][j-1]);
+                } else {
+                    dp[i][j] = Math.min(dp[i][j-1]+1, dp[i-1][j]+1, dp[i-1][j-1]+1);
+                }
+            }
+        }
+        return dp[l2][l1];
+    };
+</pre>
+    </li>
+</ul>
+
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i></a>
+	<em>Last updated April 8, 2019 by Wenyang Qian.</em>
+</div>
+
+<script src="assets/js/dp-edit-distance.js" type="text/javascript"></script>
+
+</body>
+</html>
