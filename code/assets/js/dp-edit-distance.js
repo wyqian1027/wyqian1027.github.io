@@ -1,4 +1,4 @@
-function getEditDist(word1, word2) {
+function getEditDist(word1, word2, flag=true) {
     
     var l1 = word1.length, l2 = word2.length;
 
@@ -26,7 +26,12 @@ function getEditDist(word1, word2) {
             }
         }
     }
-    return [dp[l2][l1], dp];
+    if (flag === true ){
+        return [dp[l2][l1], dp];
+    } else {
+        return dp[l2][l1];
+    }
+    
 };
 
 // <table>
@@ -83,6 +88,9 @@ const w1 = document.querySelector("#word1");
 const w2 = document.querySelector("#word2");
 const msg = document.querySelector("#message");
 const board = document.querySelector("#board");
+const inputSentence = document.querySelector("#input-sentence");
+const outputSentence = document.querySelector("#output-sentence");
+const checkBtn = document.querySelector('#check-btn');
 var myDict;
 
 w1.addEventListener("input", function (e) {
@@ -100,24 +108,64 @@ msg.innerHTML = `Edit Distance = ${getEditDist(w2.value, w1.value)[0]}`;
 board.innerHTML = makeBoard(w2.value, w1.value);    
 
 
-// plan to do! 
-// function httpGet(url, callback) {
-//     // this function gets the contents of the URL. Once the
-//     // content is present it runs the callback function.
-//     var xmlhttp=new XMLHttpRequest();
-//     xmlhttp.onreadystatechange=function() {
-//         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-//             callback(xmlhttp.responseText);
-//         }
-//     }
-//     xmlhttp.open("GET", url, false );
-//     xmlhttp.send();    
-// }
 
-// httpGet("assets/file/10kcommon.txt", function(textFile){
-//     // this calls the httpGet function with the URL of your text
-//     // file. It then runs a function that turns the file into an
-//     // array.
-//     array = textFile.slice(1, -1).split("\n");
-//     console.log(array);
-// });
+// plan to do! 
+function httpGet(url, callback) {
+    // this function gets the contents of the URL. Once the
+    // content is present it runs the callback function.
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            callback(xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("GET", url, false);
+    xmlhttp.send();    
+}
+
+httpGet("assets/file/10kcommon.txt", function(textFile){
+    myDict = textFile.slice(1, -1).split("\n");
+    // console.log(myDict);
+});
+
+
+
+function findNearest(word, myDict){
+    if (word === "") return "";
+    if (word === " ") return " ";
+    var minDist = 100;
+    var minWord = 0;
+    for (var i=0; i<myDict.length; i++){
+        if (myDict[i] === word) return word;
+        var d = getEditDist(word, myDict[i], false);
+        if (d < minDist){
+            minDist = d;
+            minWord = i;
+        }
+    }
+    return myDict[minWord];
+}
+
+function getCorrectedSentence(myDict){
+    var input = inputSentence.value.split(/\W+/);
+    // console.log(input)
+    var output = "";
+    for (var i=0; i<input.length; i++){
+        output += findNearest(input[i], myDict) + " ";
+    }
+    return output;
+}
+
+
+checkBtn.addEventListener("click", function(e){
+    var corrected = getCorrectedSentence(myDict);
+    outputSentence.innerHTML = getCorrectedSentence(myDict);
+}) 
+
+
+
+
+
+
+
+

@@ -10,18 +10,18 @@
 	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
 	<style>
-	    #edit-dist, #word1, #word2 {
+	    #check-btn, #word1, #word2, #input-sentence, #output-sentence {
 	        font-size: 20px;
 	        padding: 8px;
 	    }
-	    /*#edit-dist {*/
-	    /*    color: black;*/
-	    /*    background-color: rgba(0, 255, 0, 0.2);*/
-     /*       box-shadow: 0 4px 4px #ccc;*/
-	    /*}*/
-	    /*#edit-dist:hover{*/
-	    /*    background-color: rgba(0, 255, 128, 0.5);*/
-	    /*}*/
+	    #check-btn {
+	        color: black;
+	        background-color: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 4px 4px #ccc;
+	    }
+	    #check-btn:hover{
+	        background-color: rgba(0, 255, 128, 0.5);
+	    }
 	    #word1 {
 	        color: #7F7AFF;
         }	    
@@ -41,6 +41,10 @@
         }
         table tr:nth-child(odd) {
             background-color: #fff;
+        }
+        #output-sentence{
+            font-weight: bold;
+            font-size: 1.2em;
         }
 	</style>
 </head>
@@ -73,10 +77,10 @@
         We just need to pick the previous minimum Edit distances and decide which operations is optimal. </p>
         <p>3. Illustration of word1 = "money", word2 = "monkey". Edit Distance represented as a matrix:</p>
         <div style="text-align: center"><img style="min-width: 50px; max-width:250px; width=15%" src="assets/img/dp-edit-dist/edit-distance-example2.png"></div>
-        <p style="margin-left:15%">Element M(i,j) represents the Edit Distance between two substrings at index i and j of the two words. Starting from the top left. </p>
-        <p style="margin-left:15%" class="method">- Base case: Empty strings have Edit distance = 0. All substrings of index i have Edit distance = i with empty string.<br>
-        - Recursion steps: For substring at index i of word1, substring at index j of word2, or M(i, j), our options are:</p>
-        <p class="method2" style="margin-left:15%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Insertion at index i. Cost = M(i-1, j) + 1.<br>
+        <p>Element M(i,j) represents the Edit Distance between two substrings at index i and j of the two words. Starting from the top left. </p>
+        <p class="method">&nbsp;&nbsp;- Base case: Empty strings have Edit distance = 0. All substrings of index i have Edit distance = i with empty string.<br>
+        &nbsp;&nbsp;- Recursion steps: For substring at index i of word1, substring at index j of word2, or M(i, j), our options are:</p>
+        <p class="method2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Insertion at index i. Cost = M(i-1, j) + 1.<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deletion at index j.&nbsp; Cost = M(i, j-1) + 1.<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Substitution at index i, j. If word1[i] equals word1[j], Cost = M(i-1, j-1). Otherwise, Cost=M(i-1, j-1) + 1.</p>
         <p>4. In this way, we break down the big problem into smaller subproblems, and recursively find the optimal solution. The intermediate results are also stored. This method is called <span class="method">Dynamic Programming</span>.
@@ -86,7 +90,7 @@
     
     <li class="coding-text">
 	    <a>Playground: </a><br><br>
-        <form style="text-align:center" onsubmit="return main()">
+        <div style="text-align: center">
             <label style="font-weight: bold" for="word1">Word1: &nbsp;&nbsp;</label>
             <input type="text" id="word1" minlength="0" maxlength="20" size="15" value="monkey"></input>&nbsp;&nbsp;
             <label style="font-weight: bold" for="word2">Word2: &nbsp;&nbsp;</label>
@@ -97,15 +101,23 @@
             </span>
             <div id="board">
             </div>
-        </form>
-        
-        <!--<input type="file" name="file" id="file">-->
-
+        </div>
+    </li>
+    <br>
+    <li class="coding-text">
+	    <a>Simple Spell Checker: </a><br><br>
+	    <div style="text-align:center">
+            <div style="text-align: center; vertical-align: middle;">
+                <p>(Databse = 10K High Frequency English Words)</p>
+                <textarea style="text-align: left" id="input-sentence" placeholder="Enter your bag of words here..." rows="4" cols="60%"></textarea> &nbsp;&nbsp;&nbsp;
+                <div>
+                    <button value="Check Spelling" name="Check Spelling" id="check-btn"> Check Spelling</button>
+                </div>
+            </div>
+            <br><div style="text-align: center" id="output-sentence"></div>
+        </div>
     </li>
     
-    <br>
-    <br>
-    <br>
     <br>
     <li class="coding-text">
 	    <a>JavaScript Implementation:</a>
@@ -115,18 +127,14 @@
         const l1 = word1.length, l2 = word2.length;
     
         // Initialization dp matrix
-        let dp = [];
-        dp[0] = [];
-        dp[0][0] = 0;
+        let dp = []; dp[0] = []; dp[0][0] = 0;
         
         // Base case, word2 on the rows
         for (let i=1; i < l2+1; i++){
             dp[i] = [];
             dp[i][0] = i;
         }
-        for (let i=1; i < l1+1; i++){
-            dp[0][i] = i;
-        }
+        for (let i=1; i < l1+1; i++) dp[0][i] = i;
         
         // Recursion steps:
         for (let i=1; i < l2+1; i++){
