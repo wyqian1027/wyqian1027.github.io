@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Data Analysis of Professional Starcraft 2</title>
+	<title>Data Analysis of Professional Starcraft 2 Games</title>
 	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -15,7 +15,7 @@
 
 
 <h2 class="article-title">
-    Data Analysis of Professional Starcraft 2.
+    Data Analysis of Professional Starcraft 2 Games.
 </h2>
 <ul class="Aclass">
   <li class="coding-text">
@@ -33,7 +33,7 @@
 	    <p></p>
 	    
 	    
-<!--================================================================================================    -->
+<!--========================================== START OF BRACKET ======================================================    -->
 	    
  
 <div class="prediction">
@@ -306,7 +306,7 @@
         
 
         
-<!--================================================================================================    -->
+<!--======================================== END OF BRACKET ========================================================    -->
 <p style="color:black; font-weight: bold;"> March 4th update: We predicted two out of the four semi-finalists! </p> <a target="_blank" href="https://wcs.starcraft2.com/en-us/tournament/5111/">(See official outcome)</a>
 
         <p></p>
@@ -341,26 +341,26 @@
     
     <li class="coding-text">
 	    <a>Web Scrapper</a><br>
-      <p>Python has very powerful libraries such as urllib.request and bs4.BeautifulSoup, which makes scrapping data straightforward. Following is an example. Once the "soup" (scrapped info) is obtained, one can parse the HTML page to extract useful information.
+      <p>Python has powerful libraries such as urllib.request and bs4.BeautifulSoup, which makes scrapping data straightforward. Following is an example. Once the "soup" (scrapped info) is obtained, one can parse the HTML page to extract useful information.
       </p>
       <p>In this application, a seed player is first selected and parsed (for example, "Maru" from JinAir Greenwings Club). Then, by using Breath-First Search (BFS) recursively on all his tournament opponents, match information and player information of all players from each premium tournament is scrapped successfully. </p>
-      
-      Jupyter Notebook: <a href="assets/data/sc2/Starcraft2LiquidPedia_Scrapper.ipynb">Starcraft2LiquidPedia_Scrapper.ipynb</a> <br><br>
-      Player csv file: <a href="assets/data/sc2/playerInfo.csv">playerInfo.csv</a><br>
-      Match Record csv file: <a href="assets/data/sc2/playerMatchRecord.csv">playerMatchRecord.csv</a>
+      </p>
+      <p>Jupyter Notebook: &nbsp; &nbsp;<a href="assets/data/sc2/Starcraft2LiquidPedia_Scrapper.ipynb"> <i class="far fa-file-alt"></i> Starcraft2LiquidPedia_Scrapper.ipynb</a> <br>
+      Player csv file: &nbsp; &nbsp;<a href="assets/data/sc2/playerInfo.csv"><i class="far fa-file-alt"> </i> playerInfo.csv</a><br>
+      Match Record csv file: &nbsp; &nbsp;<a href="assets/data/sc2/playerMatchRecord.csv"> <i class="far fa-file-alt"></i> playerMatchRecord.csv</a></p>
       
 <pre class="prettyprint lang-python3">
-from urllib.request import urlopen as uReq
-from urllib.request import Request as Req
+from urllib.request import urlopen
+from urllib.request import Request
 from bs4 import BeautifulSoup as soup
 
 def makeSoup(url):
-  req = Req(
+  req = Request(
       url, 
       data=None
   )
   try:
-      uClient = uReq(req)
+      uClient = urlopen(req)
   except HTTPError:
       print("HTTPError...")
       return False
@@ -383,23 +383,11 @@ def makeSoup(url):
         <p></p>
         <p>1. More exhausted data scrapping over all matches including non-premium, online matches.</p>
         <p>2. Starcraft 2 updates every few months. Predictions would be more accurate base on the matches in the past update.</p>
-
     </li>
-    <!--<li class="coding-text">-->
-	   <!-- <a>Applications</a><br>-->
-	   <!-- <p></p>-->
-    <!--     <a href="https://en.wikipedia.org/wiki/Kruskal%27s_algorithm">Kruskal's algorithm of minimum-spanning-tree</a>-->
-    <!--</li>-->
-    <!--<p></p>-->
-    <!--<li class="coding-text">-->
-	   <!-- <a>Resources</a><br>-->
-	   <!-- <p></p>-->
-    <!--     <a href="https://www.youtube.com/watch?v=ibjEGG7ylHk">Intro with Visualization Demo</a>-->
-    <!--</li>-->
 </ul>
 <div class="footer">
     <a title="Back to Previous" href="https://wyqian1027.github.io/public/data-science.html"><i class="fas fa-igloo"></i></a>
-	<em>Last updated February 9, 2019 by Wenyang Qian.</em>
+	<em>Last updated February 2, 2019 by Wenyang Qian.</em>
 </div>
 <!--Using HighCharts-->
 <script src="https://code.highcharts.com/highcharts.js"></script>

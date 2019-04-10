@@ -1,3 +1,4 @@
+//This js contains usage of Highcharts for three plots used in the html.
 
 // Create the chart
 Highcharts.chart('sc2-earnings', {
@@ -211,16 +212,14 @@ Highcharts.chart('sc2-country', {
 });
 
 
-
-
-
-
 Highcharts.chart('sc2-age', {
     colors : ["rgb(184, 184, 242)", "rgb(242, 184, 184)", "rgb(184, 242, 184)"],
 
     chart: {
         type: 'scatter',
-        zoomType: 'xy'
+        zoomType: 'xy',
+        borderColor: 'black',
+        borderWidth: 1,
     },
     title: {
         text: 'Professional Starcraft 2 Tournament Earning Versus Player Age',
