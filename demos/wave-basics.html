@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Demo: Wave Basics 1D</title>
+        <link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+        <!--<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">-->
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+        <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Gentium Book Basic', Cambria, Georgia, serif;
+                /*background-color: #f5f9fa;*/
+            }
+            canvas {
+                background: #eeeeee;
+                padding: 0;
+                margin: auto;
+                margin-top: 50px;
+                display: block;
+                width: 800px;
+            }
+            #zoom-in, #zoom-out {
+              background-color: rgb(255, 129, 126); 
+              color: white; 
+              border: 2px solid white;
+              padding: 10px;
+              border-radius: 10px;
+              font-size: 1em;
+            }
+            #zoom-in:hover, #zoom-out:hover{
+              background-color: rgb(255, 170, 170);   
+            }
+            h1 {
+                text-shadow: 1px 2px 2px #aaa;
+                text-align: center;
+                font-size: 30px;
+                margin-bottom: 5px;
+                margin-top: 1.5ex;
+                /*padding-left: 0.21em;*/
+                padding-top: 4px;
+                text-decoration: none;
+                /*font-family: 'Montserrat', sans-serif;*/
+                /*font-family: 'Roboto Slab', serif;*/
+            }
+            
+            .input-vals {
+                font-size: 20px;
+                width: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Demo #1 - Simple Harmonic Oscillator</h1>
+        <p style="font-size: 20px">
+            $$ x = A sin(\omega t + \phi) = A sin(\frac{2\pi}{T} t + \phi) = A sin(2\pi f t + \phi)
+            $$
+        </p>
+        <form style="text-align:center; font-size: 20px" action="" method="GET">
+            <label for="period">Period \( T \) = </label>
+            <input class="input-vals" id="period" type="number" name="period" value="2.0" step="0.1" min="0.1"></input> &nbsp; &nbsp;
+            <label for="amplitude">Amplitude \( A \) = </label>
+            <input class="input-vals" id="amplitude" type="number" name="amplitude" value="1.0" step="0.01" min="0"></input> &nbsp; &nbsp;
+            <label for="phase">Phase(deg) \( \phi \) = </label>
+            <input class="input-vals" id="phase" type="number" name="phase" value="0" step="0.01"></input> &nbsp; &nbsp;
+            <label for="source">Source \( S \) = </label>
+            <input class="input-vals" id="source" type="number" NAME="source" value="0" step="0.01"></input> &nbsp; &nbsp;
+            <input class="direction" type="radio" name="direction" id="direction-1" value="left" >
+            <label for="direction-1">left</label> &nbsp;
+            <input class="direction" type="radio" name="direction" id="direction-2" value="right" checked>
+            <label for="direction-2">right</label>
+        </form>
+        
+        <canvas id="myCanvas" width="900" height="500">
+            <img src="assets/img/fallback.png" width="150" height="150" alt=""/>
+        </canvas>
+        <br>
+        <div style="text-align: center">
+            <button id="zoom-out">Zoom Out</button>
+            <button id="zoom-in">Zoom In</button>
+        </div>
+        <!--<p style="font-size: 15px; text-decoration: italic; text-align: center">-->
+        <!--    We use Standard Unit.-->
+        <!--</p>-->
+        
+        <script src="assets/js/wave-1D.js" type="text/javascript"></script>
+    </body>
+</html>
