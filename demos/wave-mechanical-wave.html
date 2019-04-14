@@ -18,6 +18,17 @@
                 display: block;
                 width: 800px;
             }
+            #simulate, #stop {
+              background-color: rgb(129, 211, 211); 
+              color: black; 
+              border: 2px solid white;
+              padding: 10px;
+              border-radius: 10px;
+              font-size: 1em;                
+            }
+            #simulate:hover, #stop:hover{
+            background-color: rgb(129, 255, 222); 
+            }
             #zoom-in, #zoom-out {
               background-color: rgb(255, 129, 126); 
               color: white; 
@@ -62,12 +73,12 @@
         </style>
     </head>
     <body>
-        <h1>Demo #2 - Mechanical Wave (String)</h1>
+        <h1>Demo #2 - Mechanical Wave</h1>
         <p style="font-size: 20px">
             $$ y(x,t) = 
               \begin{cases}
-                A sin(kx + \omega t) = A sin(\frac{2\pi}{\lambda}x + \frac{2\pi}{T} t)     & \quad \text{travelling left}\\
-                A sin(kx - \omega t) = A sin(\frac{2\pi}{\lambda}x - \frac{2\pi}{T} t)     & \quad \text{travelling right}
+                A cos(kx + \omega t) = A sin(\frac{2\pi}{\lambda}x + \frac{2\pi}{T} t)     & \quad \text{travelling left}\\
+                A cos(kx - \omega t) = A sin(\frac{2\pi}{\lambda}x - \frac{2\pi}{T} t)     & \quad \text{travelling right}
               \end{cases}
             $$
         </p>
@@ -75,7 +86,7 @@
             <label for="period">Period \( T \) = </label>
             <input class="input-vals" id="period" type="number" name="period" value="2.0" step="0.1" min="0.1"></input> &nbsp; &nbsp;
             <label for="wavelength">Wavelength \( \lambda \) = </label>
-            <input class="input-vals" id="wavelength" type="wavelength" name="phase" value="0" step="0.01"></input> &nbsp; &nbsp;
+            <input class="input-vals" id="wavelength" type="number" name="wavelength" value="1" step="0.01" min="0.1"></input> &nbsp; &nbsp;
             <label for="amplitude">Amplitude \( A \) = </label>
             <input class="input-vals" id="amplitude" type="number" name="amplitude" value="1.0" step="0.01" min="0"></input> &nbsp; &nbsp;
             <label for="source">Source \( S \) = </label>
@@ -85,7 +96,10 @@
             <input class="direction" type="radio" name="direction" id="direction-2" value="right" checked>
             <label for="direction-2">right</label>
         </form>
-        
+        <div style="text-align: center">
+            <button id="simulate">Run</button>
+            <button id="stop">Stop</button>
+        </div>        
         <canvas id="myCanvas" width="900" height="700">
             <img src="assets/img/fallback.png" width="150" height="150" alt=""/>
         </canvas>

@@ -104,9 +104,7 @@ function drawWave(source, period, amplitude, phase, direction="right", color='#0
     ctx.moveTo(source, CANVAS_HEIGHT/2 + Math.sin(phase)*amplitude*SCALER_Y);
     
     for(var x=source; 0<=x && x<=CANVAS_WIDTH; x+= incr){
-        // sin(kx-wt)
-        // w = 2pi/T
-        // k = 2pi/lambda
+        // sin(wt+phi)
         var y = CANVAS_HEIGHT/2 + Math.sin(Math.PI*2/period*(x-source)/SCALER_X + phase)*amplitude*SCALER_Y;
         ctx.lineTo(x,y);
     }
@@ -128,7 +126,7 @@ function redraw(){
     console.log(period, amplitude, source, direction, phase)
     if (period <= 0) {
         period = 1;
-        period.value = "1";
+        periodInput.value = "1";
     }
     if (amplitude < 0) {
         amplitude = -amplitude;

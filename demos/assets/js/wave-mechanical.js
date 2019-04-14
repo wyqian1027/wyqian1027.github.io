@@ -6,31 +6,35 @@ var SCALER_X = 100;
 var SCALER_Y = 100;
 var zoominBtn = document.querySelector("#zoom-in");
 var zoomoutBtn = document.querySelector("#zoom-out");
+var runBtn = document.querySelector("#simulate");
+var stopBtn = document.querySelector("#stop");
 var periodInput = document.querySelector("#period");
 var amplitudeInput = document.querySelector("#amplitude");
 var wavelengthInput = document.querySelector("#wavelength");
 var sourceInput = document.querySelector("#source");
 var directionInputs = document.querySelectorAll(".direction");
-var inputListeners = [periodInput, amplitudeInput, wavelengthInput, sourceInput, directionInputs[0], directionInputs[1]];
+// var cancelAnimate = false;
+var animateID = false;
+var startTime;
 
-inputListeners.forEach(function(el){
-   el.addEventListener("input", function(el){
-    redraw();  
-   });
-});
+//default
+var period = 1;
+var amplitude = 1;
+var source = 0;
+var direction = 'right';
+var wavelength = 1;
+var color = "rgba(255, 0, 0)";
 
 zoominBtn.addEventListener("click", function(){
     if (SCALER_X >= 400) return;
     SCALER_X *= 2;
     SCALER_Y *= 2;
-    redraw()
 })
 
 zoomoutBtn.addEventListener("click", function(){
     if (SCALER_X <= 25) return;
     SCALER_X /= 2;
     SCALER_Y /= 2;
-    redraw()
 })
 
 function drawCoordinate(x1, x2){
@@ -90,59 +94,84 @@ function drawCoordinate(x1, x2){
     ctx.closePath();
 }
 
-
-function drawWave(source, period, amplitude, phase, direction="right", color='#000000'){
-    var incr = (direction == 'right' ? 1 : -1)*period;
-    amplitude = Math.min(amplitude, CANVAS_HEIGHT/2);
-    phase = (phase % 360)*Math.PI/180;
+function getValues(){
+    period = periodInput.value;
+    amplitude = amplitudeInput.value;
+    source = sourceInput.value;
+    direction = (directionInputs[0].checked ? 'left' : 'right');
+    wavelength = wavelengthInput.value;
+    if (period == 0 || wavelength == 0) return false;
+    if (period < 0) {
+        period = -period;
+        periodInput.value = period;
+    }
+    if (wavelength < 0) {
+        wavelength = - wavelength;
+        wavelengthInput.value = wavelength;
+    }
+    if (amplitude < 0 || amplitude > CANVAS_HEIGHT/2) {
+        amplitude = Math.abs(amplitude);
+        amplitude = Math.min(amplitude, CANVAS_HEIGHT/2);
+        amplitudeInput.value = amplitude;
+    }
+    if (source*1.0*SCALER_X+50 < 0 || source*1.0*SCALER_X+50 > CANVAS_WIDTH) {
+        source = 0;
+        sourceInput.value = source;
+    }
     source = source*SCALER_X + 50;
+    return true;
+}
+
+runBtn.addEventListener("click", function(el){
+    if (animateID != false) {
+        window.cancelAnimationFrame(animateID);
+        animateID = false;
+    }
+    if (getValues() == true){
+        startTime = new Date();
+        animateID = window.requestAnimationFrame(animateWave);
+    }
+});
+
+stopBtn.addEventListener("click", function(el){
+    window.cancelAnimationFrame(animateID);
+    animateID = false;
+});
+
+
+function animateWave(){
+    var incr = (direction == 'right' ? 1 : -1)*period;
+    var sign = (direction == 'right' ? -1 : 1);
+    var deltaTime = ((new Date())- startTime)/1000.0;
+    if (deltaTime > 10){
+        return;
+    }
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    drawCoordinate(50, CANVAS_WIDTH-50);
+
     ctx.beginPath();
     ctx.fillStyle = color;
     ctx.arc(source, CANVAS_HEIGHT/2, 5, 0, Math.PI*2, true);
     ctx.fill();
-    ctx.moveTo(source, CANVAS_HEIGHT/2 + Math.sin(phase)*amplitude*SCALER_Y);
+    ctx.moveTo(source, CANVAS_HEIGHT/2);
     
     for(var x=source; 0<=x && x<=CANVAS_WIDTH; x+= incr){
-        // sin(kx-wt)
-        // w = 2pi/T
-        // k = 2pi/lambda
-        var y = CANVAS_HEIGHT/2 + Math.sin(Math.PI*2/period*(x-source)/SCALER_X + phase)*amplitude*SCALER_Y;
+        // Acos(kx-wt)
+        var y = CANVAS_HEIGHT/2 + Math.cos(Math.PI*2/wavelength*(x-source)/SCALER_X + sign*Math.PI*2/period*deltaTime)*amplitude*SCALER_Y;
         ctx.lineTo(x,y);
     }
     ctx.lineWidth = 0.5;
     ctx.strokeStyle = color;
     ctx.stroke();
+    ctx.fillText("t = "+deltaTime, CANVAS_WIDTH-100, 0+27);
     ctx.closePath();
+    animateID = window.requestAnimationFrame(animateWave);
 }
 
-
-function redraw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    var period = periodInput.value;
-    var amplitude = amplitudeInput.value;
-    var source = sourceInput.value;
-    var direction = (directionInputs[0].checked ? 'left' : 'right');
-    var wavelength = wavelengthInput.value;
-    // if (period <= 0) {
-    //     period = 1;
-    //     period.value = "1";
-    // }
-    // if (amplitude < 0) {
-    //     amplitude = -amplitude;
-    //     amplitudeInput.value = amplitude;
-    // }
-    // if (source*1.0*SCALER_X+50 < 0 || source*1.0*SCALER_X+50 > CANVAS_WIDTH) {
-    //     source = 0;
-    //     sourceInput.value = source;
-    // }
-    drawCoordinate(50, CANVAS_WIDTH-50);
-    // drawWave(source, period, amplitude, phase, direction, 'rgba(255, 0, 0)');
-
-}
 
 window.onload = function() {
     SCALER_X = 100;
     SCALER_Y = 100;
-    redraw();
+    drawCoordinate(50, CANVAS_WIDTH-50);
 
 };
