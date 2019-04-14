@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <title>Demo: Wave Interference</title>
+        <link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+        <!--<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">-->
+    	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+        <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({ TeX: { extensions: ["color.js"] }});
+        </script>
+        <style>
+            body {
+                font-family: 'Gentium Book Basic', Cambria, Georgia, serif;
+                /*background-color: #f5f9fa;*/
+            }
+            canvas {
+                background: #eeeeee;
+                padding: 0;
+                margin: auto;
+                margin-top: 50px;
+                display: block;
+                width: 800px;
+            }
+            #show, #simulate, #stop {
+              background-color: rgb(100, 211, 178); 
+              color: black; 
+              border: 2px solid white;
+              padding: 10px;
+              border-radius: 10px;
+              font-size: 1em;                
+            }
+            #show:hover, #simulate:hover, #stop:hover{
+            background-color: rgb(129, 255, 222); 
+            }
+            #zoom-in, #zoom-out {
+              background-color: rgb(255, 129, 126); 
+              color: white; 
+              border: 2px solid white;
+              padding: 10px;
+              border-radius: 10px;
+              font-size: 1em;
+            }
+            #zoom-in:hover, #zoom-out:hover{
+              background-color: rgb(255, 170, 170);   
+            }
+            h1 {
+                text-shadow: 1px 2px 2px #aaa;
+                text-align: center;
+                font-size: 30px;
+                margin-bottom: 5px;
+                margin-top: 1.5ex;
+                /*padding-left: 0.21em;*/
+                padding-top: 4px;
+                text-decoration: none;
+                /*font-family: 'Montserrat', sans-serif;*/
+                /*font-family: 'Roboto Slab', serif;*/
+            }
+            
+            .input-vals {
+                font-size: 20px;
+                width: 100px;
+            }
+            button:focus{
+                outline:none !important;
+            }
+            
+            #back {
+                text-decoration: none; 
+                color: grey; 
+                font-size: 18px; 
+            }
+            #back:hover{
+                color: #dddddd;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Demo #3 - Wave Interference</h1>
+        <p style="font-size: 20px">
+            $$ 
+             \text{Path Difference }\Delta d = 
+              \begin{cases}
+                n \lambda      & \quad \text{constructive}\\
+                (n+\frac{1}{2}) \lambda     & \quad \text{desctructive}\\
+                \text{else}    & \quad \text{superposition of waves}
+              \end{cases} \\
+            $$ $$  
+              \text{Total Amplitude at }(\vec{x}, t) = A cos(k|\vec{x}-\vec{s_1}| - \omega t) + A cos(k|\vec{x}-\vec{s_2}| - \omega t) \\
+            $$
+        </p>
+        <form style="text-align:center; font-size: 20px" action="" method="GET">
+            <label for="period">Period \( T \) = </label>
+            <input class="input-vals" id="period" type="number" name="period" value="2.0" step="0.1" min="0.1"></input> &nbsp; &nbsp;
+            <label for="wavelength">Wavelength \( \lambda \) = </label>
+            <input class="input-vals" id="wavelength" type="number" name="wavelength" value="2.0" step="0.01" min="0.1"></input> &nbsp; &nbsp;
+            <label for="amplitude">Amplitude \( A \) = </label>
+            <input class="input-vals" id="amplitude" type="number" name="amplitude" value="1.0" step="0.01" min="0"></input> &nbsp; &nbsp;
+            <label for="source1">Source \( S_1 \) = </label>
+            <input class="input-vals" id="source1" type="number" name="source1" value="2.0" step="0.01"></input> &nbsp; &nbsp;
+            <label for="source2">Source \( S_2 \) = </label>
+            <input class="input-vals" id="source2" type="number" name="source2" value="6.0" step="0.01"></input> &nbsp; &nbsp;
+
+        </form>
+        <div style="text-align: center">
+            <button id="show">Show</button>
+            <button id="simulate">Run</button>
+            <button id="stop">Stop</button>
+        </div>        
+        <canvas id="myCanvas" width="900" height="700">
+            <img src="assets/img/fallback.png" width="150" height="150" alt=""/>
+        </canvas>
+        <br>
+        <div style="text-align: center">
+            <button id="zoom-out">Zoom Out</button>
+            <button id="zoom-in">Zoom In</button>
+        </div>
+        
+        <div style="text-align: center">
+            <br>
+            <a id="back" title="Back to Homepage" href="demo-list.html"><i class="fas fa-igloo"></i> Back to the List</a>
+        </div>
+        
+        <script src="assets/js/wave-interference.js" type="text/javascript"></script>
+    </body>
+</html>
