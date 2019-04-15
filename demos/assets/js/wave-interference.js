@@ -183,7 +183,6 @@ function showInference(){
             } else if (frac <= 0.04) {
                 ctx.fillStyle = "rgb(20, 20, 255)";
                 ctx.fillRect(x, y, cali, cali);
-
             }
         }
     }
@@ -217,7 +216,7 @@ function animateWave(){
             Math.cos(Math.PI*2/wavelength*d2/SCALER_X - timePart)) / 2;
             combine = Math.abs(combine**2);
             var colorCode = `rgb(
-                245,
+                244,
                 ${255-Math.floor(combine*200)},
                 ${255-Math.floor(combine*200)})`;
             if (combine >= 0.0) {

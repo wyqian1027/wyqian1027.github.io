@@ -6,7 +6,8 @@
     	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
         <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
         <script type="text/x-mathjax-config">
-          MathJax.Hub.Config({ TeX: { extensions: ["color.js"] }});
+        //To use MathJax Color
+          MathJax.Hub.Config({ TeX: { extensions: ["color.js"] }});  
         </script>
         <style>
             body {
@@ -78,16 +79,17 @@
     <body>
         <h1>Demo #3 - Wave Interference</h1>
         <p style="font-size: 20px">
-            $$ 
+            \[ 
              \text{Path Difference }\Delta d = 
               \begin{cases}
-                n \lambda      & \quad \text{constructive}\\
-                (n+\frac{1}{2}) \lambda     & \quad \text{desctructive}\\
+                n \lambda      & \quad \color{red}\text{constructive}\\
+                (n+\frac{1}{2}) \lambda     & \quad \color{blue}\text{desctructive}\\
                 \text{else}    & \quad \text{superposition of waves}
               \end{cases} \\
-            $$ $$  
-              \text{Total Amplitude at }(\vec{x}, t) = A cos(k|\vec{x}-\vec{s_1}| - \omega t) + A cos(k|\vec{x}-\vec{s_2}| - \omega t) \\
-            $$
+            \] 
+            \[  
+              {\color{red}\text{Total Amplitude at } (\vec{x}, t) } = A cos(k|\vec{x}-\vec{s_1}| - \omega t) + A cos(k|\vec{x}-\vec{s_2}| - \omega t) \\
+            \]
         </p>
         <form style="text-align:center; font-size: 20px" action="" method="GET">
             <label for="period">Period \( T \) = </label>
