@@ -74,6 +74,15 @@ function Angle2Dir(angle){
   return dirs[parseInt((x+22.5) / 45)];
 }
 
+function getWindChill(temp, windspd, digit){
+  //temp in celius, windsp in m/s
+  var res = 13.12+0.6215*(temp)-11.37*(windspd*3.6)**(0.16)+0.3965*(temp)*(windspd*3.6)**0.16;
+  if (digit == 0) {
+    return Math.floor(res);
+  } else {
+    return res.toFixed(digit);
+  }
+}
 
 
 //API CALL with getJSON
@@ -83,20 +92,24 @@ function getWeather(lon, lat){
     function(data) {
 
       cityID = data.id;
+      var windspd = data.wind.speed;
+      var curTemp = K2C(data.main.temp,0);
       
       $("#obs-loc").html(data.name);
-      $("#cur-weather").html(data.weather[0].main+', '+data.weather[0].description);
-      $("#cur-hum").html(data.main.humidity+' %');
-      $('#cur-windspd').html(data.wind.speed + ' m/s');
-      $('#cur-windir').html(Angle2Dir(data.wind.deg));
+      $("#cur-weather").html(data.weather[0].main+' ( '+data.weather[0].description + ' )');
       $('#cur-time').html(getDateAndTime(data.dt));
+      $("#cur-hum").html(data.main.humidity+' %');
+      $('#cur-windspd').html(windspd + ' m/s');
+      $('#cur-windir').html(Angle2Dir(data.wind.deg));
       
-      $("#cur-temp").html(K2C(data.main.temp,0)+' &#176;C');
-      $("#high-temp").html(K2C(data.main.temp_max)+' &#176;C');
-      $("#low-temp").html(K2C(data.main.temp_min)+' &#176;C');
       
-      $("#sun-rise").html(getTime(data.sys.sunrise));
-      $("#sun-set").html(getTime(data.sys.sunset));
+      $("#cur-temp").html(curTemp+' &#176;C');
+      $("#cur-wc-temp").html(getWindChill(curTemp, windspd, 0)+' &#176;C');
+      // $("#high-temp").html(K2C(data.main.temp_max)+' &#176;C');
+      // $("#low-temp").html(K2C(data.main.temp_min)+' &#176;C');
+      
+      // $("#sun-rise").html(getTime(data.sys.sunrise));
+      // $("#sun-set").html(getTime(data.sys.sunset));
       
     }
   );
@@ -150,6 +163,8 @@ function makeForecast(){
   var rainfalls = [];
   var weathers = [];
   var weatherIcons = [];
+  var windspds = [];
+  var windchilltemps = [];
   for (var i=0; i<24; i++){
     el = forecasts[i];
     temps.push(parseFloat(el.temp));
@@ -162,23 +177,41 @@ function makeForecast(){
         symbol:  getWeatherIconFromID(el.iconID)
       }
     });
+    windspds.push(el.windspd);
+    windchilltemps.push(parseFloat(getWindChill(temps[i], windspds[i], 2)));
+    
   };
+  // console.log(windchilltemps)
 
+  var weekdayColor = {
+    'Mon' : '#FF4C40',  
+    'Tue' : '#0060E3',  
+    'Wed' : '#347E55',  
+    'Thu' : '#7853DB',  
+    'Fri' : '#FF4C40',  
+    'Sat' : '#0060E3',  
+    'Sun' : '#347E55',  
+  };
+  
   Highcharts.chart('forecasts', {
       // colors : ['#8d4654', "rgb(184, 184, 242)", "rgb(242, 184, 184)", "rgb(184, 242, 184)"],
       chart: {
           zoomType: 'xy',
           style: {
-            fontSize: '30px'
-          }
+            fontSize: '20px'
+          },
+          // backgroundColor: '#F1FFEE'
+          backgroundColor: '#FFFFFF',
+          // borderWidth: 1
       },
       title: {
-          text: 'Prediction on Next 5-Day Weathers',
+          text: 'Next 3-Day Weathers (on 3-hour interval)<br>',
           style: {
-            color: 'black',
-            fontSize: '30px',
+            // color: 'brown',
+            fontSize: '25px',
             // fontWeight: 'bold',
-          }
+          },
+          margin: 45
       },
       subtitle: {
           text: 'Source: OpenWeatherMap.com',
@@ -195,37 +228,48 @@ function makeForecast(){
             step: 2, // this will show every second label
             style: {
               fontSize: '15px',
-              // fontWeight: 'bold',
+              fontWeight: 'bold',
+            },
+            formatter: function () {
+                if (this.value.slice(0,3) in weekdayColor) {
+                    return `<span style="fill: ${weekdayColor[this.value.slice(0,3)]};">${this.value}</span>`;
+                } else {
+                    return this.value;
+                }
             }
           },
+          
           
       }],
       yAxis: [{ // Primary yAxis
           labels: {
               format: "{value} C",
               style: {
-                  color: Highcharts.getOptions().colors[1],
-                  fontSize: '25px'
+                  color: "#FA7D7B",
+                  fontSize: '20px'
               }
           },
           title: {
               text: 'Temperature',
               style: {
-                  color: Highcharts.getOptions().colors[1]
+                  color: "#FA7D7B"
               }
           }
       }, { // Secondary yAxis
           title: {
               text: 'Rainfall',
               style: {
-                  color: Highcharts.getOptions().colors[0]
+                  color: "#76A5E6"
               }
           },
           labels: {
               format: '{value} mm',
               style: {
-                  color: Highcharts.getOptions().colors[0],
+                  color: "#76A5E6",
                   fontSize: '20px'
+              },
+              formatter: function () {
+                  return `<span>${this.value.toFixed(1)} mm</span>`;
               }
           },
           opposite: true
@@ -233,7 +277,7 @@ function makeForecast(){
       tooltip: {
           shared: true,
           style: {
-            fontSize: '20px'
+            fontSize: '15px'
           }
       },
     //   tooltip: {
@@ -249,9 +293,9 @@ function makeForecast(){
       legend: {
           layout: 'vertical',
           align: 'left',
-          x: 120,
+          x: 900,
           verticalAlign: 'top',
-          y: 100,
+          y: 40,
           floating: true,
           backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || 'rgba(255,255,255,0.25)',
           itemStyle: {
@@ -266,7 +310,8 @@ function makeForecast(){
           data: rainfalls,
           tooltip: {
               valueSuffix: ' mm'
-          }
+          },
+          color: "#C2DAFC",
   
       }, {
           name: 'Temperature',
@@ -274,7 +319,19 @@ function makeForecast(){
           data: weatherIcons,
           tooltip: {
               valueSuffix: 'C'
-          }
+          },
+          color: "#FA695C"
+      }, {
+        name: 'Wind Chill',
+        type: 'spline',
+        data: windchilltemps,
+        fillColor: 'rgba(28,28,28,0.5)',
+        tooltip: {
+            valueSuffix: 'C'
+        },
+        color: "#FFC4BF" ,
+        dashStyle: 'longdash'
+        
       }]
   });
 }
