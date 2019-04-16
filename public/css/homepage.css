@@ -297,8 +297,7 @@ pre.prettyprint {
 .prettyprint {
     font-size: .85em;
     word-wrap: break-word;
-    font-family: 'Monaco';
-    /*,'Menlo','Ubuntu Mono','Consolas','source-code-pro',monospace;*/
+    font-family: 'Monaco','Menlo', 'Ubuntu Mono','Consolas','source-code-pro',monospace;
     /*background-color: #E3F6FE;*/
     /*background-color: #E3ECFE;*/
     background-color: #E4F1FF;
