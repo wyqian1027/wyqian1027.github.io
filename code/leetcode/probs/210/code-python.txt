@@ -1,0 +1,23 @@
+class Solution:
+    def findOrder(self, n: int, pres: List[List[int]]) -> List[int]:
+        
+        #graph: pre -> course
+        graph = collections.defaultdict(list)
+        indegrees = [0]*n
+        for crs, pre in pres:
+            graph[pre].append(crs)
+            indegrees[crs] += 1
+        
+        zeros = collections.deque([crs for crs in range(n) if indegrees[crs] == 0])
+        ans = []
+        
+        while zeros:
+            crs = zeros.pop()
+            ans.append(crs)
+            
+            for nxt in graph[crs]:
+                indegrees[nxt] -= 1
+                if indegrees[nxt] == 0:
+                    zeros.append(nxt)
+        
+        return ans if len(ans) == n else []

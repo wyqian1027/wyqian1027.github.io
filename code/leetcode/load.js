@@ -73,16 +73,20 @@ allProblems.forEach(function(eachP){
         clear();
         problemDiv.style.display = "block";
         load(eachP.id);
-        eachP.style.backgroundColor = "white";
+        eachP.style.backgroundColor = "#f5f9fa";
         prevClick.style.backgroundColor = "#eee";
         prevClick = eachP;
     });
 });
 
 aboutBtn.addEventListener("click", function(){
-    problemDiv.style.display = "none";
-    aboutBtn.style.backgroundColor = "white";
+    // problemDiv.style.display = "none";
+    clear();
+    aboutBtn.style.backgroundColor = "#f5f9fa";
     prevClick.style.backgroundColor = "#eee";
     prevClick = aboutBtn;
-    
+    pTitle.style.display = "block"
+    pTitle.innerHTML = "LeetCode Problem Solving Workbook";
+
 });
+

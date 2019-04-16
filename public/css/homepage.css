@@ -300,11 +300,12 @@ pre.prettyprint {
     font-family: 'Monaco','Menlo', 'Ubuntu Mono','Consolas','source-code-pro',monospace;
     /*background-color: #E3F6FE;*/
     /*background-color: #E3ECFE;*/
-    background-color: #E4F1FF;
+    background-color: #EFF1FF;
+    /*background-color: #F7F7F7;*/
     border: none !important;
     width: auto;
     overflow: auto;
-    max-height: 600px;
+    max-height: 650px;
     /*font: courier;*/
 }
 

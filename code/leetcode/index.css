@@ -3,8 +3,9 @@
   width: 310px;
   position: fixed;
   z-index: 1;
-  top: 20px;
-  left: 10px;
+  top: 15px;
+  left: 15px;
+  bottom: 15px;
   background: #eee;
   overflow-x: hidden;
   padding: 8px 0;
@@ -15,26 +16,31 @@
 
 .sidenav a {
   padding: 6px 8px 6px 16px;
-  text-decoration: underline;
-  font-size: 20px;
+  text-decoration: none;
+  font-size: 17px;
   color: #2196F3;
   display: block;
+  color: black;
+  font-weight: bold;
 }
 
-.sidenav a:hover {
-  color: #064579;
+.sidenav a:hover, .sidenav a:clicked {
+  color: black;
 }
 
 .sidenav .problem {
   padding: 6px 8px 6px 50px;
   text-decoration: none;
-  font-size: 18px;
-  color: #2196F3;
+  font-size: 16px;
+  color: black;
   display: block;
+  font-weight: normal;
 }
 
 .sidenav .problem:hover {
-  color: red;
+  color: black;
+  background: #f5f9fa;
+  /*font-size: 1.2em;*/
 }
 
 
@@ -52,6 +58,7 @@
 #text-java, #text-python {
     margin-bottom: 0px;
     padding-bottom: 0px;
+    padding-left: 10px;
     font-weight: bold;
     font-size: 24px;
     color: Blue;
@@ -63,10 +70,15 @@
 
 .prettyprint {
     margin-top: 5px;
-    padding-top: 0px;
+    padding: 0px;
     /*font-family: 'Monaco';*/
+    max-height: 2000px;
 }
 
 #p-explain {
   color: brown;
+}
+
+.examples {
+  color: #475E78;
 }

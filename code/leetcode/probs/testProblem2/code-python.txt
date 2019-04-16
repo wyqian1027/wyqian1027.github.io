@@ -1,2 +1,0 @@
-def some-test():
-    print("Hello Array 2")

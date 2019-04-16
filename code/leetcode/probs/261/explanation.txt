@@ -1,0 +1,5 @@
+A tree is an undirected graph in which any two vertices are connected by exactly one path. In other words, any connected graph without simple cycles is a tree.
+
+Solution 1. DFS: Find the back edge connects to the previous visited vertex that is not parent 
+
+Solution 2. Union find, merge all to see if there is a single component in the end.
