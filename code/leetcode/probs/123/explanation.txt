@@ -1,0 +1,7 @@
+    General Recursive formula for DP:
+
+    dp[k, i] = max(dp[k, i-1], p[i] - p[j] + dp[k-1, j-1]) for j in 0...i-1
+    dp[k, i] = max(dp[k, i-1], p[i] - min(p[j] - dp[k-1, j-1]))
+
+    In this way,
+    Time ~ O(KN), Space ~ O(KN), K=2

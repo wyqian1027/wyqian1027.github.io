@@ -1,80 +1,99 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.sidenav {
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 20px;
-  left: 10px;
-  background: #eee;
-  overflow-x: hidden;
-  padding: 8px 0;
-    margin:4px, 4px; 
-    padding:4px; 
-    height: 95%; 
-    text-align:justify;  
-}
-
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #2196F3;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #064579;
-}
-
-.sidenav .problem {
-  padding: 6px 8px 6px 50px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #2196F3;
-  display: block;
-}
-
-.sidenav .problem:hover {
-  color: red;
-}
-
-.main {
-  margin-left: 250px; /* Same width as the sidebar + left position in px */
-  font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
-</head>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../../public/img/favicon-96x96.png" type="image/x-icon">
+    <!--<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">-->
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">-->
+    <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>-->
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../public/css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
 <body>
-
+<!--NAV SIDE-->
 <div class="sidenav">
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#clients">Clients</a>
-  <a href="#Arrays">Arrays</a>
-  <a class="problem" href="#Arrays" id="testProblem">Array Q1</a>
-  <a class="problem" href="#Arrays" id="testProblem">Array Q2</a>
-
+  <a id="about" href="#">About</a>
+  <a id="Arrays" href="#">Arrays</a>
+  <!--<a id="testProblem1" class="problem" href="#" >Array Q1</a>-->
+  <!--<a id="testProblem2" class="problem" href="#" >Array Q2</a>-->
+  <a id="stock" href="#">Stock Problems</a>
+  <a id="121" class="problem" href="#" >121. Buy and Sell Stock I</a>
+  <a id="122" class="problem" href="#" >122. Buy and Sell Stock II</a>
+  <a id="123" class="problem" href="#" >123. Buy and Sell Stock III</a>
+  <a id="188" class="problem" href="#" >188. Buy and Sell Stock IV</a>
+  <a id="DP 1D" href="#">DP 1D</a>
+  <a id="DP 2D" href="#">DP 2D</a>
+  <a id="BT" href="#">Binary Tree</a>
+  <a id="BST" href="#">Binary Search Tree</a>
+  <a id="GRAPH" href="#">Graph</a>
+  <a id="UF" href="#">Union Find</a>
   
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--PROBLEM SIDE-->
 <div class="main">
-  <h2>Placeholder Title</h2>
-  <p id="p-desp">Placeholder Text</p>
-  <p> Some other content</p>
+  <div id="sideProblem">
+    <h2 id="p-title"></h2>
+    <p id="p-desp"></p>
+    <hr>
+
+    <p id="p-explain"></p>
+    <p id="text-python" style="display: none">Python:</p>
+<pre id="code-python"  style="display: none" class="prettyprint lang-python3">
+def python-function():
+  pass
+</pre>
+    <p id="text-java" style="display: none">Java:</p>
+<!--<pre id="code-java" style="display: none" class="prettyprint lang-java">-->
+<pre id="code-java" style="display: none" class="prettyprint lang-java">
+class javaFunction {
+  return;
+}
+</pre>
+<br>
+<br>
+<br>
+  </div>
+
 </div>  
 
 <script type="text/javascript" src="load.js"></script>

@@ -2,6 +2,7 @@
 // var lat = document.getElementById("lat");
 // var weather = document.getElementById("weather");
 var API_KEY = "c44ef930e10a6f991caa29281f314605";
+var currentInfo = document.querySelector("#current-info");
 var cityID;
 $.ajaxSetup({
   async: false
@@ -95,22 +96,26 @@ function getWeather(lon, lat){
       var windspd = data.wind.speed;
       var curTemp = K2C(data.main.temp,0);
       
-      $("#obs-loc").html(data.name);
-      $("#cur-weather").html(data.weather[0].main+' ( '+data.weather[0].description + ' )');
-      $('#cur-time').html(getDateAndTime(data.dt));
-      $("#cur-hum").html(data.main.humidity+' %');
-      $('#cur-windspd').html(windspd + ' m/s');
-      $('#cur-windir').html(Angle2Dir(data.wind.deg));
-      
-      
-      $("#cur-temp").html(curTemp+' &#176;C');
-      $("#cur-wc-temp").html(getWindChill(curTemp, windspd, 0)+' &#176;C');
+      // $("#obs-loc").html(data.name);
+      // $("#cur-weather").html(data.weather[0].main+' ( '+data.weather[0].description + ' )');
+      // $('#cur-time').html(getDateAndTime(data.dt));
+      // $("#cur-hum").html(data.main.humidity+' %');
+      // $('#cur-windspd').html(windspd + ' m/s');
+      // $('#cur-windir').html(Angle2Dir(data.wind.deg));
+      // $("#cur-temp").html(curTemp+' &#176;C');
+      // $("#cur-wc-temp").html(getWindChill(curTemp, windspd, 0)+' &#176;C');
       // $("#high-temp").html(K2C(data.main.temp_max)+' &#176;C');
       // $("#low-temp").html(K2C(data.main.temp_min)+' &#176;C');
-      
       // $("#sun-rise").html(getTime(data.sys.sunrise));
       // $("#sun-set").html(getTime(data.sys.sunset));
-      
+      console.log(data.weather[0].main)
+      currentInfo.innerHTML = `
+      <div class='info'><span id='cur-weather'>${data.weather[0].main} ( ${data.weather[0].description} )</span> &nbsp; &nbsp; - &nbsp; &nbsp; <span id='obs-loc'>${data.name}</span>  &nbsp; &nbsp; - &nbsp; &nbsp; <span id='cur-time'>${getDateAndTime(data.dt)}</span></div>
+      <br><div class='info'><i class="fas fa-thermometer-half" style="font-size: 0.7em"></i>&nbsp;&nbsp;<span id='cur-temp'>${curTemp} &#176;C</span> &nbsp; (<span id='cur-wc-temp'>${getWindChill(curTemp, windspd, 0)} &#176;C</span>)&nbsp; &nbsp; &nbsp; &nbsp;
+      <i class="fas fa-wind" style="font-size: 0.7em"></i> &nbsp;  <span id='cur-windspd'>${windspd} m/s</span>&nbsp; &nbsp; &nbsp;  &nbsp;
+      <i class="fas fa-tint" style="font-size: 0.7em"></i> &nbsp;  <span id='cur-hum'>${data.main.humidity+' %'}</span></div>
+      <br>
+      `;
     }
   );
 }
@@ -227,7 +232,7 @@ function makeForecast(){
           labels:{
             step: 2, // this will show every second label
             style: {
-              fontSize: '15px',
+              fontSize: '13px',
               fontWeight: 'bold',
             },
             formatter: function () {
