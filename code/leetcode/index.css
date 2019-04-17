@@ -1,6 +1,7 @@
 
 .sidenav {
   width: 310px;
+  height: 99%;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -8,9 +9,8 @@
   bottom: 0;
   background: #eee;
   overflow-x: hidden;
-  padding: 8px 0;
-  margin:4px, 4px; 
-  height: 95%; 
+  padding: 10px 0;
+  margin: 0; 
   /*text-align:justify;  */
 }
 
@@ -37,8 +37,8 @@
   font-weight: normal;
 }
 
-.sidenav .problem:hover {
-  color: black;
+.sidenav .problem:hover, .sidenav #about:hover  {
+  /*color: black;*/
   background: #f5f9fa;
   /*font-size: 1.2em;*/
 }
