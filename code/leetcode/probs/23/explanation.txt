@@ -1,0 +1,1 @@
+Classical Problem. Using MinHeap Data Structure for O(NlogK) time performance. Counter c is thrown in to prevent comparison problem in heapq library.

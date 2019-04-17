@@ -1,0 +1,5 @@
+Method 1: Linked List Traversal: Basically finding the number of segments following the link list. Segment occurs when meet the tail or next.val not in the set.
+
+Method 2: Union Find. Maximum size given is 10000.
+
+Time Complexity for both: O(N)

@@ -82,3 +82,9 @@
 .examples {
   color: #475E78;
 }
+
+#p-desp {
+  font-size: 0.90em;
+  /*font-family: 'helvetica';*/
+
+}

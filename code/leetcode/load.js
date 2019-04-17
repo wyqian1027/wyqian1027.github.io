@@ -1,12 +1,15 @@
 
 function load(id) {
     httpGet("probs/"+id+"/description.txt", function(textFile){
-        pDesp.innerHTML = textFile.split('\n').slice(1).join("<br>");
+        var raw = textFile.split('\n').slice(1).join("<br>");
+        raw = raw.replace(/Input/g, "<strong>Input</strong>");
+        raw = raw.replace(/Output/g, "<strong>Output</strong>");
+        pDesp.innerHTML = raw;
         pTitle.innerHTML = textFile.split('\n')[0];
     });
     httpGet("probs/"+id+"/explanation.txt", function(textFile){
         if (textFile != ""){
-            pExplain.innerHTML = textFile.split('\n').join("<br>");        
+            pExplain.innerHTML = textFile.split('\n').join("<br>");;        
         }
     });
     
