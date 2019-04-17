@@ -1,0 +1,6 @@
+Using Dynamic Programming in 2D. 
+
+dp[i][j] = dp[i+1][j-1] + 2                if s[i] == s[j]
+dp[i][j] = max(dp[i][j-1], dp[i+1][j])     if s[i] != s[j]
+
+Top-down approach:

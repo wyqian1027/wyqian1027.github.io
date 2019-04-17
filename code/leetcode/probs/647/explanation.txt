@@ -1,0 +1,5 @@
+Solution 1: Expand Around Center: O(N^2)
+
+Start with some center (single letter, double letters) and counter += 1 if next two neighboring letters are same. Otherwise, break the loop and check next center.
+
+Solution 2: Manacher's Algorithm: O(N)
