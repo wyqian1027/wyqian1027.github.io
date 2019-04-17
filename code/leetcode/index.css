@@ -3,9 +3,9 @@
   width: 310px;
   position: fixed;
   z-index: 1;
-  top: 15px;
-  left: 15px;
-  bottom: 15px;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
   background: #eee;
   overflow-x: hidden;
   padding: 8px 0;
