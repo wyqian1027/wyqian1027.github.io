@@ -1,0 +1,5 @@
+Solution 1: DP 2D. O(N^2)
+dp[i][j] stores the max length of subarrays that ends on i for A and j for B.
+If A[i] == B[j], then dp[i][j] = d[i-1][j-1] + 1; otherwise 0.
+
+Solution 2: Binary Search with Rolling Hash.
