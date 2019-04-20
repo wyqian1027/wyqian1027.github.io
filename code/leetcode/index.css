@@ -1,6 +1,7 @@
 
 .sidenav {
-  width: 310px;
+  width: 380px;
+  max-width: 25%;
   height: 99%;
   position: fixed;
   z-index: 1;
@@ -37,15 +38,21 @@
   font-weight: normal;
 }
 
-.sidenav .problem:hover, .sidenav #about:hover  {
-  /*color: black;*/
+.sidenav .problem:hover  {
+  color: black;
   background: #f5f9fa;
   /*font-size: 1.2em;*/
 }
+.sidenav #about:hover {
+  background: #f5f9fa;  
+}
 
+.problem-type:hover {
+  text-decoration: underline;
+}
 
 .main {
-  margin-left: 333px; /* Same width as the sidebar + left position in px */
+  margin-left: 400px; /* Same width as the sidebar + left position in px */
   font-size: 20px; /* Increased text to enable scrolling */
   padding: 0px 10px;
 }

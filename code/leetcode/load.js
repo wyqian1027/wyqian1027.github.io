@@ -73,6 +73,7 @@ var prevClick = aboutBtn;
 
 allProblems.forEach(function(eachP){
     eachP.addEventListener("click", function(el){
+        if (prevClick === eachP) return;
         clear();
         problemDiv.style.display = "block";
         load(eachP.id);
@@ -82,14 +83,25 @@ allProblems.forEach(function(eachP){
     });
 });
 
-aboutBtn.addEventListener("click", function(){
-    // problemDiv.style.display = "none";
-    clear();
+var numProblems = allProblems.length;
+
+function setAbout(){
     aboutBtn.style.backgroundColor = "#f5f9fa";
     prevClick.style.backgroundColor = "#eee";
     prevClick = aboutBtn;
-    pTitle.style.display = "block"
+    pTitle.style.display = "block";
     pTitle.innerHTML = "LeetCode Problem Solving Workbook";
+    pDesp.style.display = "block";
+    pDesp.innerHTML = `Total Number of Problems: ${numProblems}`;    
+}
 
+aboutBtn.addEventListener("click", function(){
+    // problemDiv.style.display = "none";
+    if (prevClick === aboutBtn) return;
+    clear();
+    setAbout();
 });
 
+window.onload = function(){
+    setAbout();
+}

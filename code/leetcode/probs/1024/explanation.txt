@@ -1,0 +1,7 @@
+Solution 1: DP 1D. 
+For each instance of time, check any containing clip and update the result in the array.
+
+Solution 2: Greedy.
+end_left: left end of a current window
+end_right: maximum right end from the clips that extends from end_left
+The goal is to move end_left to the right to see if we can ever have a end_right that covers T, or if there is a hole (return -1).

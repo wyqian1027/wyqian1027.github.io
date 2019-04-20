@@ -1,0 +1,3 @@
+Solution: DFS with Memorization.
+
+Dividing each word into prefix and suffix, and check if prefix and suffix are in the memory. Update the memory along the way!
