@@ -1,0 +1,2 @@
+BFS Layer by Layer. 
+Note: using dictionary + list comprehension to restore path turns out to be better than using deque... improved from 2000 ms to 400 ms.

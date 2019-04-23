@@ -1,0 +1,30 @@
+class Solution:
+    def findLadders(self, beginWord, endWord, wordList):
+        
+        st = set(wordList)
+        if endWord not in st: return []
+        
+        LETTERS = "abcdefghijklmnopqrstuvwxyz"
+        layer = {}
+        layer[beginWord] = [[beginWord]]
+        res = []
+        
+        while layer:
+            
+            newLayer = collections.defaultdict(list)
+
+            for curWord, path in layer.items():
+
+                if curWord == endWord:
+                    res += path
+                else:        
+                    for i in range(len(curWord)):
+                        for ch in LETTERS:
+                            mutatedWord = curWord[:i] + ch + curWord[i+1:]
+                            if mutatedWord in st:
+                                newLayer[mutatedWord] += [p + [mutatedWord] for p in path]
+            if res: break                
+            st -= set(newLayer.keys())
+            layer = newLayer
+        
+        return res
