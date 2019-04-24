@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang's Django Notes</title>
+	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>-->
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+</head>
+<body>
+
+
+<h2 class="article-title">
+    Django Notes (Django 2.1 & Python 3.7)
+</h2>
+<figure style="text-align:center">
+    <img src="assets/img/funny-software-engineer-comic.jpg">
+    <figcaption>What we try to avoid...</figcaption>
+</figure>
+<ul class="Aclass">
+	<li class="coding-text">
+	    <a target="_blank" href="https://docs.djangoproject.com/en/2.2/intro/install/">Installation</a><br>
+<pre class="prettyprint lang-bsh ">
+pip install django
+
+# check version
+django-admin --version  
+</pre>    
+    </li>
+    <li class="coding-text">
+	    <a>Building Projects/Apps</a><br>
+	    <p>Im this note, the project is created at root <span class="method">~</span><br>
+        1. Inside <span class="method">~/mysite</span> we have:<span class="method2" style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'"> &nbsp; &nbsp; manage.py &nbsp; &nbsp;  mysite</span><br>
+        &nbsp; &nbsp; Inside <span class="method">~/mysite/mysite</span> we have: <span class="method2" style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">&nbsp; &nbsp;  __init__.py &nbsp; &nbsp;  settings.py &nbsp; &nbsp;  urls.py &nbsp; &nbsp;  wsgi.py</span><br>
+        2. Inside <span class="method">~/mysite/main</span> we have: <span class="method2" style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">&nbsp; &nbsp; admin.py &nbsp; &nbsp; apps.py &nbsp; &nbsp; __init__.py &nbsp; &nbsp; migrations &nbsp; &nbsp; models.py &nbsp; &nbsp; tests.py &nbsp; &nbsp; views.py</span>
+        </p>
+<pre class="prettyprint lang-bsh ">
+# 1. create project directory and files at root ~
+django-admin startproject mysite
+
+# 2. create app directory and files inside ~/mysite/
+python manage.py startapp main
+</pre>
+    </li>
+    
+    <li class="coding-text">
+	    <a>Running Server</a><br>
+<pre class="prettyprint lang-bsh ">
+# running server at ~/mysite/, default address: "http://localhost:8000/"
+python manage.py runserver
+</pre>
+    </li>
+    
+    <li class="coding-text">
+	    <a>Controller - urls.py</a><br>
+<pre class="prettyprint lang-python ">
+# ~/mysite/mysite/urls.py    
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('', include('main.urls')),
+    path('admin/', admin.site.urls),
+    # path('tinymce/', include('tinymce.urls')),
+]
+
+# ~/mysite/main/urls.py    
+
+from django.urls import path
+from . import views
+
+app_name = "main"
+
+urlpatterns = [
+    path('', views.homepage, name='homepage')
+]
+</pre>	
+        
+    </li>
+</ul>
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/apps.html"><i class="fas fa-igloo"></i></a>
+	<em>Last updated on April 24, 2019 by Wenyang Qian.</em>
+</div>
+</body>
+</html>
