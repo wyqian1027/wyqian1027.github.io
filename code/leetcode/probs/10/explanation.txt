@@ -1,0 +1,14 @@
+Basically, '.' replaces any letter; '*' can either duplicate a previous letter, or erase a previous letter if not match!
+
+Top-down DP 2D.
+
+dp[i,j] check if text[i:] matches with pattern[j:]
+
+Specifically, at each i, j:
+
+If next letter at j+1 is '*', then 
+option 1: dp[i, j+2] &emsp; -> &emsp; erase the pattern at j
+option 2: dp[i+1, j] &emsp; -> &emsp; ready to check next one maybe duplicate
+
+If next letter at j+1 is not '*', then proceed normally with
+only option: dp[i+1, j+1]
