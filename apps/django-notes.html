@@ -16,6 +16,17 @@
 	    LI A:hover {
 	        cursor: pointer;
 	    }
+	    LI:before {
+            content: "\f0d7"; /* FontAwesome Unicode "\f0d7" for DOWN, "\f0da" for RIGHT  */
+            font-family: FontAwesome;
+            display: inline-block;
+	    }
+	    UL {
+            list-style: none;
+        }
+        .change-li-before:before {
+            content: "\f0da";
+        }
 	</style>
 </head>
 <body>
@@ -25,7 +36,7 @@
     Django Notes (Django 2.1 & Python 3.7)
 </h2>
 <figure style="text-align:center">
-    <img src="assets/img/funny-software-engineer-comic.jpg">
+    <img style="opacity:0.9" src="assets/img/funny-software-engineer-comic.jpg">
     <figcaption>What we try to avoid...</figcaption>
 </figure>
 <ul class="Aclass">
@@ -64,6 +75,7 @@ python manage.py startapp main
 python manage.py runserver
 </pre>
     </li>
+<!----------------------------------- CONTROLLER --------------------------------------->
     
     <li class="coding-text">
 	    <a>Controller - <span class="method">urls.py</span></a><br>
@@ -90,19 +102,82 @@ urlpatterns = [
 </pre>	
         
     </li>
-    
+ 
+<!----------------------------------- VIEW --------------------------------------->
     <li class="coding-text">
 	    <a>View - <span class="method">views.py</span></a><br>
+<p>HttpResponse for testing:</p>
 <pre class="prettyprint lang-python ">
 # ~/mysite/main/views.py   
 from django.shortcuts import render
 from django.http import HttpResponse
 
 def homepage(request):
-    return HttpResponse("Hello World!")
+    return HttpResponse("<strong></strong>Hello World!")
 </pre>	
-        
+<p>Webpage rendering with Templates: </p>
+<pre class="prettyprint lang-python ">
+# ~/mysite/main/views.py   
+from django.shortcuts import render
+from .models import Tutorial
+
+def homepage(request):
+    return render(request=request,
+                template_name="main/home.html",
+                context={"tutorials": Tutorial.objects.all()})
+</pre>
+    <p><span class="method">Important</span>: Templates will be merged together, so name should be unique, such as <span style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">template_name="main/home.html"...</span></p>
+    <p>Generic templating: </p>
+<pre class="prettyprint lang-html">
+&lt;!-- ~/mysite/main/templates/main/home.html   -->
+&lt;head>
+    {% load static %}
+&lt;/head>
+&lt;body>
+    {% for tut in tutorials %}
+        &lt;p>{{tut.tutorial_title}}&lt;/p>
+        &lt;p>{{tut.tutorial_published}}&lt;/p>
+        &lt;p>{{tut.tutorial_content|safe}}&lt;/p>
+    {% endfor %}
+&lt;/body>
+</pre>   
+    <p>Template with <span class="method2">Extend</span>: </p>
+<pre class="prettyprint lang-html">
+&lt;!-- ~/mysite/main/templates/main/header.html   -->
+&lt;head>
+    {% load static %}
+    &lt;!-- load your css, js, ...  -->
+&lt;/head>
+&lt;body>
+    &lt;!-- navbar -->
+    
+    {% block content %}
+    {% endblock %}
+    
+    &lt;!-- footer -->
+&lt;/body>
+</pre>    
+
+<pre class="prettyprint lang-html">
+&lt;!-- ~/mysite/main/templates/main/home.html   -->
+{% <strong>extends</strong> "main/header.html" %}
+
+{% block content %}
+
+    {% for tut in tutorials %}
+        &lt;p>{{tut.tutorial_title}}&lt;/p>
+        &lt;p>{{tut.tutorial_published}}&lt;/p>
+        &lt;p>{{tut.tutorial_content|safe}}&lt;/p>
+    {% endfor %}
+    
+{% endblock %}
+</pre>  
+    
+    
+    
     </li>
+
+<!----------------------------------- MODEL --------------------------------------->
 
     <li class="coding-text">
 	    <a>Model - <span class="method">models.py</span></a><br>
@@ -140,6 +215,8 @@ python manage.py shell
 <p>See more <a href="https://docs.djangoproject.com/en/2.2/ref/models/fields/" target="_blank">model field reference</a>.</p>
         
     </li>
+
+<!----------------------------------- ADMIN --------------------------------------->
  
     <li class="coding-text">
 	    <a>Admin - <span class="method">admin.py</span></a><br>
@@ -172,7 +249,58 @@ admin.site.register(Tutorial)
 </pre>	
 <p></p>
     </li> 
-    
+
+<!----------------------------------- USER REGISTER --------------------------------------->
+    <li class="coding-text">
+	    <a>User registration</a><br>
+<pre class="prettyprint lang-html ">
+&lt;!-- ~/mysite/main/templates/main/register.html   -->
+{% extends "main/header.html" %}
+
+{% block content %}
+
+    &lt;form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        &lt;br>
+        &lt;button class="btn" type="submit">Register&lt;/button>
+    &lt;/form>
+
+    If you already have an account. &lt;a href="/login">login&lt;/a> instead.
+{% endblock %}
+</pre>   
+<pre class="prettyprint lang-python">
+# ~/mysite/main/urls.py
+urlpatterns = [
+    ...,
+    path("register/", views.register, name="register")
+]    
+
+# ~/mysite/main/views.py
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            login(request, user)
+            return redirect("main:homepage")  #preferred way, dynamic indept of url changes
+        else:
+            for msg in form.error_messages:
+                print(form.error_messages[msg])
+
+    form = UserCreationForm 
+    return render(request=request,
+                template_name="main/register.html",
+                context={"form": form})
+</pre>
+    </li>
+
+<!----------------------------------- SETTINGS --------------------------------------->
     <li class="coding-text">
 	    <a>Project Settings - <span class="method">settings.py</span></a>
         <p>It sets up everything for the project: key, apps, database, packages, and more...</p>
@@ -188,7 +316,7 @@ INSTALLED_APPS = [
     </li> 
     <li class="coding-text">
         <a>Additional resources</a>
-        <p>&emsp; Awesome Text-Editor: <style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">pip install django-tinymce4-lite</style></p>
+        <p>&emsp; Awesome Text-Editor: <span style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">pip install django-tinymce4-lite</style></p>
     </li>
 
 </ul>
@@ -202,10 +330,11 @@ INSTALLED_APPS = [
     var myLi = document.querySelectorAll(".coding-text");
     //hide all but first
     myLi.forEach(function(el, j){
-        if (j>2){
+        if (j != 4 && j != 0){
             for (var i=1; i<el.children.length; i++){
                 el.children[i].classList.toggle('show');
             }
+            el.classList.toggle('change-li-before');
         }
     });
     myLi.forEach(function(el){
@@ -213,6 +342,7 @@ INSTALLED_APPS = [
             for (var i=1; i<el.children.length; i++){
                 el.children[i].classList.toggle('show');
             }
+            el.classList.toggle('change-li-before');
         });
     });
 </script>
