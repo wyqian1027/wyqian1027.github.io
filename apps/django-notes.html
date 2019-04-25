@@ -9,6 +9,14 @@
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+	<style>
+	    .show {
+	        display: none;
+	    }
+	    LI A:hover {
+	        cursor: pointer;
+	    }
+	</style>
 </head>
 <body>
 
@@ -21,8 +29,9 @@
     <figcaption>What we try to avoid...</figcaption>
 </figure>
 <ul class="Aclass">
-	<li class="coding-text">
-	    <a target="_blank" href="https://docs.djangoproject.com/en/2.2/intro/install/">Installation</a><br>
+    <li class="coding-text">
+        <a>Introduction</a><br>
+        <p><a href="https://www.djangoproject.com/" target="_blank">Django</a> is a <span class="method">Model-View-Controller</span> (MVC) Python framework for web developments. <span class="method2">Click to toggle Show/Hide.</span> Quick install as follows:<br></p>
 <pre class="prettyprint lang-bsh ">
 pip install django
 
@@ -32,11 +41,7 @@ django-admin --version
     </li>
     <li class="coding-text">
 	    <a>Building Projects/Apps</a><br>
-	    <p>Im this note, the project is created at root <span class="method">~</span><br>
-        1. Inside <span class="method">~/mysite</span> we have:<span class="method2" style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'"> &nbsp; &nbsp; manage.py &nbsp; &nbsp;  mysite</span><br>
-        &nbsp; &nbsp; Inside <span class="method">~/mysite/mysite</span> we have: <span class="method2" style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">&nbsp; &nbsp;  __init__.py &nbsp; &nbsp;  settings.py &nbsp; &nbsp;  urls.py &nbsp; &nbsp;  wsgi.py</span><br>
-        2. Inside <span class="method">~/mysite/main</span> we have: <span class="method2" style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">&nbsp; &nbsp; admin.py &nbsp; &nbsp; apps.py &nbsp; &nbsp; __init__.py &nbsp; &nbsp; migrations &nbsp; &nbsp; models.py &nbsp; &nbsp; tests.py &nbsp; &nbsp; views.py</span>
-        </p>
+	    <p>Im this note, the project is created at root <span class="method">~</span></p>
 <pre class="prettyprint lang-bsh ">
 # 1. create project directory and files at root ~
 django-admin startproject mysite
@@ -44,6 +49,12 @@ django-admin startproject mysite
 # 2. create app directory and files inside ~/mysite/
 python manage.py startapp main
 </pre>
+        <p>1. Inside <span class="method">~/mysite</span> we have:<span class="method2" style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'"> &nbsp; &nbsp; manage.py &nbsp; &nbsp;  mysite</span><br>
+        &nbsp; &nbsp; Inside <span class="method">~/mysite/mysite</span> we have: <span class="method2" style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">&nbsp; &nbsp;  __init__.py &nbsp; &nbsp;  settings.py &nbsp; &nbsp;  urls.py &nbsp; &nbsp;  wsgi.py</span><br>
+        2. Inside <span class="method">~/mysite/main</span> we have: <span class="method2" style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">&nbsp; &nbsp; admin.py &nbsp; &nbsp; apps.py &nbsp; &nbsp; __init__.py &nbsp; &nbsp; migrations &nbsp; &nbsp; models.py &nbsp; &nbsp; tests.py &nbsp; &nbsp; views.py</span>
+        </p>
+        
+        <p>Here, models.py = Model, views.py = View, urls.py = Controller.        </p>
     </li>
     
     <li class="coding-text">
@@ -55,10 +66,9 @@ python manage.py runserver
     </li>
     
     <li class="coding-text">
-	    <a>Controller - urls.py</a><br>
+	    <a>Controller - <span class="method">urls.py</span></a><br>
 <pre class="prettyprint lang-python ">
 # ~/mysite/mysite/urls.py    
-
 from django.contrib import admin
 from django.urls import path, include
 
@@ -69,7 +79,6 @@ urlpatterns = [
 ]
 
 # ~/mysite/main/urls.py    
-
 from django.urls import path
 from . import views
 
@@ -81,10 +90,131 @@ urlpatterns = [
 </pre>	
         
     </li>
+    
+    <li class="coding-text">
+	    <a>View - <span class="method">views.py</span></a><br>
+<pre class="prettyprint lang-python ">
+# ~/mysite/main/views.py   
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def homepage(request):
+    return HttpResponse("Hello World!")
+</pre>	
+        
+    </li>
+
+    <li class="coding-text">
+	    <a>Model - <span class="method">models.py</span></a><br>
+<pre class="prettyprint lang-python ">
+# ~/mysite/main/models.py   
+from django.db import models
+from datetime import datetime
+from django.utils.timezone import now
+
+# Create your models here.
+class Tutorial(models.Model):
+    tutorial_title = models.CharField(max_length=200)
+    tutorial_content = models.TextField()
+    tutorial_published = models.DateTimeField("date published", default=now())
+
+    def __str__(self):
+        return self.tutorial_title
+</pre>
+<p>Database migrations:</p>
+<pre class="prettyprint lang-bsh ">
+# ~/mysite/mysite.py   
+python manage.py makemigrations
+python manage.py migrate
+</pre>
+
+<p>How to use local db.sqlite3 database:</p>
+<pre class="prettyprint lang-bsh ">
+# ~/mysite/mysite.py   
+python manage.py shell
+>>> from main.models import Tutorial
+>>> Tutorial.objects.all()
+>>> new_tut = Tutorial(tutorial_title="Hello World", tutorial_content="...")
+>>> new_tut.save()
+</pre>
+<p>See more <a href="https://docs.djangoproject.com/en/2.2/ref/models/fields/" target="_blank">model field reference</a>.</p>
+        
+    </li>
+ 
+    <li class="coding-text">
+	    <a>Admin - <span class="method">admin.py</span></a><br>
+	    <p>Create Admin user: </p>
+<pre class="prettyprint lang-bsh ">
+# ~/mysite/ 
+python manage.py createsuperuser
+</pre>
+<p>Import model and register admin site:</p>
+<pre class="prettyprint lang-python ">
+# ~/mysite/main/admin.py
+from django.contrib import admin
+from .models import Tutorial
+
+class TutorialAdmin(admin.ModelAdmin):
+
+    # option: select fields in admin site
+    # fields = ["tutorial_title",
+    #          "tutorial_published",
+    #          "tutorial_content"
+    #          ]
+    
+    # option: separate into sets in presentation          
+    fieldsets = [
+            ("Title/date", {"fields": ["tutorial_title", "tutorial_published"]}),
+            ("Content", {"fields": ["tutorial_content"]})
+            ]
+
+admin.site.register(Tutorial)
+</pre>	
+<p></p>
+    </li> 
+    
+    <li class="coding-text">
+	    <a>Project Settings - <span class="method">settings.py</span></a>
+        <p>It sets up everything for the project: key, apps, database, packages, and more...</p>
+<pre class="prettyprint lang-python ">
+# ~/mysite/settings.py
+
+INSTALLED_APPS = [
+    ...,
+    'main.apps.MainConfig'
+]
+
+</pre>
+    </li> 
+    <li class="coding-text">
+        <a>Additional resources</a>
+        <p>&emsp; Awesome Text-Editor: <style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">pip install django-tinymce4-lite</style></p>
+    </li>
+
 </ul>
 <div class="footer">
     <a title="Back to Previous" href="https://wyqian1027.github.io/public/apps.html"><i class="fas fa-igloo"></i></a>
 	<em>Last updated on April 24, 2019 by Wenyang Qian.</em>
 </div>
+
+
+<script>
+    var myLi = document.querySelectorAll(".coding-text");
+    //hide all but first
+    myLi.forEach(function(el, j){
+        if (j>2){
+            for (var i=1; i<el.children.length; i++){
+                el.children[i].classList.toggle('show');
+            }
+        }
+    });
+    myLi.forEach(function(el){
+        el.children[0].addEventListener('click', function(){
+            for (var i=1; i<el.children.length; i++){
+                el.children[i].classList.toggle('show');
+            }
+        });
+    });
+</script>
 </body>
 </html>
