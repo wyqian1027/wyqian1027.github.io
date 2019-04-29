@@ -92,7 +92,9 @@ function setAbout(){
     pTitle.style.display = "block";
     pTitle.innerHTML = "LeetCode Problem Solving Workbook";
     pDesp.style.display = "block";
-    pDesp.innerHTML = `Total Number of Problems: ${numProblems}`;    
+    pDesp.innerHTML = `
+    Total Number of Problems: ${numProblems}<p>Please let me know if there is any mistakes or typos. Thank you!<p>
+    `;    
 }
 
 aboutBtn.addEventListener("click", function(){

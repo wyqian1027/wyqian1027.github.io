@@ -106,7 +106,7 @@ urlpatterns = [
 <!----------------------------------- VIEW --------------------------------------->
     <li class="coding-text">
 	    <a>View - <span class="method">views.py</span></a><br>
-<p>HttpResponse for testing:</p>
+<p style="font-weight: bold; text-decoration: underline">HttpResponse for testing:</p>
 <pre class="prettyprint lang-python ">
 # ~/mysite/main/views.py   
 from django.shortcuts import render
@@ -115,7 +115,7 @@ from django.http import HttpResponse
 def homepage(request):
     return HttpResponse("<strong></strong>Hello World!")
 </pre>	
-<p>Webpage rendering with Templates: </p>
+<p style="font-weight: bold; text-decoration: underline">Webpage rendering with <a href="http://jinja.pocoo.org/" target="_blank">Jinja</a> Templates: </p>
 <pre class="prettyprint lang-python ">
 # ~/mysite/main/views.py   
 from django.shortcuts import render
@@ -127,7 +127,7 @@ def homepage(request):
                 context={"tutorials": Tutorial.objects.all()})
 </pre>
     <p><span class="method">Important</span>: Templates will be merged together, so name should be unique, such as <span style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">template_name="main/home.html"...</span></p>
-    <p>Generic templating: </p>
+    <p>1. Generic templating: </p>
 <pre class="prettyprint lang-html">
 &lt;!-- ~/mysite/main/templates/main/home.html   -->
 &lt;head>
@@ -141,7 +141,7 @@ def homepage(request):
     {% endfor %}
 &lt;/body>
 </pre>   
-    <p>Template with <span class="method2">Extend</span>: </p>
+    <p>2. Template with <span class="method2">Extend</span>: </p>
 <pre class="prettyprint lang-html">
 &lt;!-- ~/mysite/main/templates/main/header.html   -->
 &lt;head>
@@ -156,9 +156,7 @@ def homepage(request):
     
     &lt;!-- footer -->
 &lt;/body>
-</pre>    
 
-<pre class="prettyprint lang-html">
 &lt;!-- ~/mysite/main/templates/main/home.html   -->
 {% <strong>extends</strong> "main/header.html" %}
 
@@ -171,6 +169,34 @@ def homepage(request):
     {% endfor %}
     
 {% endblock %}
+</pre>  
+
+<p>3. Template (ex. narbar, messages, etc) with <span class="method2">Include</span>: </p>
+<pre class="prettyprint lang-html">
+&lt;!-- ~/mysite/main/templates/main/header.html   -->
+&lt;body>
+    ...
+    {% include "main/includes/navbar.html" %}
+    ...
+&lt;/body>
+
+&lt;!-- ~/mysite/main/templates/main/includes/navbar.html   -->
+&lt;nav>
+    &lt;div class="nav-wrapper">
+        &lt;a href="/" class="brand-logo">&emsp;Tutorials&lt;/a>
+        &lt;ul id="nav-mobile" class="right hide-on-med-and-down">
+            &lt;li>&lt;a href="/">Home&lt;/a>&lt;/li>
+        {% if user.is_authenticated %}
+            &lt;li>&lt;a href="/account">{{user.username}}&lt;/a>&lt;/li>
+            &lt;li>&lt;a href="/logout">Lougout&lt;/a>&lt;/li>
+        {% else %}
+            &lt;li>&lt;a href="/register">Register&lt;/a>&lt;/li>
+            &lt;li>&lt;a href="/login">Login&lt;/a>&lt;/li>
+        {% endif %}
+
+        &lt;/ul>
+    &lt;/div>
+&lt;/nav>
 </pre>  
     
     
@@ -299,13 +325,21 @@ def register(request):
                 context={"form": form})
 </pre>
     </li>
-
+<!----------------------------------- USER LOGIN/LOGOUT --------------------------------------->
+    <li class="coding-text">
+	    <a>User login/logout</a><br>
+	</li>
+	
 <!----------------------------------- SETTINGS --------------------------------------->
     <li class="coding-text">
 	    <a>Project Settings - <span class="method">settings.py</span></a>
         <p>It sets up everything for the project: key, apps, database, packages, and more...</p>
 <pre class="prettyprint lang-python ">
 # ~/mysite/settings.py
+
+ALLOWED_HOSTS = [
+    '10.0.0.5'
+]
 
 INSTALLED_APPS = [
     ...,
@@ -330,7 +364,7 @@ INSTALLED_APPS = [
     var myLi = document.querySelectorAll(".coding-text");
     //hide all but first
     myLi.forEach(function(el, j){
-        if (j != 4 && j != 0){
+        if (j != 0){
             for (var i=1; i<el.children.length; i++){
                 el.children[i].classList.toggle('show');
             }
