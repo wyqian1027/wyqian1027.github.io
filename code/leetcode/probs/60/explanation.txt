@@ -1,0 +1,1 @@
+The trick is that divide n! permutations into n bins with size (n-1)! ... and continue until the end.
