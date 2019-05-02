@@ -1,0 +1,3 @@
+Using Stack Data Structure:
+1. Free to add left parens
+2. Allow to add right parens only if stack is nonempty and the last one in the stack matches. 

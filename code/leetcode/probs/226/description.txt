@@ -1,0 +1,18 @@
+226. Invert Binary Tree
+
+Invert a binary tree.
+<span class="examples">
+Input:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  4
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   /   \
+&nbsp;&nbsp;  2    &nbsp;&nbsp;&nbsp;&nbsp; 7
+&nbsp; / \ &nbsp;&nbsp;  / \
+1 &nbsp;&nbsp;  3 &nbsp;6  &nbsp; 9
+Output:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  4
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   /   \
+&nbsp;&nbsp;  7    &nbsp;&nbsp;&nbsp;&nbsp; 2
+&nbsp; / \ &nbsp;&nbsp;  / \
+9 &nbsp;&nbsp;  6 &nbsp;3  &nbsp; 1
+
+</span>

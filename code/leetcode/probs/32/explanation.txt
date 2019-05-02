@@ -1,0 +1,9 @@
+Using DP to record the longest valid paren ends at index i
+
+Either one of the two cases:
+
+1) last two = "()": DP[i] = DP[i-2] + 2
+
+2) last two = "))" and if s[i - DP[i-1] - 1] == "(":
+        
+&emsp; DP[i] = DP[i-1] + 2 + DP[i - DP[i-1] - 2]

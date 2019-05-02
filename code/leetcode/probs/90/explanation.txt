@@ -1,0 +1,4 @@
+General Tecnique avoiding duplicates:
+
+1) Keep 0th element
+2) Skip to next element if cur = prev

@@ -1,0 +1,12 @@
+32. Longest Valid Parentheses
+
+Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
+<span class="examples">
+Input: "(()"
+Output: 2
+Explanation: The longest valid parentheses substring is "()"
+
+Input: ")()())"
+Output: 4
+Explanation: The longest valid parentheses substring is "()()"
+</span>
