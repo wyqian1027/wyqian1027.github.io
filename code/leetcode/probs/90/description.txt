@@ -5,7 +5,7 @@ Given a collection of integers that might contain duplicates, nums, return all p
 Note: The solution set must not contain duplicate subsets.
 <span class="examples">
 Input: [1,2,2]
-Output:
+Output:<pre>
 [
   [2],
   [1],
@@ -13,5 +13,5 @@ Output:
   [2,2],
   [1,2],
   []
-]
+]</pre>
 </span>

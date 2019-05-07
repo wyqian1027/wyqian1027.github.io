@@ -1,0 +1,25 @@
+class Solution {
+    public int threeSumSmaller(int[] nums, int target) {
+    
+        Arrays.sort(nums);
+        int l, r, s=0;
+        
+        for (int i = 2; i < nums.length; i++){
+            l = 0; r = i-1;
+            while (l < r) {
+                if (nums[l] + nums[r] + nums[i] < target) {
+                
+                    s += r-l;
+                    l++;
+                    
+                } else {
+                
+                    r--;
+                    
+                }
+            }
+        }
+        
+        return s;
+    }
+}

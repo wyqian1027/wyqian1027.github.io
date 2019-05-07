@@ -18,11 +18,11 @@ beginWord = "hit",
 endWord = "cog",
 wordList = ["hot","dot","dog","lot","log","cog"]
 
-Output:
+Output:<pre>
 [
   ["hit","hot","dot","dog","cog"],
   ["hit","hot","lot","log","cog"]
-]
+]</pre>
 
 Input:
 beginWord = "hit"

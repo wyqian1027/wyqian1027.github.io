@@ -1,0 +1,1 @@
+Smart Solution with O(N^2)

@@ -1,0 +1,18 @@
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        
+        dp = [0]*(len(s)+1) 
+        dp[0] = 1
+        
+        for i in range(len(s)):
+            
+            ch = s[i]
+            idx = i + 1
+            if "1" <= ch <= "9":
+                dp[idx] += dp[idx-1]
+            if i > 0 and '10' <= s[i-1] + ch <= "26":
+                dp[idx] += dp[idx-2]
+        
+        return dp[-1]
+            
+        

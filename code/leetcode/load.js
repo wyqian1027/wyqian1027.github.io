@@ -78,7 +78,9 @@ allProblems.forEach(function(eachP){
         problemDiv.style.display = "block";
         load(eachP.id);
         eachP.style.backgroundColor = "#f5f9fa";
+        eachP.style.fontWeight = "bold";
         prevClick.style.backgroundColor = "#eee";
+        prevClick.style.fontWeight = "";
         prevClick = eachP;
     });
 });

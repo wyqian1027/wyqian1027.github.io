@@ -9,6 +9,7 @@
   left: 0;
   bottom: 0;
   background: #eee;
+  /*background: #E8F5E9;*/
   overflow-x: hidden;
   padding: 10px 0;
   margin: 0; 
@@ -27,6 +28,7 @@
 
 .sidenav a:hover, .sidenav a:clicked {
   color: black;
+  /*font-weight: bold;*/
 }
 
 .sidenav .problem {

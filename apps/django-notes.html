@@ -227,6 +227,10 @@ class Tutorial(models.Model):
 # ~/mysite/mysite.py   
 python manage.py makemigrations
 python manage.py migrate
+
+# when database crashes, delete Migration folder and run:
+python manage.py migrate --run-syncdb
+python manage.py migrate --fake appname
 </pre>
 
 <p>How to use local db.sqlite3 database:</p>
