@@ -224,28 +224,102 @@ class Tutorial(models.Model):
 </pre>
 <p>Database migrations:</p>
 <pre class="prettyprint lang-bsh ">
-# ~/mysite/mysite.py   
+# ~/mysite/
 python manage.py makemigrations
 python manage.py migrate
-
-# when database crashes, delete Migration folder and run:
-python manage.py migrate --run-syncdb
-python manage.py migrate --fake appname
 </pre>
-
+<p> Note: To fix database crashes, one might need to delete everything in Migration folder but "__init__.py" as well as "db.sqlite3" and run these two migrations again.</p>
+    </li>
+    
+<!----------------------------------- Database --------------------------------------->
+    <li class="coding-text">
+	    <a>Database </a><br>
 <p>How to use local db.sqlite3 database:</p>
 <pre class="prettyprint lang-bsh ">
-# ~/mysite/mysite.py   
+# ~/mysite/
 python manage.py shell
 >>> from main.models import Tutorial
 >>> Tutorial.objects.all()
 >>> new_tut = Tutorial(tutorial_title="Hello World", tutorial_content="...")
 >>> new_tut.save()
 </pre>
+<p>Flush the databse:</p>
+<pre class="prettyprint lang-bsh ">
+python manage.py flush
+</pre>
 <p>See more <a href="https://docs.djangoproject.com/en/2.2/ref/models/fields/" target="_blank">model field reference</a>.</p>
-        
+<p>Accessing, Filtering data in views.py:</p>
+<pre class="prettyprint lang-python ">
+# ~/mysite/mysite/views.py
+
+# filtering:
+Tutorial.objects.filter(tutorial_title="some title")
+Tutorial.objects.filter(tutorial_title="some title", tutorial_content="some content") # AND
+
+# referring foreign keys fields with double underscore "__"
+Tutorial.objects.filter(tag__tag_name="some tag name")
+</pre>
+    </li>
+    
+<!----------------------------------- Fixtures --------------------------------------->
+    <li class="coding-text">
+	    <a>Fixtures </a><br>
+<p>Probably one does not want to add datas by hand every time. To load the database with some predefined data, we use fixtures.</p>
+<pre class="prettyprint lang-bsh ">
+# ~/mysite/
+python manage.py loaddata superusers myusers colors tags items ....
+</pre>
+<p>It automatically looks for json files under fixtures, for examples:</p>
+<pre class="prettyprint lang-python ">
+# ~/mysite/main/fixtures/superusers.json
+[
+    { "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "admin",
+            "password": ".....",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true
+        }
+    },
+    { "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "wenyang",
+            "password": ".....",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true
+        }
+    }
+]
+
+# ~/mysite/main/fixtures/myusers.json
+[
+    { "model": "index.myuser",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "email_address": "user1@gmail.com",
+            "location": "Ames"
+        }
+    },
+    { "model": "index.myuser",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "email_address": "user2@gmail.com",
+            "location": "Chicago"
+        }
+    }
+]
+</pre>
+<p>Notice how myusers links its <em>user</em> field as foreign keys to superusers. </p>
     </li>
 
+
+    
 <!----------------------------------- ADMIN --------------------------------------->
  
     <li class="coding-text">
@@ -329,17 +403,76 @@ def register(request):
                 context={"form": form})
 </pre>
     </li>
-<!----------------------------------- USER LOGIN/LOGOUT --------------------------------------->
+<!----------------------------------- FORMS --------------------------------------->
+ 
     <li class="coding-text">
-	    <a>User login/logout</a><br>
-	</li>
+	    <a>Forms - <span class="method">forms.py</span></a><br>
+	    <p>One of the easiest methods to have customized POST request is to via forms. </p>
+<pre class="prettyprint lang-python ">
+# ~/mysite/main/admin.py
+class ColorScheme(models.Model):
+    color_name = models.CharField(max_length=30)
+    
+class Tag(models.Model):
+    tag_name = models.CharField(max_length=200)
+    tag_color = models.ForeignKey(ColorScheme, default="1", verbose_name="Tag Color", on_delete= models.SET_DEFAULT)
+    create_date = models.DateTimeField("date created", default=now())
+
+    class Meta:
+        verbose_name_plural = "Tags"
+        ordering = ['-create_date']
+
+    def __str__(self):
+        return self.tag_name
+</pre>	
+<p>Notice that the Tag model uses ColorScheme as foreign key.</p>
+<pre class="prettyprint lang-python">
+# ~/mysite/main/forms.py
+from django import forms
+from django.forms import ModelForm
+
+class NewTagForm(ModelForm):
+    class Meta:
+        model = Tag
+        fields = ("tag_name", "tag_color")
+    
+    # optional, helps filtering the choices, can be used in views.py also
+    tag_color = forms.ModelChoiceField(queryset=ColorScheme.objects.all())
+</pre>
+
+<p>In views.py:</p>
+<pre class="prettyprint lang-python">
+# ~/mysite/main/views.py
+from .forms import NewTagForm
+...
+def add_tag_request(request):
+    if request.method == "POST":
+        form = NewTagForm(request.POST)
+        if form.is_valid():
+            tag = form.save(commit=False)
+            tag_name = form.cleaned_data.get('tag_name')
+            tag.save()
+            messages.success(request, f"Tag {tag_name} added.")
+            return redirect("index/add_tag_form.html")
+        else:
+            for msg in form.error_messages:
+                messages.error(request, f"{msg}:{form.error_messages[msg]}")
+
+    form = NewTagForm()
+    return render(request=request,
+                template_name="index/add_tag_form.html",
+                context={"form": form})
+</pre>
+    </li> 
 	
 <!----------------------------------- SETTINGS --------------------------------------->
     <li class="coding-text">
 	    <a>Project Settings - <span class="method">settings.py</span></a>
         <p>It sets up everything for the project: key, apps, database, packages, and more...</p>
 <pre class="prettyprint lang-python ">
-# ~/mysite/settings.py
+# ~/mysite/mysite/settings.py
+
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '10.0.0.5'
@@ -350,11 +483,70 @@ INSTALLED_APPS = [
     'main.apps.MainConfig'
 ]
 
+# local default
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+    }
+}
+
+LANGUAGE_CODE = 'en-us'
+
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 </pre>
+<p>Alternatively, one can set up enivorn variables, which is safer in deployment:</p>
+<pre class="prettyprint lang-python ">
+DATABASES = {
+    'default': {
+        'ENGINE': os.environ.get('ENGINE', 'django.db.backends.sqlite3'), 
+        'NAME': os.environ.get('DB_NAME', os.path.join(BASE_DIR, 'db.sqlite3')), 
+        'USER': os.environ.get('DB_USER', ''), 
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''), 
+        'HOST': os.environ.get('DB_HOST', ''), 
+        'PORT': os.environ.get('DB_PORT', ''), 
+    }
+}
+</pre>
+<!----------------------------------- TINYMCE --------------------------------------->
+
     </li> 
     <li class="coding-text">
-        <a>Additional resources</a>
-        <p>&emsp; Awesome Text-Editor: <span style="font-family: 'Monaco', 'Menlo', 'Ubuntu Mono','Consolas','source-code-pro'">pip install django-tinymce4-lite</style></p>
+        <a>Text-Editor: <em>tinymce</em></a>
+<p>Installation: </p>
+<pre class="prettyprint lang-bsh ">pip install django-tinymce4-lite</pre>
+<p>Configuration: </p>
+<pre class="prettyprint lang-python ">
+# ~/mysite/mysite/settings.py
+INSTALLED_APPS = [
+    ...,
+    'tinymce'
+]
+
+TINYMCE_DEFAULT_CONFIG = { ... }
+
+# ~/mysite/main/urls.py
+urlpatterns = [
+    ...,
+    path('tinymce/', include('tinymce.urls')),
+]
+</pre>
+<p>To use it in templates for textareas, add css and script:</p>
+<pre class="prettyprint lang-html">
+&lt;link href="{% static 'tinymce/css/prism.css' %}" rel='stylesheet'>
+...
+&lt;script src="{% static 'tinymce/js/prism.js' %}">&lt;/script>
+</pre>
+    </li>
+
+<!----------------------------------- CONCLUSION --------------------------------------->
+
+    <li class="coding-text">
+        <a>General Workflow</a>
+        <pre class="method2" >
+models/forms.py (Model) -> urls.py (Pattern) -> views.py (Controller) -> templates.html (View)
+        </pre>
     </li>
 
 </ul>
@@ -362,6 +554,15 @@ INSTALLED_APPS = [
     <a title="Back to Previous" href="https://wyqian1027.github.io/public/apps.html"><i class="fas fa-igloo"></i></a>
 	<em>Last updated on April 24, 2019 by Wenyang Qian.</em>
 </div>
+
+
+
+
+
+
+
+
+
 
 
 <script>
