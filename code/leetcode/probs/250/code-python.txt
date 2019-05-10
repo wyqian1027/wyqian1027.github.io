@@ -1,31 +1,27 @@
 class Solution:
+
     def countUnivalSubtrees(self, root: TreeNode) -> int:
         
-        if not root: return 0
-        
-        self.count = 0
-        
-        def checkUnival(root):
+        def dfs(root):
             
-            L, R = True, True
+            if not root: return True
+                        
+            L, R = dfs(root.left), dfs(root.right)
             
-            if not root.left and not root.right:
-                self.count += 1
-                return True
-            
-            if root.right:
-                R = checkUnival(root.right) and root.val == root.right.val
-            
-            if root.left:
-                L = checkUnival(root.left) and root.left.val == root.val
-            
-            if L and R:
+            if root.left and root.left.val != root.val:
+                L = False
+            if root.right and root.right.val != root.val:
+                R = False
+                
+            if L and R: 
                 self.count += 1
                 return True
             
             return False
         
-        checkUnival(root)
+        self.count = 0
+        
+        dfs(root)
         
         return self.count
                 

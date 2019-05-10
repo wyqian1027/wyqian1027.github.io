@@ -32,7 +32,7 @@
 }
 
 .sidenav .problem {
-  padding: 6px 8px 6px 50px;
+  padding: 6px 8px 6px 39px;
   text-decoration: none;
   font-size: 16px;
   color: black;
@@ -43,6 +43,7 @@
 .sidenav .problem:hover  {
   color: black;
   background: #f5f9fa;
+  /*border: 1px solid black*/
   /*font-size: 1.2em;*/
 }
 .sidenav #about:hover {

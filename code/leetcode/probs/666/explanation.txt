@@ -1,0 +1,1 @@
+Instead of building the tree, one can directly work on the input.
