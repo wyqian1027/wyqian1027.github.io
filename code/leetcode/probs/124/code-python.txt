@@ -1,0 +1,22 @@
+class Solution:
+
+    def maxPathSum(self, root: TreeNode) -> int:
+        
+        self.maxSum = float('-inf')
+        
+        def maxGain(root):
+            
+            if not root: return 0
+            
+            leftGain = max(maxGain(root.left), 0)
+            rightGain = max(maxGain(root.right), 0)
+            
+            newPath = root.val + leftGain + rightGain
+            
+            self.maxSum = max(self.maxSum, newPath)
+            
+            return root.val + max(leftGain, rightGain)
+        
+        maxGain(root)
+        
+        return self.maxSum
