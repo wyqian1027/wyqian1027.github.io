@@ -1,0 +1,22 @@
+513. Find Bottom Left Tree Value
+
+Given a binary tree, find the leftmost value in the last row of the tree.
+<span class="examples">
+Input:<pre>
+    2
+   / \
+  1   3</pre>
+Output:
+1
+
+Input:<pre>
+        1
+       / \
+      2   3
+     /   / \
+    4   5   6
+       /
+      7</pre>
+Output:
+7
+</span>

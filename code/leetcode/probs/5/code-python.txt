@@ -1,0 +1,30 @@
+class Solution:
+    
+    def longestPalindrome(self, s: str) -> str:
+        
+        if not s: return ""
+        
+        n = len(s)
+        ans = ""
+        maxLen = 0
+        
+        for i in range(0, n):
+            d = 0
+            while 0 <= i-d and i+d < n and s[i-d] == s[i+d]:
+                if (2*d+1) > maxLen:
+                    maxLen = 2*d+1
+                    ans = s[i-d: i+d+1]
+                d += 1
+            
+        for i in range(0, n-1):
+            d = 0
+            while 0 <= i-d and i+1+d < n and s[i-d] == s[i+1+d]:
+                if (2*d+2) > maxLen:
+                    maxLen = 2*d+2
+                    ans = s[i-d: i+d+2]
+                d += 1
+                
+        return ans
+        
+        
+        

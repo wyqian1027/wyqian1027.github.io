@@ -1,0 +1,4 @@
+Using Stack when encounter "(" and ")":
+
+For each "(", push res and signs into stack.
+For each ")", pop sign to multiply and then res.
