@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Rating Analysis of IMDB and DouBan</title>
+	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>-->
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+	<!--<link rel="stylesheet" type="text/css" href="assets/css/movie_analysis.css">-->
+	<style>
+	  .img-set A:hover {
+        text-decoration: none;
+        background-color: #f5f9fa;
+    }
+    .img-set {
+      text-align: center;
+    }
+    .img-set img{
+      display:inline;
+    }
+
+	</style>
+</head>
+<body>
+
+
+<h2 class="article-title">
+    Movie Rating Analysis of IMDB and DouBan
+</h2>
+<ul class="Aclass">
+  <li class="coding-text">
+    <a>Movie Ratings on IMDB vs DouBan</a>
+    <p>IMDB is one of the largest movie rating websites of the world, while DouBan is the dominate movie rating website in China. Below is a particular rating distribution for the 2009 movie title "<span class="method2">Fantastic Mr. Fox</span>" </p>
+    <div class="img-set">
+        <a href="https://www.imdb.com/title/tt0432283/ratings?ref_=tt_ov_rt"><img height="300" src="assets/img/movie_analysis/imdbRating.png" alt="imdbRating" style="display:inline;"></a>
+        <a href="https://movie.douban.com/subject/1759386/"><img height="300" src="assets/img/movie_analysis/doubanRating.png" alt="doubanRating" style="display:inline;"></a>
+    </div>
+    <br>
+  </li>
+	<li class="coding-text">
+	    <a>Scrapping Methods</a><br>
+	    <p>The scrapper is based on <strong>Beautiful</strong> Python library. In practice, I selected 2-3 movie titles as the <span class='method2'>initial seed</span>. The scrapper starts with the initial seed file as the Queue.
+	    Then the scrapper simulataneously crawled on the both websites and scraped the rating infos. Once each movie is finished, the scrapper add related movies in the recommendations to the Queue and move onto the next movie. 
+	    </p>
+	    <p>Repeted movie titles are avoided. Delibrate timeout is used to prevent high traffic. All movie ratings are <span class='method'>renormalized</span> so both ratings used 1-10 rating system.</p>
+	    <p>With around 12 hours, we scrapped 4920 movie titles, and the distribution of genres are as follows.</p>
+      <div class="img-set">
+        <img height="400" src="assets/img/movie_analysis/distribution.png" alt="distribution" style="text-align: center">
+      </div>
+      <p></p>
+    </li>
+
+    <li class="coding-text" style="margin-top: 50px;">
+	    <a>Some Discoveries</a><br>
+        <p>1. Top 10 Movies</p> 
+        <p>We found out that "<span class="method2">The Shawshank's Redemption</span>", "<span class="method2">Schindler's List</span>", "<span class="method2"> 12 Angry Men</span>", "<span class="method2">Forrest Gump</span>" are the top 10 movies in both rating systems, making up 4 out of the 10 movies.
+        It shows that audiences have pretty similar mindset in determining the best movies, despite the vast cultural differences between the West and China.</p>
+        <br>
+        <p>2. Rating Distribution Patterns</p>
+        <p>Here we show the total rating distribution pattern for all 4920 movies, as well as selected categories, including the leading category "Drama" with 2027 movie titles, and the underrepresented category "War" with 120 movie titles. In addition, rating for my favorite movie <span class="method2">Fantastic Mr. Fox</span> is also shown.</p>
+        <div class="img-set">
+          <img height="500" src="assets/img/movie_analysis/total_rdp.png" alt="RDP" style="text-align: center">
+        </div>
+        <div class="img-set">
+          <img height="300" src="assets/img/movie_analysis/drama_rdp.png" alt="RDP" style="text-align: center">
+          <img height="300" src="assets/img/movie_analysis/anime_rdp.png" alt="RDP" style="text-align: center">
+          <img height="300" src="assets/img/movie_analysis/war_rdp.png" alt="RDP" style="text-align: center">
+        </div>
+        <div class="img-set">
+          <img height="500" src="assets/img/movie_analysis/mrFox_rdp.png" alt="RDP" style="text-align: center">
+        </div>
+        <p>Interestingly, all ratings follow a right tilted distribution, more like a Poisson or Gamma Distribution. DouBan and IMDB are in good agreement.</p>
+        <br><p>3. Correlations of all Movie Scores.</p>
+        <p>Lastly, we show the correlation of movie scores from both systems for all 4920 movies as below. It is clear indication that both ratings are comparable as they are <span class="method">strongly correlated</span>, with a value of <span class="method">0.788</span>. People seem to share
+        the same preferences on movies despite of their backgrounds. Notice the blob centered around 6-8 scores in the plot. It tells us that most of our movies are in this region. Compared with spread out region of 2-5 scores, it also seem to suggest that "<span class="method2">good movies are usually agreed more by the audience</span>". Further studies are needed.</p>
+        <div class="img-set">
+          <img height="550" src="assets/img/movie_analysis/corr.png" alt="RDP" style="text-align: center">
+        </div>
+    </li>
+    
+    <li class="coding-text" style="margin-top: 50px;">
+	    <a>Next Step</a><br>
+	    <p>1. I hope to reinvent the web crawler so that movies with low votes are ignored, and also have more uniformly distributed ratings. Now the ratings are so focused in the "good movie" region.</p>
+	    <p>2. More data is still needed for more comprehensive analysis</p>
+	    <p>3. Rating from 1-10 maybe too crude to analyze. Next step is to scrape critic websites like "Rotten Tomatoes" and compare the ratings from 1-100.</p>
+    </li>
+    
+</ul>
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/data-science.html"><i class="fas fa-igloo"></i></a>
+	<em>Last updated March 1, 2019 by Wenyang Qian.</em>
+</div>
+
+
+</body>
+</html>
