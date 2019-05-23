@@ -96,7 +96,9 @@ function setAbout(){
     pDesp.style.display = "block";
     pDesp.innerHTML = `
     Total Number of Problems: ${numProblems}<p>Please let me know if there is any mistake or typo. Thank you!<p>
-    <a title="Go Back" href="https://wyqian1027.github.io/public/coding.html">Go Back <i class="fas fa-igloo"></i></a>`;    
+    <br>
+    <br>
+    <a style="position: absolute; down: 0" title="Go Back" href="https://wyqian1027.github.io/public/coding.html">Go Back <i class="fas fa-igloo"></i></a><br>`;    
 }
 
 aboutBtn.addEventListener("click", function(){

@@ -61,9 +61,25 @@
   padding: 0px 10px;
 }
 
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+@media only screen and (max-width: 900px) {
+  .sidenav {
+    padding-top: 15px;
+    width: 50%;
+  }
+  .main {
+    margin-left: 55%;
+    font-size: 25px;
+  }
+  .sidenav a {
+    font-size: 30px;
+  }
+  .sidenav .problem {
+    font-size: 20px;
+  }
+  .examples {
+    font-size: 15px;
+  }
+
 }
 
 #text-java, #text-python {
@@ -81,7 +97,7 @@
 
 .prettyprint {
     margin-top: 5px;
-    padding: 0px;
+    /*padding: 0px;*/
     /*font-family: 'Monaco';*/
     max-height: 2000px;
 }
