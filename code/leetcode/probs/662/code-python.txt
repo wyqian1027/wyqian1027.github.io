@@ -1,0 +1,19 @@
+class Solution:
+
+    def widthOfBinaryTree(self, root: TreeNode) -> int:
+        
+        q = collections.deque([(root, 0)])
+        maxWidth = 0 
+
+        while q:
+            minLoc, maxLoc = float('inf'), -float('inf')
+            size = len(q)
+            for _ in range(size):
+                node, loc = q.popleft()
+                minLoc = min(minLoc, loc)
+                maxLoc = max(maxLoc, loc)
+                if node.left: q.append((node.left, 2*loc))
+                if node.right: q.append((node.right, 2*loc+1))
+            maxWidth = max(maxWidth, maxLoc-minLoc+1)
+            
+        return maxWidth

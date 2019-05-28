@@ -1,0 +1,2 @@
+The Trick is nums[nums[i] % n] += n. 
+Keeping the original num while telling us that the index of the corresponding number is seen.
