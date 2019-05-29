@@ -1,0 +1,1 @@
+dp[i] = max(dp[i-1], p[i] - p[j] + dp[j-2]) fpr j = 0... i-1
