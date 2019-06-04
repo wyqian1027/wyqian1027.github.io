@@ -22,7 +22,7 @@
   font-size: 18px;
   color: #2196F3;
   display: block;
-  color: #68336B;
+  color: #aa5578;
   font-weight: bold;
 }
 
@@ -34,11 +34,13 @@
 .sidenav .problem {
   padding: 6px 8px 6px 59px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   color: black;
   display: block;
   font-weight: normal;
-  text-indent:-1.9em;
+  text-indent:-2.2em;
+  font-family: sans-serif;
+  /*line-height: 1.4em;*/
 }
 
 .sidenav .problem:hover  {
@@ -67,7 +69,7 @@
   padding: 0px 10px;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
   .sidenav {
     padding-top: 15px;
     width: 50%;

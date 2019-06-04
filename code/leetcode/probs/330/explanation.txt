@@ -1,0 +1,6 @@
+Key Observation:
+
+Suppose [1, miss) is already covered. We need to pick x <= miss to cover miss.
+Note that [1, miss) + [x, x + miss) -> [1, x + miss). To maximize the gain, we pick x = miss.
+
+For each iteration, we pick x < miss. If x in nums, use it. Otherwise pick miss from patch.
