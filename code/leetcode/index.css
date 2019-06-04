@@ -51,8 +51,14 @@
   background: #f5f9fa;  
 }
 
+.problem-type, #about {
+  margin-top: 10px;  
+  font-family: 'helvetica';
+  text-transform: uppercase; 
+}
+
 .problem-type:hover {
-  text-decoration: underline;
+  text-transform: lowercase;
 }
 
 .main {
@@ -99,7 +105,7 @@
     margin-top: 5px;
     /*padding: 0px;*/
     /*font-family: 'Monaco';*/
-    max-height: 2000px;
+    max-height: 2500px;
 }
 
 #p-explain {

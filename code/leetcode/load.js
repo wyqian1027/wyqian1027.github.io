@@ -90,6 +90,7 @@ var numProblems = allProblems.length;
 function setAbout(){
     aboutBtn.style.backgroundColor = "#f5f9fa";
     prevClick.style.backgroundColor = "#eee";
+    prevClick.style.fontWeight = "";
     prevClick = aboutBtn;
     pTitle.style.display = "block";
     pTitle.innerHTML = "LeetCode Problem Solving Workbook";
