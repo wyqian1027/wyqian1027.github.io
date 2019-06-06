@@ -1,0 +1,31 @@
+class Solution:
+    def longestConsecutive(self, root: TreeNode) -> int:
+        
+        if not root: return 0
+        
+        self.ans = 0
+        
+        def dfs(root, curLen, curVal):
+            
+            if not root: return
+
+            if root.val == curVal + 1:
+                self.ans = max(self.ans, curLen + 1)
+            else:
+                self.ans = max(self.ans, curLen)
+            
+            if root.left: 
+                if root.val == curVal + 1:
+                    dfs(root.left, curLen + 1, root.val)
+                else:
+                    dfs(root.left, 1, root.val)
+                    
+            if root.right: 
+                if root.val == curVal + 1:
+                    dfs(root.right, curLen + 1, root.val)
+                else:
+                    dfs(root.right, 1, root.val)
+                    
+        dfs(root, 0, root.val - 1)
+        
+        return self.ans

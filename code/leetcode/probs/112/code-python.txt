@@ -1,7 +1,5 @@
 # 1. DFS
-
 class Solution:
-
     def hasPathSum(self, root, target):
         
         def dfs(root, curSum):
@@ -18,9 +16,7 @@ class Solution:
         return dfs(root, 0)
 
 # 2. Stack, Iteration
-
 class Solution:
-
     def hasPathSum(self, root, target):
         
         if not root:
@@ -38,15 +34,3 @@ class Solution:
                 stack.append((node.right, s + node.right.val))
         
         return False
-                
-            
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        

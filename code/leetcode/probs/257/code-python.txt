@@ -2,24 +2,16 @@ class Solution:
     def binaryTreePaths(self, root):
         
         def dfs(root, path, res):
-            
-            if not root:
-                return
-            
             if not root.left and not root.right:
                 res.append(path)
                 return
-            
             if root.left:
                 dfs(root.left, path + "->" + str(root.left.val), res)
             if root.right:
                 dfs(root.right, path + "->" + str(root.right.val), res)
                 
-        if not root: 
-            return []
-        
+        if not root: return []
         res = []
-        
         dfs(root, str(root.val), res)
         
         return res
