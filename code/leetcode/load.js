@@ -86,7 +86,16 @@ allProblems.forEach(function(eachP){
 });
 
 var numProblems = allProblems.length;
-
+var tag1 = [["Array", "ARRAY"], ["Subarray", "SUBARRY"], ["Subsequence", "SUBSEQUENCE"], ["Subset", "SUBSET"], ["Stack", "STACK"],
+            ["LinkedList","LINKEDLIST"], ["Heap", "HEAP"], ["DP-1D", "DP-1D"], ["DP-2D", "DP-2D"], ["DP-Cache", "DP-CACHE"],
+            ["GREEDY", "GREEDY"], ["Binary Tree", "BT"], ["Binary Tree Traversal", "BTT"], ["N-ary Tree", "N-ary"], ["Trie", "TRIE"],
+            ["Divide & Conquer", "D&C"], ["Backtracking", "BACKTRACKING"], ["Graph", "GRAPH"], ["Sorting", "SORTING"], ["Union-Find", "UF"],
+            ["Design", "DESIGN"]];
+var tag2 = [["# N Sum", "n-sum"], ["# Word Break", "word-break"], ["# Word Ladder", "word-ladder"], ["# Palindrome" , "palindrome"],
+            ["# Parenthesis", "parenthesis"], ["# Stock Problems", "stock"], ["# Robbery Problems", "robbery"], ["# Serialization", "serialization"],
+            ["# Path", "path"], ["# Permutations", "permutations"], ["# Lowest Common Ancestor", "lca"], ["# Tree Convert", "tree-convert"],
+            ["# Iterator", "iterator"]];
+            
 function setAbout(){
     aboutBtn.style.backgroundColor = "#f5f9fa";
     prevClick.style.backgroundColor = "#eee";
@@ -95,11 +104,24 @@ function setAbout(){
     pTitle.style.display = "block";
     pTitle.innerHTML = "LeetCode Problem Solving Workbook";
     pDesp.style.display = "block";
-    pDesp.innerHTML = `
-    Total Number of Problems: ${numProblems}<p>Please let me know if there is any mistake or typo. Thank you!<p>
+    pDesp.innerHTML = `<br>
+    <p style="font-size: 22px">Total Number of Problems: ${numProblems}</p>
+    <br><p>
+    ${this.tag1.map((item, i) => 
+        `<a class="tags" style="color: #518EEB;  font-size: 23px;" href="#${item[1]}"> ${item[0]}</a>
+        `).join('&nbsp; ')}
+    </p>
+    <p>
+    ${this.tag2.map((item, i) => 
+        `<a class="tags" style="color: #518EEB; font-size: 23px;" href="#${item[1]}"> ${item[0]}</a>
+        `).join('&nbsp; ')}
+    </p>
+
     <br>
     <br>
-    <a style="position: absolute; down: 0" title="Go Back" href="https://wyqian1027.github.io/public/coding.html">Go Back <i class="fas fa-igloo"></i></a><br>`;    
+    <br>
+    <br>
+    <a style="position: absolute; down: 0" title="Go Back" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i> Go Back To HomePage</a><br>`;    
 }
 
 aboutBtn.addEventListener("click", function(){

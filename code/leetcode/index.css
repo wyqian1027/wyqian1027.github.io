@@ -20,7 +20,7 @@
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 18px;
-  color: #2196F3;
+  /*color: #2196F3;*/
   display: block;
   color: #aa5578;
   font-weight: bold;
@@ -122,4 +122,19 @@
   font-size: 0.90em;
   /*font-family: 'helvetica';*/
 
+}
+
+.tags:hover {
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: #F2FFC7;
+}
+
+.top-right-corner{
+   position:absolute;
+   top:20px;
+   right:20px;
+   color: indigo;
+   font-weight: bold;
+   background-color: #F2FFC7;
 }
