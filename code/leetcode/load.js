@@ -86,12 +86,12 @@ allProblems.forEach(function(eachP){
 });
 
 var numProblems = allProblems.length;
-var tag1 = [["Array", "ARRAY"], ["Subarray", "SUBARRY"], ["Subsequence", "SUBSEQUENCE"], ["Subset", "SUBSET"], ["Stack", "STACK"],
+var tag1 = [["Array", "ARRAY"], ["Subarray", "SUBARRY"], ["Subsequence", "SUBSEQUENCE"], ["Subset", "SUBSET"], ["String", "STRING"], ["Stack", "STACK"],
             ["LinkedList","LINKEDLIST"], ["Heap", "HEAP"], ["DP-1D", "DP-1D"], ["DP-2D", "DP-2D"], ["DP-Cache", "DP-CACHE"],
-            ["GREEDY", "GREEDY"], ["Binary Tree", "BT"], ["Binary Tree Traversal", "BTT"], ["N-ary Tree", "N-ary"], ["Trie", "TRIE"],
+            ["GREEDY", "GREEDY"], ["Binary Tree", "BT"], ["Binary Tree Traversal", "BTT"], ["N-ary Tree", "N-ary"], ["Trie", "TRIE"], ["BST", "BST"],
             ["Divide & Conquer", "D&C"], ["Backtracking", "BACKTRACKING"], ["Graph", "GRAPH"], ["Sorting", "SORTING"], ["Union-Find", "UF"],
             ["Design", "DESIGN"]];
-var tag2 = [["# N Sum", "n-sum"], ["# Word Break", "word-break"], ["# Word Ladder", "word-ladder"], ["# Palindrome" , "palindrome"],
+var tag2 = [["# N Sum", "n-sum"], ["# Word Break", "word-break"], ["# Word Ladder", "word-ladder"], ["# Prefix", "prefix"], ["# Palindrome" , "palindrome"],
             ["# Parenthesis", "parenthesis"], ["# Stock Problems", "stock"], ["# Robbery Problems", "robbery"], ["# Serialization", "serialization"],
             ["# Path", "path"], ["# Permutations", "permutations"], ["# Lowest Common Ancestor", "lca"], ["# Tree Convert", "tree-convert"],
             ["# Iterator", "iterator"]];

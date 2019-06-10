@@ -1,0 +1,1 @@
+Must use StringBuilder for much better performance.
