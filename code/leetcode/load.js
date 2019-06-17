@@ -87,11 +87,11 @@ allProblems.forEach(function(eachP){
 
 var numProblems = allProblems.length;
 var tag1 = [["Array", "ARRAY"], ["Subarray", "SUBARRY"], ["Subsequence", "SUBSEQUENCE"], ["Subset", "SUBSET"], ["String", "STRING"], ["Mathematics", "MATH"], ["Stack", "STACK"],
-            ["LinkedList","LINKEDLIST"], ["Heap", "HEAP"], ["DP-1D", "DP-1D"], ["DP-2D", "DP-2D"], ["DP-Cache", "DP-CACHE"],
+            ["LinkedList","LINKEDLIST"], ["Heap", "HEAP"], ["HashMap", "HASHMAP"], ["DP-1D", "DP-1D"], ["DP-2D", "DP-2D"], ["DP-Cache", "DP-CACHE"],
             ["GREEDY", "GREEDY"], ["Binary Tree", "BT"], ["Binary Tree Traversal", "BTT"], ["N-ary Tree", "N-ary"], ["Trie", "TRIE"], ["BST", "BST"],
             ["Divide & Conquer", "D&C"], ["Backtracking", "BACKTRACKING"], ["BFS", "BFS"], ["Graph", "GRAPH"], ["Sorting", "SORTING"], ["Union-Find", "UF"],
             ["Games", "GAME"], ["Design", "DESIGN"]];
-var tag2 = [["# N Sum", "n-sum"], ["# Word Break", "word-break"], ["# Word Ladder", "word-ladder"], ["# Prefix", "prefix"], ["# Palindrome" , "palindrome"],
+var tag2 = [["# N Sum", "n-sum"], ["# Words", "words"], ["# Prefix", "prefix"], ["# Palindrome" , "palindrome"],
             ["# Parenthesis", "parenthesis"], ["# Stock Problems", "stock"], ["# Robbery Problems", "robbery"], ["# Edit Distance","editDistance"], ["# Serialization", "serialization"],
             ["# Path", "path"], ["# Permutations", "permutations"], ["# Lowest Common Ancestor", "lca"], ["# Tree Convert", "tree-convert"],
             ["# Iterator", "iterator"]];
@@ -106,15 +106,15 @@ function setAbout(){
     pDesp.style.display = "block";
     pDesp.innerHTML = `<br>
     <p style="font-size: 22px">Total Number of Problems: ${numProblems}</p>
-    <br><p>
+    <br><p style="line-height: 1.5;">
     ${this.tag1.map((item, i) => 
-        `<a class="tags" style="color: #518EEB;  font-size: 23px;" href="#${item[1]}"> ${item[0]}</a>
+        `<a class="tags" href="#${item[1]}"> ${item[0]}</a>
         `).join('&nbsp; ')}
     </p>
     <br>
-    <p>
+    <p style="line-height: 1.5;">
     ${this.tag2.map((item, i) => 
-        `<a class="tags" style="color: #518EEB; font-size: 23px;" href="#${item[1]}"> ${item[0]}</a>
+        `<a class="tags" href="#${item[1]}"> ${item[0]}</a>
         `).join('&nbsp; ')}
     </p>
 
