@@ -301,7 +301,8 @@ pre.prettyprint {
     font-family: 'Monaco','Menlo', 'Ubuntu Mono','Consolas','source-code-pro',monospace;
     /*background-color: #E3F6FE;*/
     /*background-color: #E3ECFE;*/
-    background-color: #EFF1FF;
+    /*background-color: #EFF1FF;*/
+    background-color: #eee;
     /*background-color: #F7F7F7;*/
     border: none !important;
     width: auto;
