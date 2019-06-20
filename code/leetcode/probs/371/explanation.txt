@@ -1,0 +1,4 @@
+Bit Trick: (intuition: sum = difference + common << 1)
+a + b = a ^ b + (a & b) << 1
+
+A bit tricky with Python, since it does not have infinity long bit ( or 64 bit ) for integers.
