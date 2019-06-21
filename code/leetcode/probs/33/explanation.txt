@@ -1,0 +1,5 @@
+Key Observation: 
+
+if nums[lo] <= nums[m]: left side is sorted.
+
+if nums[lo] > nums[m]: right side is sorted.

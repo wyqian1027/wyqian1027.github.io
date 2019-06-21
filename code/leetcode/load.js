@@ -86,7 +86,7 @@ allProblems.forEach(function(eachP){
 });
 
 var numProblems = allProblems.length;
-var tag1 = [["Bit Manipulation", "BIT"], ["Array", "ARRAY"], ["Subarray", "SUBARRY"], ["Subsequence", "SUBSEQUENCE"], ["Subset", "SUBSET"], ["String", "STRING"], ["Mathematics", "MATH"], ["Stack", "STACK"],
+var tag1 = [["Bit Manipulation", "BIT"], ["Array", "ARRAY"], ["Binary Search", "BinarySearch"], ["Subarray", "SUBARRY"], ["Subsequence", "SUBSEQUENCE"], ["Subset", "SUBSET"], ["String", "STRING"], ["Mathematics", "MATH"], ["Stack", "STACK"],
             ["LinkedList","LINKEDLIST"], ["Heap", "HEAP"], ["HashMap", "HASHMAP"], ["DP-1D", "DP-1D"], ["DP-2D", "DP-2D"], ["DP-Cache", "DP-CACHE"],
             ["GREEDY", "GREEDY"], ["Binary Tree", "BT"], ["Binary Tree Traversal", "BTT"], ["N-ary Tree", "N-ary"], ["Trie", "TRIE"], ["BST", "BST"],
             ["Divide & Conquer", "D&C"], ["Backtracking", "BACKTRACKING"], ["BFS & DFS", "BFSDFS"], ["Graph", "GRAPH"], ["Sorting", "SORTING"], ["Union-Find", "UF"],
