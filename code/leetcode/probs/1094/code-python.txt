@@ -1,0 +1,25 @@
+# Can be further optimized!
+
+from heapq import heappush, heappop
+
+class Solution:
+    
+    def carPooling(self, trips: List[List[int]], cap: int) -> bool:
+        
+        trips.sort(key = lambda x: x[1]) # sort by start distance
+        
+        h = []       
+        num = 0
+        c = 0
+        
+        for trip in trips:
+            
+            while h and h[0][0] <= trip[1]:
+                num -= heappop(h)[1]           # get rid of old passengers
+                
+            num += trip[0]                     # add new passenger
+            heappush(h, (trip[2], trip[0], c))
+            c += 1
+            if num > cap: return False
+            
+        return True

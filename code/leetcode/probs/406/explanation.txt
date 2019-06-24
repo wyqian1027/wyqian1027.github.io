@@ -1,0 +1,11 @@
+Key Observation: Higher Heights cannot "see" Lower Heights
+
+Sort h Descendingly, k Ascendingly.
+(7, 0), (7, 1)
+(7, 0), (6, 1), (7, 1)
+...
+
+O(NlogN)
+
+PS: One can also do this ascendingly, since lower height must have k elements in front of it.
+However, it is O(N^2).
