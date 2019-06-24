@@ -1,5 +1,4 @@
-# Can be further optimized!
-
+# 1. Adapting from Meeting Room II:
 from heapq import heappush, heappop
 
 class Solution:
@@ -22,4 +21,38 @@ class Solution:
             c += 1
             if num > cap: return False
             
+        return True
+        
+# 2. Simplify using HashMap or even Array to achieve O(N) or O(1)
+
+class Solution:
+    
+    def carPooling(self, trips, cap):
+        
+        d = {}
+        
+        for n, s, e in trips:
+            d[s] = d.get(s, 0) + n
+            d[e] = d.get(e, 0) - n
+            
+        for k in sorted(d.keys()):
+            cap -= d[k]
+            if cap < 0: return False
+        
+        return True
+
+class Solution:
+
+    def carPooling(self, trips, cap):
+        
+        record = [0]*1001
+        
+        for n, s, e in trips:
+            record[s] += n
+            record[e] -= n
+        
+        for r in record:
+            cap -= r
+            if cap < 0: return False
+        
         return True
