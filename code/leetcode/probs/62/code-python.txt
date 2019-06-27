@@ -1,4 +1,4 @@
-1. DP 1D
+# 1. DP 1D
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
@@ -14,7 +14,8 @@ class Solution:
                     
         return dp[-1]
    
-2. Combinatorics     
+# 2. Combinatorics     
+# Check Java solution for better implementation
 
 from math import factorial as f
 class Solution:

@@ -1,0 +1,3 @@
+Baseline = Flip Game II
+Add HashMap DP for better performance.
+Use Bit or String to encode key values for HashMap 
