@@ -1,0 +1,2 @@
+O(N) for push, O(1) for pop, top, empty.
+It is better to implement queue with other data structures.

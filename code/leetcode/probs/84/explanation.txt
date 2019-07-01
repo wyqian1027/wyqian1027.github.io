@@ -1,0 +1,3 @@
+The stack Solution is O(N) Time, O(N) Space.
+The stack records the indecies of increasing heights.
+Idea: when curH < stack.peek(), then pop and update the maximum area

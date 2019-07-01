@@ -1,0 +1,20 @@
+class Solution:
+    def lengthLongestPath(self, inputs: str) -> int:
+        
+        inputs = inputs.split("\n")
+        stack = []
+        maxLen = 0;
+
+        for path in inputs:
+
+            level = path.count("\t")
+            while stack and level < len(stack):
+                stack.pop()
+
+            file = path[level:]
+            if "." in file:
+                maxLen = max(maxLen, len(file) +sum(stack))
+            else:
+                stack.append(len(file)+1)
+    
+        return maxLen

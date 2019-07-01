@@ -5,9 +5,9 @@
     <link rel="shortcut icon" href="../../public/img/favicon-96x96.png" type="image/x-icon">
     <!--<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>-->
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <!--<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>-->
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>    <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../public/css/homepage.css">
     <link rel="stylesheet" type="text/css" href="index.css">
     <title>LeetCode Problem Solving Workbook</title>
@@ -101,6 +101,7 @@
   <a id="SUBSEQUENCE" class="problem-type">Subsequence</a><div class="problem-cluster">
   <a id="128" class="problem" href="#" >128. Longest Consecutive Sequence</a>
   <a id="300" class="problem" href="#" >300. Longest Increasing Subsequence</a>
+  <a id="354" class="problem" href="#" >354. Russian Doll Envelopes</a>
   <a id="334" class="problem" href="#" >334. Increasing Triplet Subsequence</a>
   <a id="491" class="problem" href="#" >491. Increasing Subsequences</a>
   <a id="673" class="problem" href="#" >673. Number of Longest Increasing Subsequence</a>
@@ -175,12 +176,22 @@
   </div>
   
   <a id="STACK" class="problem-type">STACK</a><div class="problem-cluster">
+  <a id="84" class="problem" href="#" >&nbsp; 84. Largest Rectangle in Histogram</a>
+  <a id="85" class="problem" href="#" >&nbsp; 85. Maximal Rectangle</a>
+  <a id="155" class="problem" href="#" >155. Min Stack</a>
+  <a id="232" class="problem" href="#" >232. Implement Queue using Stacks</a>
+  <a id="225" class="problem" href="#" >225. Implement Stack using Queues</a>
+  <a id="71" class="problem" href="#" >&nbsp; 71. Simplify Path</a>
+  <a id="388" class="problem" href="#" >388. Longest Absolute File Path</a>
   <a id="150" class="problem" href="#" >150. Evaluate Reverse Polish Notation</a>
   <a id="224" class="problem" href="#" >224. Basic Calculator I</a>
   <a id="227" class="problem" href="#" >227. Basic Calculator II</a>
   <a id="772" class="problem" href="#" >772. Basic Calculator III</a>
+  <a id="394" class="problem" href="#" >394. Decode String</a>
+  <a id="385" class="problem" href="#" >385. Mini Parser</a>
   <a id="1087" class="problem fix1000" href="#" >1087. Brace Expansion</a>
   <a id="1096" class="problem fix1000" href="#" >1096. Brace Expansion II</a>
+  <a id="1106" class="problem fix1000" href="#" >1106. Parsing A Boolean Expression</a>
   </div>
   
   <a id="LINKEDLIST" class="problem-type">Linked List</a><div class="problem-cluster">
@@ -236,16 +247,19 @@
   
   <a id="DP-1D" class="problem-type">DP 1D</a><div class="problem-cluster">
   <a id="91" class="problem" href="#" >&nbsp; 91. Decode Ways</a>
-  <a id="120" class="problem" href="#" >&nbsp; 120. Triangle</a>
-  <a id="279" class="problem" href="#" >&nbsp; 279. Perfect Squares</a>
+  <a id="120" class="problem" href="#" >120. Triangle</a>
+  <a id="279" class="problem" href="#" >279. Perfect Squares</a>
+  <a id="322" class="problem" href="#" >322. Coin Change</a>
   <a id="931" class="problem" href="#" >931. Minimum Falling Path Sum</a>
   <a id="983" class="problem" href="#" >983. Minimum Cost For Tickets</a>
   <a id="1024" class="fix1000 problem" href="#" >1024. Video Stitching</a>
+  <a id="1105" class="fix1000 problem" href="#" >1105. Filling Bookcase Shelves</a>
   </div>
   
   <a id="DP-2D" class="problem-type">DP 2D</a><div class="problem-cluster">
   <a id="10" class="problem" href="#" >&nbsp; 10. Regular Expression Matching</a>
   <a id="304" class="problem" href="#" >304. Range Sum Query 2D - Immutable</a>
+  <a id="312" class="problem" href="#" >312. Burst Balloons</a>
   <a id="712" class="problem" href="#" >712. Minimum ASCII Delete Sum for Two Strings</a>
   </div>
   
@@ -286,7 +300,7 @@
   <a id="652" class="problem" href="#" >652. Find Duplicate Subtrees</a>
   <a id="662" class="problem" href="#" >662. Maximum Width of Binary Tree</a>
   <a id="863" class="problem" href="#" >863. All Nodes Distance K in Binary Tree</a>
-  <a id="5084" class="problem" href="#" >5084. Insufficient Nodes in Root to Leaf Paths</a>
+  <a id="5084" class="problem fix1000" href="#" >5084. Insufficient Nodes in Root to Leaf Paths</a>
   </div>
 
   <a id="BTT" class="problem-type">Binary Tree Traversal</a><div class="problem-cluster">
@@ -296,6 +310,7 @@
   <a id="102" class="problem" href="#" >102. Binary Tree Level Order Traversal I</a>
   <a id="107" class="problem" href="#" >107. Binary Tree Level Order Traversal II</a>
   <a id="103" class="problem" href="#" >103. Binary Tree Zigzag Level Order Traversal</a>
+  <a id="1104" class="problem fix1000" href="#" >1104. Path In Zigzag Labelled Binary Tree</a>
   <a id="199" class="problem" href="#" >199. Binary Tree Right Side View</a>
   <a id="105" class="problem" href="#" >105. Construct Binary Tree from Preorder and Inorder Traversal</a>
   <a id="106" class="problem" href="#" >106. Construct Binary Tree from Inorder and Postorder Traversal</a>

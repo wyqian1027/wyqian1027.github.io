@@ -1,0 +1,3 @@
+Must need two stacks. One for pushing, one for poping. One can decide when to move elements from pushstack to popstack, either in poping or peeking. Maybe in peek is more natural.
+
+Amortized O(1) time

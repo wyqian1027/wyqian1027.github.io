@@ -1,0 +1,1 @@
+<a href="https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/discuss/324717/Fast-Python-Solution-O(LogN)-No-Levels-Needed">Explanation</a>

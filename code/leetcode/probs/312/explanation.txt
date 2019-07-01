@@ -1,0 +1,7 @@
+O(N^3) TIME, O(N^2) SPACE
+
+dp[i][j] records the maximum profit inside (i, j), excluding i and j.
+
+The DP is done by considering the location of the last balloon to burst.
+
+dp[i][j] = max(dp[i][j], nums[i]*nums[k]*nums[j]+ dp[i][k] + dp[j][k]) for k in [i+1, j-1]
