@@ -1,0 +1,2 @@
+#1. Topological Sorting is great for this problem.
+#2. It can also be done with DFS.

@@ -1,0 +1,1 @@
+DFS can be done with recursion stack or just colors. Those two are equivalent.

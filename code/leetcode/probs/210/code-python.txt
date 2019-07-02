@@ -1,23 +1,56 @@
+# 1. BFS Topological Sorting
+
 class Solution:
-    def findOrder(self, n: int, pres: List[List[int]]) -> List[int]:
+    
+    def findOrder(self, n: int, preq: List[List[int]]) -> List[int]:
         
-        #graph: pre -> course
         graph = collections.defaultdict(list)
-        indegrees = [0]*n
-        for crs, pre in pres:
-            graph[pre].append(crs)
-            indegrees[crs] += 1
+        indegree = [0]*n
+        for toV, fromV in preq:
+            graph[fromV].append(toV)
+            indegree[toV] += 1
         
-        zeros = collections.deque([crs for crs in range(n) if indegrees[crs] == 0])
-        ans = []
+        start = [x for x in range(n) if indegree[x] == 0]
+        q = collections.deque(start)
+        res = []
         
-        while zeros:
-            crs = zeros.pop()
-            ans.append(crs)
+        while q:
+            node = q.popleft()
+            res.append(node)
+            for nei in graph[node]:
+                indegree[nei] -= 1
+                if indegree[nei] == 0:
+                    q.append(nei)
+        
+        return res if len(res) == n else []
+
+# 2. DFS with colors + flag
+
+class Solution:
+    
+    def findOrder(self, n: int, preq: List[List[int]]) -> List[int]:
+        
+        self.graph = collections.defaultdict(list)
+        for v, u in preq:
+            self.graph[u].append(v)
             
-            for nxt in graph[crs]:
-                indegrees[nxt] -= 1
-                if indegrees[nxt] == 0:
-                    zeros.append(nxt)
+        visited = [0]*n
+        stack = []
+        self.flag = True
         
-        return ans if len(ans) == n else []
+        for i in range(n):
+            if visited[i] == 0:
+                self.dfs(i, stack, visited)
+        return stack if len(stack) == n else []
+    
+    def dfs(self, node, stack, visited):
+        if not self.flag: return
+        visited[node] = 1
+        for nei in self.graph[node]:
+            if visited[nei] == 0:
+                self.dfs(nei, stack, visited)
+            if visited[nei] == 1:
+                self.flag = False
+                return
+        visited[node] = 2
+        stack.insert(0, node)

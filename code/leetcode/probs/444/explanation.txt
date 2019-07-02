@@ -1,0 +1,2 @@
+In some way the problem is not well defined with lots of edge cases.
+The general idea is to represent seqs into graphs and indegrees, then do topological sort.
