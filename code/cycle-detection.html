@@ -14,11 +14,11 @@
 
 <h2 class="article-title">
     Cycle Detection
-</h2>
+</h2><br>
 <div style="text-align: center">
-    <img src="assets/img/cycle.png" height=300>
-    <img src="assets/img/llcycle.png" height=300>
-</div>
+    <img src="assets/img/cycle.png" height=200>
+    <img src="assets/img/llcycle.png" height=200>
+</div><br>
 <ul class="Aclass">
 	<li class="coding-text">
 	    
@@ -89,7 +89,7 @@ def hasCycle(n, graph):
                 return True
     return False
 
-def dfs(node, visited, recStack):
+def dfs(node, visited, recStack, graph):
     visited[node] = True                # processed
     recStack[node] = True               # being processed
     for nei in graph[node]:
@@ -115,7 +115,7 @@ def hasCycle(n, graph):
                 return True
     return False
 
-def dfs(node, colors):
+def dfs(node, colors, graph):
     colors[node] = 1              # being processed
     for nei in graph[node]:
         if colors[nei] == 0 and dfs(nei, colors):
@@ -141,11 +141,46 @@ def hasCycle(n, graph, indegrees):
         count += 1
     return count == n
 </pre>    
-    <p>It is such a beautiful algorithm, especially powerful and widely used in topological sorting problems, such as finding the longest increasing sequence in matrix, finding super sequences, and finding topological order for foreign languages. Find more problems <a href="https://wyqian1027.github.io/public/code/leetcode/solving-leetcode.html#TS"> here</a>.</p>
+    <p>It is such a beautiful algorithm, especially powerful and widely used in topological sorting problems, such as finding the longest increasing sequence in matrix, finding super sequences, and finding topological order for foreign languages. Find more problems on topological sorting <a href="https://wyqian1027.github.io/public/code/leetcode/solving-leetcode.html#TS"> here</a>.</p>
     </li>
     <li class="coding-text">
-	    <a id="undirected">3. Undirected Graph (coming soon)</a>
-    </li>
+	    <a id="undirected">3. Undirected Graph</a>
+	    <p>For undirected graph, edges are bi-drectional. We can detect cycles using <span class="method"> DFS with slight modification</span>, achieveing <span class="equation">O(V+E)</span> time. Moreover, we can use <span class="method">union find </span>to detect cycles in linear <span class="equation">O(E)</span> time.</p>
+        <p>For DFS to work, we need to set a parent variable to prevent the node to talk to its direct parent. When we find a neighbor that is visited and is not a direct parent, then it must be an anscester which means a cycle is found.</p>
+<pre class="prettyprint lang-python3 ">
+def hasCycle(n, graph):
+    visited = [False]*n
+    for node in range(n):
+        if not visited[node]:
+            if dfs(node, visited, -1):
+                return True
+    return False
+
+def dfs(node, visited, parent, graph):
+    visited[node] = True
+    for nei in graph[node]:
+        if not visited[nei]:
+            if dfs(nei, visited, node):
+                return True
+        elif nei != parent:
+            return True
+    return False
+</pre>   
+    <p>Now if we use the List Implementation of UF Class defined in the <a href="https://wyqian1027.github.io/public/code/union-find.html">earlier note</a>, we have the following Union Find code for detecting cycles in undirected graph: </p>
+<pre class="prettyprint lang-python3 ">
+import UF
+
+def hasCycle(n, edges):   # Here we just take all edges, as usually it is even easier to obtain than graphs
+    graph = UF(n)
+    for u, v in edges:
+        ur = graph.find(u)
+        vr = graph.find(v)
+        if ur == vr: return True
+        graph.union(ur, vr)
+    return False
+</pre>    
+    <br>
+</li>
 </ul>
 <br>
 
