@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang Qian's Coding</title>
+	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+</head>
+<body>
+
+
+<h2 class="article-title">
+    Cycle Detection
+</h2>
+<div style="text-align: center">
+    <img src="assets/img/cycle.png" height=300>
+    <img src="assets/img/llcycle.png" height=300>
+</div>
+<ul class="Aclass">
+	<li class="coding-text">
+	    
+	    <a>Motivations</a><br>
+        <p>Graphs are one of the most common data structures. Many times, it is extremely important for us to detect if the graph contains a cycle, such scheduling problems, traffic problems etc. 
+        Knowledge of cycles in the graph leads to different algorithmic optimizations.</p>
+        <p>In this note, I will discuss primary techniques of cycle detections in,</p>
+        <p>1. <a href="#linkedlist">Linked List</a></p>
+        <p>2. <a href="#directed">Directed Graph</a></p>
+        <p>3. <a href="#undirected">Undirected Graph</a></p>
+        <p>PS: Nodes are in singly linked list with two fields, <span class="equation">val</span> and <span class="equation">next</span>, and both types of graphs have <span class="equation">n</span> vertices labelled from <span class="equation">0,1,2,...,n-1</span>, with edge informations stored in adjacent list called <span class="equation">graph</span>.</p>
+    </li>
+    
+    <li class="coding-text">
+	    <a id="linkedlist">1. Linked List</a>
+	    <p>For Singly Linked lists, the optimized method for detecting cycle is the so-called<span class="method">Floyd's</span> "Tortoise and Hare" <span class="method">cycle-finding algorithm</span>.</p>
+	    <p>The idea is that one uses a <span class="method">slow</span> pointer and a <span class="method">fast</span> pointer to traverse the list. Assuming the cycle length is finite, the fast pointer much at one time overtakes the slow pointer in the cycle. For general case, we give the slow pointer speed of 1 and the fast pointer speed of 2. The code is very simple.</p>
+<pre class="prettyprint lang-python3 ">
+def hasCycle(head):
+    fast = slow = head
+    while fast and fast.next and fast.next.next:
+        fast = fast.next.next
+        slow = slow.next
+        if fast == slow: return True
+    return False
+</pre>
+        <p>We can even find the starting point of the cycle: Once fast and slow pointer meet, move the slow pointer to the head of the linked list. Then increment both pointers with speed 1. The final place they meet will be the starting point of the cycle. </p>
+        <p>Here is the short proof mathematically: Observe that <span class="equation"> m*R+x+c = 2(n*R+x+c)</span> gives us <span class="equation"> x+c = (m-2n)*R</span>, where <span class="equation">R</span> is the cycle length, <span class="equation">x</span> is the distance two pointers first met, <span class="equation">c</span> is the distance from head to starting point, <span class="equation">m, n</span> are integers. The relation tells us <span class="equation">x + c</span> is divisible by cycle length. 
+        So incrementing <span class="method"> c </span> steps must give us the starting point!</p>
+<pre class="prettyprint lang-python3 ">
+def findCycleStart(head):
+    fast = slow = head
+    while fast and fast.next and fast.next.next:
+        fast = fast.next.next
+        slow = slow.next
+        if fast == slow: 
+            slow = head
+            while fast != slow:
+                fast = fast.next
+                slow = slow.next
+            return fast
+    return None
+</pre>       
+    </li>
+    <li class="coding-text">
+	    <a id="directed">2. Directed Graph</a>
+	    <p>For directed graphs, cycle detections can be thought of as finding <span class="method">"back edge"</span> in the graph, a.k.a. finding the vertex being processed while processing its children. We can use either <span class="method">DFS with states/colors </span>or <span class="method">Kahn's algorithms for Topological Sorting (BFS in nature)</span>. Both methods achieve <span class="equation">O(V+E)</span> time complexity. See the figure below (Source: GeeksforGeeks) if you need review different types of edges in a directed graph:</p>
+	    <div style="text-align: center">
+            <img src="assets/img/edges.jpg" height=400>
+        </div><br>
+        <div style="margin-left: 15%">
+        <span class="method2">Tree Edge</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;   Edge present in the tree obtained after applying DFS. Example: all the Green edges<br>
+        <span class="method2">Forward Edge</span>&nbsp; &nbsp; &nbsp; Edge (u, v) s.t. v is descendant but not part of the DFS tree. Example: (1, 8)<br>
+        <span class="method2">Back edge</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Edge (u, v) s.t. v is ancestor of edge u but not part of DFS tree. Example: (6, 2)<br>
+        <span class="method2">Cross Edge</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; Edge connecting two node s.t. they do not have any ancestor or descendant relationship between them. Example: (5, 4)<br>
+        </div>
+        <br>
+        <br>
+        
+        <p>Firstly, let us look at one way of <span class="method">DFS implementation of cycle detection</span>, by storing vertices being processed in recStack array to check if the node is a back edge.</p>
+<pre class="prettyprint lang-python3 ">
+def hasCycle(n, graph):
+    visited = [False]*n
+    recStack = [False]*n
+    for node in range(n):
+        if not visited[i]:
+            if dfs(node, visited, recStack):
+                return True
+    return False
+
+def dfs(node, visited, recStack):
+    visited[node] = True                # processed
+    recStack[node] = True               # being processed
+    for nei in graph[node]:
+        if not visited[nei]:
+            if dfs(nei, visited, recStack):
+                return True
+        elif recStack[nei]:
+            return True
+    recStack[node] = False              # finish processing
+    return False
+</pre>
+
+    <p>Another popular way (also my favorite) is to encode DFS states for each vertex is done by using colors, "WHITE", "GRAY" "BLACK", like in the CLRS book. Two methods are entirely equivalent, but this one looks cleaner.</p>
+<pre class="prettyprint lang-python3 ">
+def hasCycle(n, graph):
+    # WHITE (0) = vertex not processed yet
+    # GRAY  (1) = vertex being processed (recStack == True)
+    # BLACK (2) = vertex and all its descendant are processed
+    colors = [0]*n
+    for node in range(n):
+        if colors[node] == 0:
+            if dfs(node, colors):
+                return True
+    return False
+
+def dfs(node, colors):
+    colors[node] = 1              # being processed
+    for nei in graph[node]:
+        if colors[nei] == 0 and dfs(nei, colors):
+            return True
+        if colors[nei] == 1:
+            return True
+    colors[node] = 2              # finish processing
+    return False
+</pre>
+    <br>
+    <p><span class='method'>Kahn's algorithm for Topological sorting</span> is also very powerful in cycle detection. First one need to compute the <span class="method">indegrees of all the nodes</span> and store them in an array or dictionary. Then by using a BFS starting with the 0-indegree nodes, one gradually "peeling" off nodes. <span class="method">If all the nodes are "peeled", the graph is acyclic.</span> Otherwise, there must be a cycle.</p> Here is an implementation, assuming we already got a variable called <span class="equation">indegrees</span> of the indegrees of all the nodes.
+<pre class="prettyprint lang-python3 ">
+def hasCycle(n, graph, indegrees):
+    zeros = [node for node in range(n) if indegrees[node] == 0]
+    queue = collections.deque(zeros)
+    count = 0
+    while queue:
+        node = queue.popleft()
+        for nei in graph[node]:
+            indegrees[nei] -= 1
+            if indegrees[nei] == 0:
+                queue.append(nei)
+        count += 1
+    return count == n
+</pre>    
+    <p>It is such a beautiful algorithm, especially powerful and widely used in topological sorting problems, such as finding the longest increasing sequence in matrix, finding super sequences, and finding topological order for foreign languages. Find more problems <a href="https://wyqian1027.github.io/public/code/leetcode/solving-leetcode.html#TS"> here</a>.</p>
+    </li>
+    <li class="coding-text">
+	    <a id="undirected">3. Undirected Graph (coming soon)</a>
+    </li>
+</ul>
+<br>
+
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i></a>
+	<em>Last updated July 3, 2019 by Wenyang Qian.</em>
+</div>
+
+</body>
+</html>

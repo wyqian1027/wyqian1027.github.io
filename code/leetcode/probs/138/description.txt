@@ -1,0 +1,15 @@
+138. Copy List with Random Pointer
+
+A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+
+Return a deep copy of the list.
+
+Note:
+You must return the copy of the given head as a reference to the cloned list.
+
+<span class="examples">
+<img src="https://discuss.leetcode.com/uploads/files/1470150906153-2yxeznm.png" alt="ex">
+Explanation:
+Node 1's value is 1, both of its next and random pointer points to Node 2.
+Node 2's value is 2, its next pointer points to null and its random pointer points to itself.
+</span>

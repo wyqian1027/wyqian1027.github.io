@@ -19,7 +19,7 @@ body {
 	/*max-width: 1000px;*/
 	/*width: 70%;*/
 	/*padding: 28px;*/
-	margin: 10px ;
+	margin: 10px;
 	/*border: solid #bdc2c7 28px;*/
 	background: #f5f9fa;
 	font-size: 16px;
@@ -307,7 +307,7 @@ pre.prettyprint {
     border: none !important;
     width: auto;
     overflow: auto;
-    max-height: 650px;
+    max-height: 1000px;
     /*font: courier;*/
 }
 
@@ -432,8 +432,15 @@ pre.prettyprint {
     font-weight: bold;
     color: #3B50D6;
     background-color: white;
-
 }
+
+.equation {
+    font-weight: bold;
+    font-family: monospace;
+    color: #3B50D6;
+    background-color: white;
+}
+
 
 .credits {
     font-style: italic
