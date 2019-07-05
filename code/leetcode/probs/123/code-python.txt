@@ -1,3 +1,4 @@
+# DP
 class Solution:
     
     def maxProfit(self, prices: List[int]) -> int:
@@ -14,3 +15,18 @@ class Solution:
                 dp[i][j] = max(dp[i][j-1], prices[j] - low)
         
         return dp[-1][-1]
+
+# With Greedy Algorithms, use four variables, O(1) space is used!
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        maxProfit1 = 0
+        maxProfit2 = 0
+        low1 = float('inf')
+        low2 = float('inf')
+        for price in prices:
+            maxProfit1 = max(maxProfit1, price - low1)
+            low1 = min(low1, price)
+            maxProfit2 = max(maxProfit2, price - low2)
+            low2 = min(low2, price - maxProfit1)
+
+        return maxProfit2

@@ -1,0 +1,2 @@
+XOR works because x^0 = x and x^x = 0, and most importantly XOR is associative,
+(a ^ b ^ c ^ d) ^ (a ^ b ^ c ^ d ^ e) = (a ^ a) ^ (b ^ b) ^ (c ^ c) ^ (d ^ d) ^ e = 0 ^ 0 ^ 0 ^ 0 ^ e = e

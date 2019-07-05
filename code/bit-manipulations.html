@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang Qian's Coding</title>
+	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+</head>
+<body>
+
+
+<h2 class="article-title">
+    Disjoint Set, or Union Find
+</h2>
+<div style="text-align: center">
+    <img src="assets/img/unionfind.png" height=300>
+</div>
+<ul class="Aclass">
+	<li class="coding-text">
+	    <a>Intuitions</a><br>
+        <p>Union-find is an efficient data structure to track of set of elements partitioned into 
+        a number of disjoint subsets. It has the following key operations: </p>
+        <p>1. <span class="method">MakeSet</span>: <strong class="method2">Initialization Step. </strong> Associate each element in the set with a unique <strong>id</strong>, a <strong>rank (size)</strong> of 0, and a <strong>parent</strong> pointing to itself. 
+        </p> 
+        <p>2. <span class="method">Find(x)</span>: <strong class="method2">Find the root/representative.</strong> Follow the chain of parent pointers from element x up until it reaches the root element, whose parent is itself. 
+        This root element is the <strong>representative</strong> of the set in which x belongs to. Path compression is one technique commonly used to flatten the structure of the tree. 
+        The basic idea is that once a root a found, parents of all chained elements are changed to point to that root.</p>
+        <p>3. <span class="method">Union(x, y)</span>: <strong class="method2">Merge the roots if different.</strong> Find the roots of element x and element y respectively. 
+        If the roots are different, <strong>combine</strong> the trees by changing the parent of one root point to the other root.
+        In the worst case, the height of the trees can grow up to \( O(n) \). To prevent this, union by rank or union by size are used. </p>
+        <p>
+        <strong>Time Complexity</strong>: <br>
+        Without neither path compression nor union by rank, the time complexity of both operations will be \( O(n) \). Using both ensures the amortized time per operation is only 
+        \( O(\alpha(n)) \), where the inverse Ackermann function \( \alpha(n) \) is a constant.
+        </p>
+        </p>
+        
+        <p></p>
+<!--<pre class="prettyprint lang-python3">-->
+
+<!--</pre>-->
+    </li>
+    <li class="coding-text">
+	    <a>Python Implementation by: &nbsp;&nbsp;</a>
+        <p style="display: inline; color: DarkGreen; font-size: 1.2em; "><span class="toggle-btn mouse-hover-pointer" style="text-decoration:underline; font-weight: bold">List</span> or <span class="toggle-btn mouse-hover-pointer">Dictionary</span></p>
+<pre id="uf-list" class="prettyprint lang-python3 ">
+class UF:
+    
+    # makeset: init parents and sizes
+    def __init__(self, num):   
+        self.p = list(range(num))   # num is number of elements
+        self.rank = [0] * num
+
+    # find(x) returns the parent of x
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x]) # recursion to compress path
+        return self.p[x]
+        
+        
+    # union(x,y) merge x and y if they are different
+    def union(self, x, y):
+        xr, yr = self.find(x), self.find(y)
+        if xr == yr:
+            return False
+        if self.rank[xr] < self.rank[yr]:   # union by rank
+            xr, yr = yr, xr
+        self.p[yr] = xr
+        if self.rank[xr] == self.rank[yr]:
+            self.rank[xr] += 1
+        return True
+        
+</pre>
+
+<pre id="uf-dict" style="display: none" class="prettyprint lang-python3 ">
+class UF:
+    
+    # makeset: init parents and sizes
+    def __init__(self):
+        self.p = {}
+        self.rank = {}
+
+    # find(x) returns the parent of x
+    def find(self, x):
+        self.p.setdefault(x, x)
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x]) # recursion to compress path
+        return self.p[x]
+
+    # union(x,y) merge x and y if they are different
+    def union(self, x, y):
+        self.rank.setdefault(x, 0)
+        self.rank.setdefault(y, 0)
+        xr, yr = self.find(x), self.find(y)
+        if xr == yr:
+            return False
+        if self.rank[xr] < self.rank[yr]:   # union by rank
+            xr, yr = yr, xr
+        self.p[yr] = xr
+        if self.rank[xr] == self.rank[yr]:
+            self.rank[xr] += 1
+        return True
+</pre>
+    </li>
+    <li class="coding-text">
+	    <a>Applications</a><br>
+	    <p><a href="https://en.wikipedia.org/wiki/Kruskal%27s_algorithm">Kruskal's algorithm of minimum-spanning-tree</a></p>
+         
+    </li>
+    <p></p>
+    <li class="coding-text">
+	    <a>Resources</a><br>
+	    <p><a href="https://www.youtube.com/watch?v=ibjEGG7ylHk">Intro with Visualization Demo</a></p>
+         
+    </li>
+</ul>
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i></a>
+	<em>Last updated February 27, 2019 by Wenyang Qian.</em>
+</div>
+
+<script>
+    var toggleBtns = document.querySelectorAll(".toggle-btn");
+    var ufList = document.querySelector("#uf-list");
+    var ufDict = document.querySelector("#uf-dict");
+    toggleBtns.forEach(function(el){
+        el.addEventListener("click", function(){
+            // console.log("clicked")
+            // console.log("el.innerHTML: " + el.innerHTML)
+            // console.log("this.innerHTML: " + this.innerHTML)
+            if (this.innerHTML == "List") {
+               ufList.setAttribute("style", "display: block");
+               ufDict.setAttribute("style", "display: none");
+               toggleBtns[0].setAttribute("style", "font-weight:bold; text-decoration:underline");
+               toggleBtns[1].setAttribute("style", "font-weight:normal");
+            }
+            if (this.innerHTML == "Dictionary"){
+               ufList.setAttribute("style", "display: none");
+               ufDict.setAttribute("style", "display: block");   
+               toggleBtns[1].setAttribute("style", "font-weight:bold; text-decoration:underline");
+               toggleBtns[0].setAttribute("style", "font-weight:normal");
+            }
+        });        
+    }); 
+
+</script>
+</body>
+</html>
