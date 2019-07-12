@@ -1,0 +1,9 @@
+2D Dynamical Programming in nature. Can be reduced to 1D.
+DFS with memoization is also great.
+
+<pre> a a b c c
+ d b b c a
+ a a d b b c b c a c
+
+ a a   b   c       c
+     d   b   b c a   </pre>

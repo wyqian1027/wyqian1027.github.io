@@ -1,0 +1,4 @@
+DP would work, but not O(NK)
+O(NK) time and O(1) space is achieved by this greedy approach:
+curCost = (prevColor == curColor ? prevSecondMin : prevMin) + cost
+for each house, each color

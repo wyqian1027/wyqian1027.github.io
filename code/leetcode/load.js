@@ -58,6 +58,7 @@ function httpGet(url, callback) {
     xmlhttp.send();    
 }
 
+var htmlBody = document.querySelector("body")
 var allProblems = document.querySelectorAll(".problem");
 var problemDiv = document.querySelector("#sideProblem");
 var pDesp = document.querySelector("#p-desp");
@@ -68,6 +69,7 @@ var textJava = document.querySelector("#text-java");
 var codePython = document.querySelector("#code-python");
 var codeJava = document.querySelector("#code-java");
 var aboutBtn = document.querySelector("#about");
+var darkBtn = document.querySelector("#dark");
 var prevClick = aboutBtn;
 
 
@@ -131,6 +133,20 @@ aboutBtn.addEventListener("click", function(){
     clear();
     setAbout();
 });
+
+
+// var darkStatus = false
+// darkBtn.addEventListener("click", function(){
+//     if (darkStatus === false){
+//         htmlBody.backgroundColor = "black";
+//         htmlBody.color = "white";
+//     } else {
+//         htmlBody.backgroundColor = "white";
+//         htmlBody.color = "black";
+//     }
+    
+//     darkStatus ^= true;
+// })
 
 window.onload = function(){
     setAbout();
