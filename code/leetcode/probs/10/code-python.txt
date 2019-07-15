@@ -1,3 +1,24 @@
+# 1. Recursion: O(2^(T+P))
+
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        
+        if not p and not s:
+            return True
+       
+        if not p and s:
+            return False
+        
+        firstMatch = len(s) > 0 and (p[0] == s[0] or p[0] == '.')
+        
+        if len(p) >= 2 and p[1] == '*':
+            return self.isMatch(s, p[2:]) or \
+                   (firstMatch and self.isMatch(s[1:], p))
+        else:
+            return firstMatch and self.isMatch(s[1:], p[1:])
+
+# 1. DP  O(TP)
+
 class Solution:
     
     def isMatch(self, text, pattern):
