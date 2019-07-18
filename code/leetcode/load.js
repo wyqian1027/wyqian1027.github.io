@@ -93,10 +93,10 @@ var tag1 = [["Bit Manipulation", "BIT"], ["Array", "ARRAY"], ["Binary Search", "
             ["GREEDY", "GREEDY"], ["Binary Tree", "BT"], ["Binary Tree Traversal", "BTT"], ["N-ary Tree", "N-ary"], ["Trie", "TRIE"], ["BST", "BST"],
             ["Divide & Conquer", "D&C"], ["Backtracking", "BACKTRACKING"], ["BFS & DFS", "BFSDFS"], ["Sorting", "SORTING"], ["Graph", "GRAPH"], ["Union-Find", "UF"],
             ["Games", "GAME"], ["Design", "DESIGN"]];
-var tag2 = [["# N Sum", "n-sum"], ["# Words", "words"], ["# Prefix", "prefix"], ["# Palindrome" , "palindrome"],
+var tag2 = [["# N Sum", "n-sum"], ["# Words", "words"], ["# Palindrome" , "palindrome"],
             ["# Parenthesis", "parenthesis"], ["# Stock Problems", "stock"], ["# Robbery Problems", "robbery"], ["# Edit Distance","editDistance"], ["# Serialization", "serialization"],
             ["# Path", "path"], ["# Permutations", "permutations"], ["# Lowest Common Ancestor", "lca"], ["# Tree Convert", "tree-convert"],
-            ["# Iterator", "iterator"], ["# Random", "RANDOM"], ["# Topological Sorting", "TS"]];
+            ["# Iterator", "iterator"], ["# Random", "RANDOM"], ["# Topological Sorting", "TS"], ["# Bonus", "BONUS"]];
             
 function setAbout(){
     aboutBtn.style.backgroundColor = "#f5f9fa";
