@@ -90,7 +90,7 @@ allProblems.forEach(function(eachP){
 var numProblems = allProblems.length;
 var tag1 = [["Bit Manipulation", "BIT"], ["Array", "ARRAY"], ["Binary Search", "BinarySearch"], ["Subarray", "SUBARRY"], ["Subsequence", "SUBSEQUENCE"], ["Subset", "SUBSET"], ["String", "STRING"], ["Mathematics", "MATH"], ["Stack", "STACK"],
             ["LinkedList","LINKEDLIST"], ["Heap", "HEAP"], ["HashMap", "HASHMAP"], ["DP-1D", "DP-1D"], ["DP-2D", "DP-2D"], ["DP-Cache", "DP-CACHE"],
-            ["GREEDY", "GREEDY"], ["Binary Tree", "BT"], ["Binary Tree Traversal", "BTT"], ["N-ary Tree", "N-ary"], ["Trie", "TRIE"], ["BST", "BST"],
+            ["GREEDY", "GREEDY"],  ["INTERVAL", "INTERVAL"], ["Binary Tree", "BT"], ["Binary Tree Traversal", "BTT"], ["N-ary Tree", "N-ary"], ["Trie", "TRIE"], ["BST", "BST"],
             ["Divide & Conquer", "D&C"], ["Backtracking", "BACKTRACKING"], ["BFS & DFS", "BFSDFS"], ["Sorting", "SORTING"], ["Graph", "GRAPH"], ["Union-Find", "UF"],
             ["Games", "GAME"], ["Design", "DESIGN"]];
 var tag2 = [["# N Sum", "n-sum"], ["# Words", "words"], ["# Palindrome" , "palindrome"],
@@ -123,6 +123,12 @@ function setAbout(){
     <br>
     <br>
     <br>
+    <br>
+    <p>Read me:<br>
+    1. This workbook attempts to categorize some popular LeetCode problems. Explanations are kept to minimum intentionally.<br>
+    2. The website is static. Each problem sends an XMLHttpRequest to the Database for the related textfile so as to render the description and solution.<br>
+    3. Some Java solutions may have missing "<" or ">" or content inside, due to a problem with prettify engine that I am using to render the codes.<br>
+    4. #BONUS tag is problems I found outside LeetCode. <br><br> June, 2019</p>
     <br>
     <a style="position: absolute; down: 0" title="Go Back" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i> Go Back To HomePage</a><br>`;    
 }
