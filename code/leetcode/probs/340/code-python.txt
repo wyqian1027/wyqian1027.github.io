@@ -1,0 +1,17 @@
+class Solution:
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+        l = 0
+        r = 0
+        d = collections.defaultdict() # rightmost position
+        maxL = 0
+        
+        while r < len(s):
+            if len(d) <= k:
+                d[s[r]] = r
+                r += 1
+            while len(d) > k:
+                if l == d[s[l]]:
+                    del d[s[l]]
+                l += 1                              
+            maxL = max(maxL, r - l)
+        return maxL
