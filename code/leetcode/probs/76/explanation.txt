@@ -1,0 +1,2 @@
+Sliding window problem. Use two pointers. Here we need dictionary to store frequency since T can have duplicates.
+"formed" is a great variable to use to check if current window is valid!
