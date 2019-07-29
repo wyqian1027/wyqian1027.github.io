@@ -1,0 +1,11 @@
+93. Restore IP Addresses
+
+Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+
+<span class="examples">
+Input: "25525511135"
+Output: ["255.255.11.135", "255.255.111.35"]
+
+Input: "010010"
+Output: ["0.10.0.10","0.100.1.0"]
+</span>

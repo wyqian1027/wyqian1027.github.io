@@ -1,0 +1,13 @@
+234. Palindrome Linked List
+
+Given a singly linked list, determine if it is a palindrome.
+
+Follow up:
+Could you do it in O(n) time and O(1) space?
+<span class="examples">
+Input: 1->2
+Output: false
+
+Input: 1->2->2->1
+Output: true
+</span>

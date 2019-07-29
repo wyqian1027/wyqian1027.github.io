@@ -1,1 +1,1 @@
-Define global variable to update result while traversing.
+Insight: Group nodes by their respective node height ascendingly.

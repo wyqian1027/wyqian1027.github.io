@@ -1,0 +1,7 @@
+How to think for the Minmax Solution:
+<pre>
+if player == 1st player, 
+        gain = first x piles + minimax(..., 2nd player),  where the gain is maximized
+if player == 2nd player,
+        gain =             0 + minimax(..., 1st player),  where the gain is minimized because the 2nd player tries to maximize his
+</pre>

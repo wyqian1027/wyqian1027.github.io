@@ -96,7 +96,7 @@ var tag1 = [["Bit Manipulation", "BIT"], ["Array", "ARRAY"], ["Binary Search", "
 var tag2 = [["# N Sum", "n-sum"], ["# Words", "words"], ["# Palindrome" , "palindrome"],
             ["# Parenthesis", "parenthesis"], ["# Sliding Window", "SW"], ["# Stock Problems", "stock"], ["# Robbery Problems", "robbery"], ["# Edit Distance","editDistance"], ["# Serialization", "serialization"],
             ["# Path", "path"], ["# Permutations", "permutations"], ["# Lowest Common Ancestor", "lca"], ["# Tree Convert", "tree-convert"],
-            ["# Iterator", "iterator"], ["# Random", "RANDOM"], ["# Topological Sorting", "TS"], ["# Bonus", "BONUS"]];
+            ["# Iterator", "iterator"], ["# Random", "RANDOM"], ["# Matrix/Board", "MATRIX"], ["# Topological Sorting", "TS"], ["# Bonus", "BONUS"]];
             
 function setAbout(){
     aboutBtn.style.backgroundColor = "#f5f9fa";

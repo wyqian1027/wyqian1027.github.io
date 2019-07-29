@@ -1,0 +1,13 @@
+266. Palindrome Permutation
+
+Given a string, determine if a permutation of the string could form a palindrome.
+<span class="examples">
+Input: "code"
+Output: false
+
+Input: "aab"
+Output: true
+
+Input: "carerac"
+Output: true
+</span>

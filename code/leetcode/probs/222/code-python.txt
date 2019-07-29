@@ -1,3 +1,5 @@
+# 1. Recursion O(N)
+
 class Solution:
     def countNodes(self, root: TreeNode) -> int:
         
@@ -5,3 +7,39 @@ class Solution:
             return 1 + self.countNodes(root.left) + self.countNodes(root.right)
         else:
             return 0
+
+# 2. Binary Search O(LgN)
+
+class Solution:
+    def countNodes(self, root: TreeNode) -> int:
+        if not root: return 0
+        d = self.getDepth(root)
+        if d == 0:
+            return 1
+        left, right = 1, 2**d - 1
+        while left <= right:
+            pivot = left + (right - left) // 2
+            if self.exists(pivot, d, root):
+                left  = pivot + 1
+            else:
+                right = pivot - 1
+        return (2**d - 1) + left
+        
+    def getDepth(self, root):
+        d = 0
+        while root.left:
+            d += 1
+            root = root.left
+        return d
+    
+    def exists(self, idx, d, root):
+        left, right = 0, 2**d - 1
+        for _ in range(d):
+            pivot = left + (right - left) // 2
+            if idx <= pivot:
+                root = root.left
+                right = pivot
+            else:
+                root = root.right
+                left = pivot + 1
+        return root is not None

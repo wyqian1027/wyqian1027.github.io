@@ -1,31 +1,19 @@
+# Pass Prev Node as argument in DFS
+
 class Solution:
     def longestConsecutive(self, root: TreeNode) -> int:
-        
+        self.longest = 1
         if not root: return 0
-        
-        self.ans = 0
-        
-        def dfs(root, curLen, curVal):
-            
-            if not root: return
+        self.dfs(root, None, 0)
+        return self.longest
 
-            if root.val == curVal + 1:
-                self.ans = max(self.ans, curLen + 1)
-            else:
-                self.ans = max(self.ans, curLen)
-            
-            if root.left: 
-                if root.val == curVal + 1:
-                    dfs(root.left, curLen + 1, root.val)
-                else:
-                    dfs(root.left, 1, root.val)
-                    
-            if root.right: 
-                if root.val == curVal + 1:
-                    dfs(root.right, curLen + 1, root.val)
-                else:
-                    dfs(root.right, 1, root.val)
-                    
-        dfs(root, 0, root.val - 1)
-        
-        return self.ans
+    def dfs(self, root, prev, pathLen):
+        if prev and prev.val == root.val - 1:
+            pathLen += 1
+        else:
+            pathLen = 1
+        self.longest = max(self.longest, pathLen)
+        if root.left:
+            self.dfs(root.left, root, pathLen)
+        if root.right:
+            self.dfs(root.right, root, pathLen)

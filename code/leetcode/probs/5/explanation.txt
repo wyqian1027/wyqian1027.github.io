@@ -1,0 +1,1 @@
+Expanding around each center, storing left and right ptr to achieve O(1) space.

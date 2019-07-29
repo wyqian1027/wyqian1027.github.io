@@ -1,0 +1,12 @@
+B003. Longest Increasing Subsequence of Size K
+
+Given an int array nums of length n and an int k. Return an increasing subsequence of length k (KIS).
+
+Expected time complexity O(nlogk).
+<span class="examples">
+Input: nums = [10, 1, 4, 8, 2, 9], k = 3
+Output: [1, 4, 8] or [1, 4, 9] or [1, 8, 9]
+
+Input: nums = [10, 1, 4, 8, 2, 9], k = 4
+Output: [1, 4, 8, 9]
+</span>
