@@ -1,20 +1,39 @@
+# Both Solutions are O(N) Time, O(1) Space
+# Use Array itself as HashMap
+
 class Solution:
     
-    def firstMissingPositive(self, nums: List[int]) -> int:
+    def firstMissingPositive(self, A: List[int]) -> int:
         
-        nums.append(0)
+        n = len(A)
         
-        n = len(nums)
+        for i, num in enumerate(A):
+            if num > n or num < 0: A[i] = 0
         
-        for i in range(len(nums)): #delete those useless elements
-            if nums[i] < 0 or nums[i] >= n:
-                nums[i]=0
+        for i, num in enumerate(A):
+            if num != 0:
+                idx = (num % (n+1)) - 1
+                A[idx] += (n+1)
+        
+        for i, num in enumerate(A):
+            if num < (n+1):
+                return (i+1)
+        
+        return n+1
+
+# Use Swapping
+
+class Solution:
+    def firstMissingPositive(self, A: List[int]) -> int:
+        
+        n = len(A)
+        
+        for i in range(len(A)):
+            while 0 < A[i] <= n and A[A[i]-1] != A[i]:
+                A[A[i]-1], A[i] = A[i], A[A[i]-1]
                 
-        for i in range(len(nums)): #use the index as the hash to record the frequency of each number
-            nums[nums[i] % n] += n
-            
-        for i in range(1,len(nums)):
-            if nums[i] < n:
-                return i
-            
-        return n
+        for i, num in enumerate(A):
+            if num != i+1:
+                return i+1
+        
+        return n+1

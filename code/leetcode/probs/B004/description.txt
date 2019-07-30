@@ -1,0 +1,17 @@
+B004. Singlet Element With No Two Same Adajcents
+
+Given an array nums of length n. All elements appear in pairs except one of them. Find this single element that appears alone.
+Pairs of the same element cannot be adjacent:
+
+[2, 2, 1, 2, 2] // ok
+[2, 2, 2, 2, 1] // not allowed
+<span class="examples">
+Input: [2, 2, 1, 1, 9, 9, 5, 2, 2]
+Output: 5
+
+Input: [1, 1, 2]
+Output: 2
+
+Input: [3, 3, 2, 3, 3]
+Output: 2
+</span>

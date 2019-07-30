@@ -454,5 +454,13 @@ pre.prettyprint {
  cursor: pointer;
 }
 
+.inactive_link {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.4;
+  /*text-decoration: none;*/
+  color: red;    
+}
+
 
 
