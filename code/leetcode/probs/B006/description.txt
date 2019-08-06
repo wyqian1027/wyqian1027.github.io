@@ -1,0 +1,16 @@
+B006. Identical String With Backspaces
+
+Given two strings with backspaces in them, for example "#", determine if two strings are identical when typed out with backspaces.
+<span class="examples">
+A= "wenyangqian"
+B= "weny#yannn##gqq#ian"
+check_identical_string(A,B) => True
+
+A= "wenyangqian"
+B= "oo##wwww###weny#yannn##gqq#ian"
+check_identical_string(A,B) => False
+
+A= "ww"
+B= "########ww"
+check_identical_string(A,B) => True
+</span>

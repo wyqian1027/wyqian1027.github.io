@@ -104,7 +104,7 @@ function setAbout(){
     prevClick.style.fontWeight = "";
     prevClick = aboutBtn;
     pTitle.style.display = "block";
-    pTitle.innerHTML = "LeetCode Problem Solving Workbook";
+    pTitle.innerHTML = "LeetCode Problem Solving Workbook ";
     pDesp.style.display = "block";
     pDesp.innerHTML = `<br>
     <p style="font-size: 22px">Total Number of Problems: ${numProblems}</p>
