@@ -1,0 +1,40 @@
+// Nice solutions from awice
+class Solution:
+    def nextClosestTime(self, time: str) -> str:
+        
+        cur = 60*int(time[:2]) + int(time[3:])
+        allowed = {int(x) for x in time if x != ":"}
+        while True:
+            cur = (cur + 1) % (24*60)
+            if all(digit in allowed 
+                    for block in divmod(cur, 60)
+                    for digit in divmod(block, 10)):
+                return "{:02d}:{:02d}".format(*divmod(cur, 60))
+          
+// My Longer solution      
+class Solution:
+    def nextClosestTime(self, time: str) -> str:
+        
+        digit_set = set()
+        for ch in time.replace(":", ""):
+            digit_set.add(ch)
+        m = time.index(":")   # I thought the given time could be in "1:13" format
+        timeList = list(time)
+        if m == 1:
+            timeList.insert(m, "0")
+        if len(time) - m - 1 == 1:
+            timeList.insert(m+1, "0")
+        time = "".join(timeList)
+            
+        
+        res = [i+j+":"+k+l for i in digit_set \
+                            for j in digit_set \
+                            for k in digit_set \
+                            for l in digit_set \
+                            if "0" <= i+j <="23" and "0" <= k+l <= "59"]
+        res.sort()
+        for el in res:
+            if el > time:
+                return el
+        else:
+            return res[0]
