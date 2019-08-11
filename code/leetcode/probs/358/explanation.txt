@@ -1,0 +1,9 @@
+Heap Solution: O(NlgN)
+Use MaxHeap to store counts. 
+1. Always popout the character with most counts. 
+2. Then push to the Queue if counts != 0. 
+3. Transfer all valid elements in the Queue to the MaxHeap.
+
+Array Solution: O(26*N) = O(N), in reality it is slower...
+Use two arrays. One is for counts; the other is for validity.
+helper function gets the valid elements with greatest counts after index.

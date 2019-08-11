@@ -1,0 +1,2 @@
+Math Solution:
+By expanding all 8 possible tersm, we can group terms of i and terms of j separately and only see 4 different combos.

@@ -1,0 +1,2 @@
+Keep only increasing sequence in the stack. 
+Whenever stack[-1] is larger, pop it out!
