@@ -1,1 +1,7 @@
 dp[1,n] = Min( i + max(dp[1, i-1], dp[i+1, n]) ) for i = 1 .. n
+
+For Loop: checks all scenarios/outcomes
+
+Each cost: Assume the worst case in each scenario (MAX)
+
+In the end, minimize my cost (MIN).

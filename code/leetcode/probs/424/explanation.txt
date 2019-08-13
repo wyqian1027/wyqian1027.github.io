@@ -1,0 +1,6 @@
+1. left, right: two endpoints of our sliding window
+2. res: longest repeating characters found so far, by using less than or equal to k replacements.
+3. d: counts of all elements in the current sliding window
+4. right - left + 1 - max_freq : the remaining elements besides the elements with most counts
+
+Post: https://leetcode.com/problems/longest-repeating-character-replacement/discuss/357966/Sliding-Window-with-Clear-Explanations-Python
