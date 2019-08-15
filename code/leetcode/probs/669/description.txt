@@ -1,0 +1,32 @@
+669. Trim a Binary Search Tree
+
+Given a binary search tree and the lowest and highest boundaries as L and R, trim the tree so that all its elements lies in [L, R] (R >= L). You might need to change the root of the tree, so the result should return the new root of the trimmed binary search tree.
+<span class="examples">
+Input: 
+<pre>    1
+   / \
+  0   2</pre>
+  L = 1
+  R = 2
+Output: 
+<pre>    1
+      \
+       2</pre>
+
+Input: 
+<pre>    3
+   / \
+  0   4
+   \
+    2
+   /
+  1</pre>
+  L = 1
+  R = 3
+Output: 
+<pre>      3
+     / 
+   2   
+  /
+ 1</pre>
+</span>

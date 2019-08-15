@@ -1,0 +1,1 @@
+Easy question, but it is necessary to know how to implement Binary Search from scratch!

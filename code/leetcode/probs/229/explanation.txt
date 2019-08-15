@@ -1,0 +1,10 @@
+How O(N) Boyer-Moore works:
+
+Do one of the following:
+1. Increment counts if x is a candidate
+2. Resetting candidates if x is not candidate and there are available slots ( count = 0 )
+3. Decrementing counts for all candidates if x is not candidate and there are NO slots available ( all counts > 0 )
+
+This can be generalized to k majority elements.
+
+PS: Important! What we get is a list of high frequency candidates, whose counts are NOT necessarily more than n//3 
