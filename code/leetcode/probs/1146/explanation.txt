@@ -1,0 +1,4 @@
+Thanks to Lee215, Much appreciate the genius use of 
+loc = bisect.bisect(self.records[index], [snap_id + 1]) - 1
+
+Note: bisect can search for array in array as well, as long as comparator works, just like sorting
