@@ -38,7 +38,7 @@ class Codec:
                 i += 2
         return root
 
-# DFS (really cool)
+# DFS Preorder
 class Codec:
     def serialize(self, root):
         """Encodes a tree to a single string.
