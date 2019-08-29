@@ -1,0 +1,1 @@
+col0 for flagging whether column 0 should be cleared.
