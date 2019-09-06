@@ -3,3 +3,7 @@ Key Observation:
 if nums[lo] <= nums[m]: left side is sorted.
 
 if nums[lo] > nums[m]: right side is sorted.
+
+<img src="https://wyqian1027.github.io/public/code/leetcode/img/rotated_array.jpg">
+
+Only two possible rotated arrays, use the sorted sides (in pink)
