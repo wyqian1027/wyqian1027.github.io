@@ -1,0 +1,22 @@
+854. K-Similar Strings
+
+Strings A and B are K-similar (for some non-negative integer K) if we can swap the positions of two letters in A exactly K times so that the resulting string equals B.
+
+Given two anagrams A and B, return the smallest K for which A and B are K-similar.
+
+Note:
+1 <= A.length == B.length <= 20
+A and B contain only lowercase letters from the set {'a', 'b', 'c', 'd', 'e', 'f'}
+<span class="examples">
+Input: A = "ab", B = "ba"
+Output: 1
+
+Input: A = "abc", B = "bca"
+Output: 2
+
+Input: A = "abac", B = "baca"
+Output: 2
+
+Input: A = "aabc", B = "abca"
+Output: 2
+</span>

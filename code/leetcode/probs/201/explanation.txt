@@ -1,0 +1,1 @@
+If differed by 1 or more, must have an odd and an even therefore they give 0.
