@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang Qian's Coding</title>
+	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+</head>
+<body>
+
+
+<h2 class="article-title">
+    LRU Cache Design
+</h2>
+
+<ul class="Aclass">
+	<li class="coding-text">
+	    <a>Intuitions</a><br>
+        <p>Cache is an omnipresent data structure used everywhere. It stores (key, value) pairs and supports two basic functionality in O(1) time: </p>
+        <p>1. <span class="method">Get(key)</span>: Obtain the associated value of the key.
+        </p> 
+        <p>2. <span class="method">Put(key, value)</span>: Insert or Set the (key, value) pair if the pair not already exists.
+        <p>
+        Today, we will talk about how to implement an improved version of cache, i.e. Least-Recently-Used (LRU) Cache, that further optimizes the storage space and discard (key, value) pairs that are least used.<br> 
+        We can also achieve O(1) time, by using <span class="method2"> HashMap and Doubly Linked List </span> with customized Node objects.<br>
+        <br>
+        Here is the illustration:
+        </p>
+    </li>
+    <div style="text-align: center">
+        <img src="assets/img/lru_cache/node.PNG" height=100>
+    </div>
+    <div style="text-align: center">
+        <img src="assets/img/lru_cache/lru_cache.PNG" height=300>
+    </div>
+
+    <li class="coding-text">
+	    <a>Java Implementation: &nbsp;&nbsp;</a>
+<pre id="algo1" class="prettyprint lang-java ">
+// Customized Node in Doubly Linked List:
+class Node {
+    int key;
+    int val;
+    Node left;
+    Node right;
+    public Node(int key, int val){
+        this.key = key;
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+</pre>
+
+<pre id="algo2" class="prettyprint lang-java ">
+// Class and Main Public Methods:
+class LRUCache {
+
+    Node head = new Node(-1, -1);
+    Node tail = new Node(-1, -1);
+    Map < Integer, Node > cache;
+    int cap;
+    int count;
+    public LRUCache(int capacity) {
+        head.right = tail;
+        tail.left = head;
+        cache = new HashMap<>();
+        cap = capacity;
+        count = 0;
+    }
+    
+    public int get(int key) {
+        if (!cache.containsKey(key)) {
+            return -1;
+        }
+        Node node = cache.get(key);
+        int value = node.val;
+        update(node);
+        return value;
+    }
+    
+    public void put(int key, int value) {
+        if (cache.containsKey(key)) {
+            Node node = cache.get(key);
+            node.val = value;
+            update(node);
+        } else {
+            Node newNode = new Node(key, value);
+            cache.put(key, newNode);
+            addLast(newNode);
+            if (count > cap) {
+                deleteFirst();
+            }
+        }
+    }
+}
+</pre>
+
+<pre id="algo3" class="prettyprint lang-java ">
+// Class and Private Helper Methods:
+...
+    private void deleteFirst(){
+        if (count == 0) return;
+        cache.remove(head.right.key);
+        Node newFirst = head.right.right;
+        head.right = newFirst;
+        newFirst.left = head;
+        count--;
+    }
+    
+    private void update(Node node){
+        connectNeighbor(node);
+        addLast(node);
+    }
+    
+    private void connectNeighbor(Node node){
+        Node nodeLeft = node.left;
+        Node nodeRight = node.right;
+        nodeLeft.right = nodeRight;
+        nodeRight.left = nodeLeft;
+        count--;
+    }
+    
+    private void addLast(Node node) {
+        Node last = tail.left;
+        last.right = node;
+        node.left = last;
+        node.right = tail;
+        tail.left = node;
+        count++;
+    }
+</pre>
+
+</ul>
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i></a>
+	<em>Last updated Octoboer 6th, 2019 by Wenyang Qian.</em>
+</div>
+
+</body>
+</html>
