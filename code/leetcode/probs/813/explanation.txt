@@ -1,0 +1,7 @@
+DP formula:
+
+dp[i, j] = max{ dp[i-1, k] + sum(A[k+1:j+1]) / (j-k) for k in range(i-1, j) }
+
+We use a prefix sum to allow quick access of the sum.
+
+Complexity: O(N^3)

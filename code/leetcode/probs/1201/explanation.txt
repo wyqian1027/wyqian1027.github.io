@@ -1,0 +1,7 @@
+Use Verne's Diagram, Key observation, s is the number of ugly numbers <= n
+
+s =  n // a + n // b + n // c
+s -= n // lcm(a, b) + n // lcm(a, c) + n // lcm(b, c)
+s += n // lcm(lcm(a, b), c)
+
+Then use Binary Search for the first such number.
