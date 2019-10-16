@@ -1,0 +1,6 @@
+
+Scheme I used for N-ary => Tree Node:
+
+First child as the Left Node,
+Second child as the Right Node of the Left Node,
+Then, remaining children as the Right Node of the previous (upper) Node.
