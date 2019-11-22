@@ -1,0 +1,3 @@
+Divide each String into two pieces. If the string can be concatenate into a palindrome, then one of the two pieces must be palindrome "core".
+HashMap is used to speed up the look up.
+Time = O(N*W^2), N is the number of words, W is length of each word.
