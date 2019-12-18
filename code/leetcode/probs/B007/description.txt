@@ -1,0 +1,9 @@
+B007. Implement unbiased rand01 from biased rand01
+
+You have a biased random number generator that produces a 1 with a probability p and 0 with a probability (1-p). You do not know the value of p. Using this make an unbiased random number generator which produces 1 with a probability 0.5 and 0 with a probability 0.5.
+
+Note: this problem is an exercise problem from Introduction to Algorithms by Cormen, Leiserson, Rivest, Stein.(clrs)
+
+<span class="examples">
+
+</span>

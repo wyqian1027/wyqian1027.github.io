@@ -1,0 +1,1 @@
+Suppose BiasedRand() gives 1 with probability P and 0 with probability (1-P), we want to build UnBiasedRand() that runs BiasedRand() twice and only outputs 0 or 1 if both runs are opposite, by using the fact that P(1-P) = (1-P)P.

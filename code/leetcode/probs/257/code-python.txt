@@ -15,3 +15,23 @@ class Solution:
         dfs(root, str(root.val), res)
         
         return res
+
+# Cleaner:
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        
+        self.res = []
+        self.dfs(root, "")
+        return self.res
+        
+    def dfs(self, root, path):
+
+        if not root: return
+        
+        path = path + str(root.val)
+        if not root.left and not root.right:
+            self.res.append(path)
+        else:
+            path = path + "->"
+            self.dfs(root.left, path)
+            self.dfs(root.right, path)
