@@ -1,0 +1,3 @@
+Great problem for showing how functional stack works. Keep in mind some inputs are not possible such as ending a process that is not on top of the stack.
+
+<a href="https://leetcode.com/problems/exclusive-time-of-functions/discuss/455912/Python-Stack-Solution-with-Clean-Explanations">My post</a>
