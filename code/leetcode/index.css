@@ -90,21 +90,23 @@
 
 }
 
-#text-java, #text-python, #text-cpp {
+.base-code-text {
     margin-bottom: 0px;
     padding-bottom: 0px;
     padding-left: 10px;
     font-weight: bold;
     font-size: 24px;
+}
+#text-java {
     color: Blue;
 }
 
 #text-python {
-  color: green;
+    color: green;
 }
 
 #text-cpp {
-  color: #B22222;
+    color: #B22222;
 }
 
 .prettyprint {
