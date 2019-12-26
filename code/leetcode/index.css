@@ -90,7 +90,7 @@
 
 }
 
-#text-java, #text-python {
+#text-java, #text-python, #text-cpp {
     margin-bottom: 0px;
     padding-bottom: 0px;
     padding-left: 10px;
@@ -101,6 +101,10 @@
 
 #text-python {
   color: green;
+}
+
+#text-cpp {
+  color: #B22222;
 }
 
 .prettyprint {
