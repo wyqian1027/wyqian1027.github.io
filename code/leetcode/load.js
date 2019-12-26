@@ -30,6 +30,13 @@ function load(id) {
             codeJava.style.display = "block";
         }
     });
+    httpGet("probs/"+id+"/code-cpp.cpp", function(textFile){
+        if (textFile != ""){
+            textCpp.style.display = "block";
+            codeCpp.innerHTML = PR.prettyPrintOne(textFile, "cpp");   
+            codeCpp.style.display = "block";
+        }
+    });
 }
 
 function clear(){
@@ -38,6 +45,7 @@ function clear(){
     pExplain.innerHTML = "";
     codeJava.innerHTML = "";
     codePython.innerHTML = "";
+    codeCpp.innerHTML = "";
     textPython.style.display = "none";
     textJava.style.display = "none";
     codeJava.style.display = "none";
@@ -66,8 +74,10 @@ var pTitle = document.querySelector("#p-title");
 var pExplain = document.querySelector("#p-explain");
 var textPython = document.querySelector("#text-python");
 var textJava = document.querySelector("#text-java");
+var textCpp = document.querySelector('#text-cpp');
 var codePython = document.querySelector("#code-python");
 var codeJava = document.querySelector("#code-java");
+var codeCpp = document.querySelector('#code-cpp');
 var aboutBtn = document.querySelector("#about");
 var darkBtn = document.querySelector("#dark");
 var prevClick = aboutBtn;
