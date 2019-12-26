@@ -14,7 +14,7 @@ function load(id) {
     });
     
     // apply PR.prettyPrintOne to dynamically generated text
-    httpGet("probs/"+id+"/code-python.txt", function(textFile){
+    httpGet("probs/"+id+"/code-python.py", function(textFile){
         if (textFile != ""){
             textPython.style.display = "block";
             codePython.innerHTML = PR.prettyPrintOne(textFile, "python3");        
@@ -23,7 +23,7 @@ function load(id) {
             
         }
     });
-    httpGet("probs/"+id+"/code-java.txt", function(textFile){
+    httpGet("probs/"+id+"/code-java.java", function(textFile){
         if (textFile != ""){
             textJava.style.display = "block";
             codeJava.innerHTML = PR.prettyPrintOne(textFile, "java");   
