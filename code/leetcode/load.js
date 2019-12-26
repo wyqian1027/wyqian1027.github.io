@@ -135,11 +135,15 @@ function setAbout(){
     <br>
     <br>
     <p>Read me:<br>
+    <br>
     1. This workbook attempts to categorize some popular LeetCode problems. Explanations are kept to minimum intentionally.<br>
-    2. The website is static. Each problem sends an XMLHttpRequest to the Database for the related textfile so as to render the description and solution.<br>
-    3. Some Java solutions may have missing "<" or ">" or content inside, due to a problem with prettify engine that I am using to render the codes.<br>
+    <br>
+    2. The website is static. Each problem sends an XMLHttpRequest to the Database for the related textfile so as to render the description and solutions<br>
+    <br>
+    3. Some Java solutions may have missing "<" or ">" or content inside, due to a problem with prettify engine used to render the codes.<br>
+    <br>
     4. #BONUS tag is problems I found outside LeetCode. <br>
-    5. Symbols: &#9733; Excellent Problems, * Hard, To-be-visited Problems <br><br> June, 2019</p>
+    <br><br> June, 2019</p>
     <br>
     <a style="position: absolute; down: 0" title="Go Back" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i> Go Back To HomePage</a><br>`;    
 }
