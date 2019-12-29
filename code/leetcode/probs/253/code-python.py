@@ -33,3 +33,24 @@ class Solution:
                 available += 1
                 j += 1
         return numRooms
+
+# or even better to understand:
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+
+        if not intervals: return 0
+        
+        start_time = sorted([x[0] for x in intervals])
+        end_time   = sorted([x[1] for x in intervals])
+        used_room = 0
+        
+        p1 = p2 = 0   # start, end pointers
+        
+        while p1 < len(intervals):
+            if start_time[p1] >= end_time[p2]:
+                used_room -= 1
+                p2 += 1
+            p1 += 1
+            used_room += 1
+        
+        return used_room
