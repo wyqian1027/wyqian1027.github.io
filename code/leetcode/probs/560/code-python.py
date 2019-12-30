@@ -2,8 +2,7 @@ class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         
         acc = 0
-        d = {}
-        d[0] = 1
+        d = {0: 1}
         res = 0
         for num in nums:
             acc += num

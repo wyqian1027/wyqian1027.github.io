@@ -27,15 +27,13 @@ class Codec:
         root = TreeNode(int(arr[0]))
         q = collections.deque([root])
         i = 1
-        while i < len(arr):
-            size = len(q)
-            for _ in range(size):
-                node = q.popleft()
-                node.left  = TreeNode(int(arr[i]))   if arr[i]   != "N" else None
-                node.right = TreeNode(int(arr[i+1])) if arr[i+1] != "N" else None
-                if node.left:  q.append(node.left)
-                if node.right: q.append(node.right)
-                i += 2
+        while q:
+            node = q.popleft()
+            node.left  = TreeNode(int(arr[i]))   if arr[i]   != "N" else None
+            node.right = TreeNode(int(arr[i+1])) if arr[i+1] != "N" else None
+            if node.left:  q.append(node.left)
+            if node.right: q.append(node.right)
+            i += 2
         return root
 
 # DFS Preorder
