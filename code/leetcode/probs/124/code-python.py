@@ -22,3 +22,24 @@ class Solution:
     
         maxGain(root)
         return self.maxSum
+
+# same idea but without global variable:
+# helper function returns a tuple:
+# (max path sum at this node, at its left branch, at its right branch)
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        
+        def helper(root):   
+            
+            if not root: return float('-inf'), 0, 0
+            
+            max_left, l1, l2 = helper(root.left)
+            max_right, r1, r2 = helper(root.right)
+            
+            max_node = max(l1, l2, 0) + max(r1, r2, 0) + root.val
+            
+            return max(max_node, max_left, max_right), \
+                max(l1, l2, 0) + root.val, \
+                max(r1, r2, 0) + root.val
+    
+        return helper(root)[0]
