@@ -48,9 +48,10 @@ function clear(){
     codeCpp.innerHTML = "";
     textPython.style.display = "none";
     textJava.style.display = "none";
+    textCpp.style.display = "none";
     codeJava.style.display = "none";
     codePython.style.display = "none";
-
+    codeCpp.style.display = "none";
 }
 
 function httpGet(url, callback) {
