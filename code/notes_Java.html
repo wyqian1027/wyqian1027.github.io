@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wenyang Qian's Notes on Java</title>
+    <link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+    <style>
+        .show {
+            display: none;
+        }
+        LI A:hover {
+            cursor: pointer;
+        }
+        LI:before {
+            content: "\f0d7"; /* FontAwesome Unicode "\f0d7" for DOWN, "\f0da" for RIGHT  */
+            font-family: FontAwesome;
+            display: inline-block;
+        }
+        UL {
+            list-style: none;
+        }
+        .change-li-before:before {
+            content: "\f0da";
+        }
+        .HLa {
+            font-weight: bold;
+            color: #CB090C;
+            background-color: white;
+        }
+        .HLb {
+            font-weight: bold;
+            color: #3B50D6;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+
+<h2 class="article-title">
+    Java learning notes 
+</h2>
+<!-- <div style="text-align: center">
+    <img src="assets/img/matlab-logo.jpg" height=200>
+</div> -->
+<ul class="Aclass">
+
+<li class="coding-text">
+<a>Introduction</a>
+<p>This is basic note for Java (under development)</p>
+</li>
+
+
+<li class="coding-text">
+<a>Enums</a>
+<p>An enum represents a group of constants (<span class='HLa'>public static final</span> variables). <span class='HLb'>Uppercase </span> letters should be used. To create an enum:</p>
+<pre class="prettyprint lang-Java ">
+enum level {
+    LOW, 
+    MEDIUM,
+    HIGH
+}      
+</pre>
+<p>Access an enum:</p>
+<pre class="prettyprint lang-Java ">
+Level myVar = level.MEDIUM;   
+</pre>
+<p>In a switch statement:</p>
+<pre class="prettyprint lang-Java ">
+switch(myVar) {
+    case LOW:
+        System.out.println("Low level");
+        break;
+    case MEDIUM:
+        System.out.println("Medium level"); 
+        break;
+    case HIGH:
+        System.out.println("High level");
+        break;
+}   
+</pre>
+</li>
+
+
+</ul>
+<br>
+
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i></a>
+    <em>Last updated November 12, 2020 by Wenyang Qian.</em>
+</div>
+
+
+<script>
+    var myLi = document.querySelectorAll(".coding-text");
+    //hide all but first
+    myLi.forEach(function(el, j){
+        if (j != 0){
+            for (var i=1; i<el.children.length; i++){
+                el.children[i].classList.toggle('show');
+            }
+            el.classList.toggle('change-li-before');
+        }
+    });
+    myLi.forEach(function(el){
+        el.children[0].addEventListener('click', function(){
+            for (var i=1; i<el.children.length; i++){
+                el.children[i].classList.toggle('show');
+            }
+            el.classList.toggle('change-li-before');
+        });
+    });
+</script>
+</body>
+</html>

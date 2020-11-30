@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wenyang Qian's Notes on MATLAB</title>
+	<link rel="shortcut icon" href="../public/img/favicon-96x96.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../public/css/homepage.css">
+    <style>
+        .show {
+            display: none;
+        }
+        LI A:hover {
+            cursor: pointer;
+        }
+        LI:before {
+            content: "\f0d7"; /* FontAwesome Unicode "\f0d7" for DOWN, "\f0da" for RIGHT  */
+            font-family: FontAwesome;
+            display: inline-block;
+        }
+        UL {
+            list-style: none;
+        }
+        .change-li-before:before {
+            content: "\f0da";
+        }
+    </style>
+</head>
+<body>
+
+
+<h2 class="article-title">
+    MATLAB learning notes
+</h2>
+<!-- <div style="text-align: center">
+    <img src="assets/img/matlab-logo.jpg" height=200>
+</div> -->
+<ul class="Aclass">
+
+<li class="coding-text">
+<a>Introduction</a>
+<p>This is basic note for MATLAB (under development)</p>
+</li>
+
+<li class="coding-text">
+<a>Basics</a>
+<pre id="uf-list" class="prettyprint lang-MATLAB ">
+    y_onehot = zeros(m, num_labels);
+    for i = 1:m
+        y_onehot(i, y(i)) = 1;
+    end    
+</pre>
+</li>
+
+
+</ul>
+<br>
+
+<div class="footer">
+    <a title="Back to Previous" href="https://wyqian1027.github.io/public/coding.html"><i class="fas fa-igloo"></i></a>
+	<em>Last updated April 13, 2020 by Wenyang Qian.</em>
+</div>
+
+
+<script>
+    var myLi = document.querySelectorAll(".coding-text");
+    //hide all but first
+    myLi.forEach(function(el, j){
+        if (j != 0){
+            for (var i=1; i<el.children.length; i++){
+                el.children[i].classList.toggle('show');
+            }
+            el.classList.toggle('change-li-before');
+        }
+    });
+    myLi.forEach(function(el){
+        el.children[0].addEventListener('click', function(){
+            for (var i=1; i<el.children.length; i++){
+                el.children[i].classList.toggle('show');
+            }
+            el.classList.toggle('change-li-before');
+        });
+    });
+</script>
+</body>
+</html>
