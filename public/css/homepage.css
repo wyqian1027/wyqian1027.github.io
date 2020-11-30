@@ -462,5 +462,9 @@ pre.prettyprint {
   color: red;    
 }
 
+.pre-wrap-block {
+    white-space: pre-wrap;
+}
+
 
 
