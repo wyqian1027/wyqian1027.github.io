@@ -1,0 +1,1 @@
+Key to use Insertion Sort Invariants for faster solution. Worst time = O(N^2)
