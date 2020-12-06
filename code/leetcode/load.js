@@ -82,6 +82,7 @@ var codeCpp = document.querySelector('#code-cpp');
 var aboutBtn = document.querySelector("#about");
 var darkBtn = document.querySelector("#dark");
 var prevClick = aboutBtn;
+var lastUpdate = new Date(document.lastModified);
 
 
 allProblems.forEach(function(eachP){
@@ -118,8 +119,9 @@ function setAbout(){
     pTitle.innerHTML = "LeetCode Problem Solving Workbook ";
     pDesp.style.display = "block";
     pDesp.innerHTML = `<br>
-    <p style="font-size: 22px">Total Number of Problems: ${numProblems}</p>
-    <br><p style="line-height: 1.5;">
+    <p style="font-size: 22px">Total Number of Problems:  &nbsp; ${numProblems}<br> Last Update: &nbsp; ${lastUpdate.getFullYear() + "/" + (lastUpdate.getMonth()+1) + "/" + lastUpdate.getDate()}</p>
+    <br>
+    <p style="line-height: 1.5;">
     ${this.tag1.map((item, i) => 
         `<a class="tags" href="#${item[1]}"> ${item[0]}</a>
         `).join('&nbsp; ')}
