@@ -23,4 +23,21 @@ class Solution:
             l -= 1
         
         return res
-            
+
+# Or better using just two pointers:
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        
+        i = 0; j = len(nums) - 1; w = j        
+        ans = [0]*len(nums)
+        
+        while i <= j:
+            if nums[j]*nums[j] >= nums[i]*nums[i]:
+                ans[w] = nums[j]*nums[j]
+                j -= 1
+            else:
+                ans[w] = nums[i]*nums[i]
+                i += 1
+            w -= 1
+        
+        return ans

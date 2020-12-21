@@ -2,7 +2,6 @@ class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         
         a1, a2 = self.getList(l1), self.getList(l2)
-        res = []
         carry = 0
         head = None
         
@@ -10,7 +9,6 @@ class Solution:
             val = carry
             if a1: val += a1.pop()
             if a2: val += a2.pop()
-            res.append(val % 10)
             carry = val // 10
             cur = ListNode(val % 10)
             cur.next = head
