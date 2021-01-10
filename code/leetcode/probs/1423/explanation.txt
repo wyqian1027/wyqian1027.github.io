@@ -1,0 +1,3 @@
+Tag: Google
+
+Instead of DP, finding minimum subarray gives O(N) best complexity 

@@ -1,0 +1,7 @@
+Tag: Amazon, Facebook
+
+Many ways to solve this problem:
+
+O(NlogN), sorting solution
+O(NlogK), priority queue solution
+O(N) average, quicksort solution

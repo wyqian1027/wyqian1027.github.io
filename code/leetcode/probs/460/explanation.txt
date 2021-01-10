@@ -1,0 +1,9 @@
+Tag: Google Amazon
+
+This is really good and hard problem. The data structures that I used here are:
+
+Two dictionaries: 
+(1) maps from key to Node
+(2) maps from freq to DoublelyLinkedList (DDL)
+
+PS: Here we design the DDL and its Nodes to have the field of frequency. Each DDL contains only Nodes of the same frequency!
