@@ -1,0 +1,5 @@
+Tag:
+
+complexity: )(NlogK), K = number of list, N = total number of elements
+key obs 1: the range must have end-points from the elements in the list
+key obs 2: if one row ends, the ans is the final ans
