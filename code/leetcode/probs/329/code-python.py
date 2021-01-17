@@ -1,3 +1,25 @@
+# 0. DFS with memorization (2021)
+# Probably simpler
+
+class Solution:
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        
+        m, n = len(matrix), len(matrix[0])
+        ans = [[-1]*n for _ in range(m)]
+        
+        def dfs(i, j, prev):
+            if i < 0 or i >= m or j < 0 or j >= n:
+                return 0
+            if matrix[i][j] <= prev: return 0
+            if ans[i][j] != -1: return ans[i][j]
+            cur = matrix[i][j]
+            maxLen = 1 + max(dfs(i+1, j, cur), dfs(i-1, j, cur), \
+                             dfs(i, j+1, cur), dfs(i, j-1, cur))
+            ans[i][j] = maxLen
+            return maxLen
+        
+        return max(dfs(i, j, float('-inf')) for i in range(m) for j in range(n))
+
 # 1. DFS with memorization
 
 class Solution:

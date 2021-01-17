@@ -1,3 +1,5 @@
+Tags: Google, Facebook, Amazon
+
 minHeap stores higher numbers
 maxHeap stores lower numbers
 So the root of both heaps are related to medium
