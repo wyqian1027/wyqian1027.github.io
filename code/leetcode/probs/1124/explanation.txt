@@ -1,0 +1,2 @@
+If score > 0: the whole sequence so far is valid
+Elif score <= 0: check the FIRST occurrance of score - 1 position, the distance between current point and that position is the longest valid sequence

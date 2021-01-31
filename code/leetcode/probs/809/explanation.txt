@@ -1,0 +1,8 @@
+Examples might be poorly written, basically:
+
+For any group of same continuous characters in word, you can keep them as it is, or you can extend them with the same characters so that the size of this extended group must be >= 3
+
+"dddiiiinnssssssoooo"
+["dinnssoo","ddinso","ddiinnso","ddiinnssoo","ddiinso","dinsoo","ddiinsso","dinssoo","dinso"]
+
+This should give 3 as output.

@@ -23,3 +23,18 @@ class Solution:
                 longest = max(longest, i- d[x-1])
         
         return longest
+
+# or more concisely
+class Solution:
+    def longestWPI(self, hours: List[int]) -> int:
+        seen = {}
+        score = ans = 0
+        for i, hour in enumerate(hours):
+            score = score + 1 if hour > 8 else score - 1
+            if score > 0:
+                ans = i + 1
+            elif score - 1 in seen:
+                ans = max(ans, i - seen[score-1])
+            if score not in seen:
+                seen[score] = i
+        return ans
