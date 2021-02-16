@@ -1,71 +1,69 @@
 # O(1) implementation with Doubly Linked Node with two fields
 class Node:
-    
-    def __init__(self, k, v):
-        self.key = k
-        self.val = v
+    def __init__(self, key, val):
+        self.key = key
+        self.val = val
         self.left = None
         self.right = None
         
-class LRUCache:
-
-    def __init__(self, capacity: int):
+class DLL:
+    def __init__(self):
+        self.head = Node(1, 1)
+        self.tail = Node(1, 1)
+        self.joinNodes(self.head, self.tail)
         self.size = 0
-        self.head = Node(0, 0)
-        self.tail = Node(0, 0)
-        self.cap = capacity
-        self.cache = {}   # map from key to node
-        
-        # only change in between head and tail to avoid corner cases
-        self.head.right = self.tail
-        self.tail.left = self.head
+       
+    def append(self, node):
+        self.joinNodes(self.tail.left, node)
+        self.joinNodes(node, self.tail)
+        self.size += 1
     
-    def add(self, node):
-        
-        # always add after head like a Priority Queue
-        tmp = self.head.right
-        node.left = self.head
-        node.right = tmp
-        self.head.right = node
-        tmp.left = node 
-        
-    def remove(self, node):
-        before = node.left
-        after = node.right
-        before.right = after
-        after.left = before
+    def popLeft(self):
+        return self.popNode(self.head.right)
     
-    def moveToHead(self, node):
-        self.remove(node)
-        self.add(node)
+    def popNode(self, node):
+        self.joinNodes(node.left, node.right)
+        self.size -= 1
+        return node
 
-    def popLast(self):
-        last = self.tail.left
-        last.right.left = last.left
-        last.left.right = last.right
-        return last
+    def joinNodes(self, leftNode, rightNode):
+        leftNode.right = rightNode
+        rightNode.left = leftNode
+
+
+class LRUCache:
+    '''
+    Most frequent nodes are indexed to the right in the DDL
+    '''
+    def __init__(self, capacity: int):
+        self.keyToNode = {}
+        self.dll = DLL()
+        self.cap = capacity
         
-    def get(self, key):
-        if key in self.cache:
-            node = self.cache[key]
-            self.moveToHead(node)
+    def get(self, key: int) -> int:
+        if key in self.keyToNode:
+            node = self.keyToNode[key]
+            self.dll.popNode(node)
+            self.dll.append(node)
             return node.val
-        return -1
-                        
-    def put(self, key, value):
-        if key in self.cache:
-            node = self.cache[key]
-            self.moveToHead(node)
-            node.val = value
         else:
-            newNode = Node(key, value)
-            self.cache[key] = newNode
-            self.add(newNode)
-            self.size += 1
-            if self.size > self.cap:
-                last = self.popLast()
-                del self.cache[last.key]
-                self.size -= 1
+            return -1
+        
+ 
+    def put(self, key: int, value: int) -> None:
+        # 3 cases to consider
+        if key in self.keyToNode:
+            node = self.keyToNode[key]
+            node.val = value
+            self.dll.popNode(node)
+            self.dll.append(node)
+            return 
+        if self.dll.size == self.cap:
+            node = self.dll.popLeft()
+            del self.keyToNode[node.key]
+        node = Node(key, value)
+        self.keyToNode[key] = node
+        self.dll.append(node)  
 
 
 # Using OrderedDict

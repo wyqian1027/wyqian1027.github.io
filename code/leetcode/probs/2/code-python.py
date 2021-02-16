@@ -29,3 +29,26 @@ class Solution:
             cur.next = ListNode(1)
         
         return dummy.next
+
+# alternatively
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        
+        head = ListNode()
+        cur = head
+        c = 0
+        
+        while l1 or l2 or c != 0:
+            s = c
+            if l1: 
+                s += l1.val
+                l1 = l1.next
+            if l2: 
+                s += l2.val
+                l2 = l2.next
+            c = s // 10
+            s = s % 10
+            cur.next = ListNode(s)
+            cur = cur.next
+        
+        return head.next
