@@ -1,5 +1,4 @@
 # Typical Sliding Window Problem, Use two pointers and Dict of last seen position.
-
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         d = {}  # lastSeen, rightmost position
@@ -58,7 +57,3 @@ class Solution:
             ans = max(ans, j - i + 1)
             j += 1
         return ans
-
-
-
-        
