@@ -21,9 +21,7 @@ class Solution:
             val, _, node = heappop(h)
             cur.next = node
             cur = node
-            
-            c += 1
             if node.next:
                 heappush(h, (node.next.val, c, node.next))
-        
+            	c += 1
         return dummy.next

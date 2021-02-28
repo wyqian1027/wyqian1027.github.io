@@ -23,6 +23,7 @@ class Solution {
 // Alternative, O(32) solution thanks to Lee215:
 
 public int divide(int A, int B) {
+    // PS: 1 << 31 == Integer.MIN_VALUE because of overflow
     if (A == 1 << 31 && B == -1) return (1 << 31) - 1;
     int a = Math.abs(A), b = Math.abs(B), res = 0;
     for (int x = 31; x >= 0; x--)
