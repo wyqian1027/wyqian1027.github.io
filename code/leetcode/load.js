@@ -19,14 +19,13 @@ function load(id) {
             textPython.style.display = "block";
             codePython.innerHTML = PR.prettyPrintOne(textFile, "python3");        
             codePython.style.display = "block";
-        } else {
-            
         }
     });
     httpGet("probs/"+id+"/code-java.java", function(textFile){
         if (textFile != ""){
-            textJava.style.display = "block";
-            codeJava.innerHTML = PR.prettyPrintOne(textFile, "java");   
+            textJava.style.display = "block";  
+            // codeJava.innerHTML = PR.prettyPrintOne("", "java");
+            codeJava.innerHTML = PR.prettyPrintOne(textFile.replace(/</g, "&lt;").replace(/>/g, "&gt;"), "java");
             codeJava.style.display = "block";
         }
     });
