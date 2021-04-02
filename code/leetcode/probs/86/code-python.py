@@ -1,29 +1,15 @@
 class Solution:
     def partition(self, head: ListNode, x: int) -> ListNode:
-        
-        smallCur = smallHead = None
-        bigCur = bigHead = None
-        cur = head
-        
-        while cur:
-            if cur.val < x:
-                if not smallHead:
-                    smallCur = smallHead = cur
-                else:
-                    smallCur.next = cur
-                    smallCur = cur
+        dummy1 = cur1 = ListNode()
+        dummy2 = cur2 = ListNode()
+        while head != None:
+            if head.val < x:
+                cur1.next = head
+                cur1 = cur1.next
             else:
-                if not bigHead:
-                    bigCur = bigHead = cur
-                else:
-                    bigCur.next = cur
-                    bigCur = cur
-            cur = cur.next
-        
-        if not smallHead: return bigHead
-        if not bigHead: return smallHead
-        
-        # must terminate properly!
-        smallCur.next = bigHead
-        bigCur.next = None
-        return smallHead
+                cur2.next = head
+                cur2 = cur2.next
+            head = head.next
+        cur1.next = dummy2.next
+        cur2.next = None
+        return dummy1.next
