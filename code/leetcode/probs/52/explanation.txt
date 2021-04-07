@@ -1,0 +1,3 @@
+This problem asks for uniqueness, best strategy is to use restriction strategy, trying to encoding restricted lines with an index
+
+Improved version should use a bitmap.

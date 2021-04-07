@@ -15,7 +15,7 @@ class Solution {
     
     private void dfs(char[][] board, int r, int c){
 
-		if (r == board.length) {
+	if (r == board.length) {
             add(board);
             return;
         }
