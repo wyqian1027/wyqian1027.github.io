@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wenyang Qian</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+</head>
+<body>
+
+  <!-- ── Top Bar ───────────────────────────────────── -->
+  <header class="topbar">
+      <span class="last-updated">
+      <span class="lang-en">Last updated: Apr 9, 2026</span>
+      <span class="lang-zh">最后更新：2026.4.9</span>
+    </span>
+    <button id="lang-toggle" class="lang-toggle">
+      <span id="lang-btn-text">中文</span>
+    </button>
+  </header>
+
+  <div class="site-wrapper">
+    <div class="main-grid">
+
+      <!-- ── Sidebar ────────────────────────────────── -->
+      <aside class="sidebar">
+
+        <div class="profile-img-wrap">
+          <img src="img/profile_v2.png" alt="Wenyang Qian">
+        </div>
+
+        <h1>
+          <span class="lang-en">Wenyang Qian</span>
+          <span class="lang-zh">钱文扬</span>
+        </h1>
+
+        <p class="position">
+          <strong>
+            <span class="lang-en">Associate Professor</span>
+            <span class="lang-zh">副研究员</span>
+          </strong>
+          <span class="lang-en">Institute of Particle Physics<br>Central China Normal University</span>
+          <span class="lang-zh">华中师范大学<br>粒子物理研究所</span>
+        </p>
+
+        <div class="sidebar-meta">
+          <div class="meta-item">
+            <i class="fas fa-envelope"></i>
+            <span>wqian [at] ccnu.edu.cn</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-building"></i>
+            <span>
+              <span class="lang-en">Office 9423, Building 9</span>
+              <span class="lang-zh">9号教学楼 9423</span>
+            </span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>
+              <span class="lang-en">No. 152 Luoyu Road, Wuhan, Hubei, China</span>
+              <span class="lang-zh">中国湖北省武汉市珞喻路152号</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="https://scholar.google.com/citations?user=KrxxSZcAAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="ai ai-google-scholar ai-lg"></i></a>
+          <a href="https://orcid.org/0000-0001-5525-0996" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
+          <a href="https://inspirehep.net/authors/2094301" target="_blank" title="INSPIRE-HEP"><i class="ai ai-inspire ai-lg"></i></a>
+          <!-- Bilingual CCNU profile links -->
+          <a class="lang-en" href="https://iopp.ccnu.edu.cn/en/info/1102/4108.htm" target="_blank" title="CCNU Profile (English)"><i class="fas fa-globe"></i></a>
+          <a class="lang-zh" href="https://iopp.ccnu.edu.cn/info/1185/4961.htm" target="_blank" title="粒子物理研究所主页"><i class="fas fa-globe"></i></a>
+          <a href="https://www.linkedin.com/in/wenyangqian/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links">
+          <div class="quick-links-label">
+            <span class="lang-en">Quick Links</span>
+            <span class="lang-zh">快速链接</span>
+          </div>
+          <div class="quick-links-list">
+            <a href="https://arxiv.org" target="_blank">arXiv.org</a>
+            <a href="https://inspirehep.net" target="_blank">INSPIRE-HEP</a>
+            <a href="https://iopp.ccnu.edu.cn/index.htm" target="_blank">
+              <span class="lang-en">CCNU – IOPP</span>
+              <span class="lang-zh">华师大粒子物理研究所</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- ── Main Content ──────────────────────────── -->
+      <main class="content-area">
+
+        <!-- Tab Navigation -->
+        <nav class="tab-nav" role="tablist">
+          <button class="tab-btn active" data-tab="about" role="tab">
+            <span class="lang-en">About</span>
+            <span class="lang-zh">简介</span>
+          </button>
+          <button class="tab-btn" data-tab="research" role="tab">
+            <span class="lang-en">Research</span>
+            <span class="lang-zh">研究</span>
+          </button>
+          <button class="tab-btn" data-tab="cv" role="tab">
+            <span class="lang-en">CV</span>
+            <span class="lang-zh">简历</span>
+          </button>
+          <button class="tab-btn" data-tab="publications" role="tab">
+            <span class="lang-en">Publication</span>
+            <span class="lang-zh">发表论文</span>
+          </button>
+          <button class="tab-btn" data-tab="talks" role="tab">
+            <span class="lang-en">Talk</span>
+            <span class="lang-zh">学术报告</span>
+          </button>
+          <button class="tab-btn" data-tab="teaching" role="tab">
+            <span class="lang-en">Teaching</span>
+            <span class="lang-zh">教学</span>
+          </button>
+          <button class="tab-btn" data-tab="joinus" role="tab">
+            <span class="lang-en">Join Us</span>
+            <span class="lang-zh">加入我们</span>
+          </button>
+        </nav>
+
+        <!-- Tab Panes (content loaded dynamically from /tabs/*.html) -->
+        <div id="tab-about"        class="tab-pane"></div>
+        <div id="tab-cv"           class="tab-pane"></div>
+        <div id="tab-publications" class="tab-pane"></div>
+        <div id="tab-talks"        class="tab-pane"></div>
+        <div id="tab-teaching"     class="tab-pane"></div>
+        <div id="tab-research"     class="tab-pane"></div>
+        <div id="tab-joinus"       class="tab-pane"></div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
