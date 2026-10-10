@@ -52,7 +52,7 @@ body::before {
 .site-wrapper {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -64,7 +64,7 @@ body::before {
   align-items: center;
   gap: 0.6rem;
   padding: 0.75rem 2rem;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
@@ -96,8 +96,8 @@ body::before {
 /* --- Main Grid --- */
 .main-grid {
   display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 3.5rem;
+  grid-template-columns: 270px 1fr;
+  gap: 4rem;
   padding: 2rem 0 6rem;
   align-items: start;
 }
@@ -125,9 +125,8 @@ body::before {
   }
   .sidebar .position { text-align: center; }
   .sidebar-meta { align-items: center; }
+  .social-links { justify-content: center; }
   .profile-img-wrap { margin-left: auto; margin-right: auto; }
-  /* Profile rows: keep them left-aligned inside a centered block */
-  .profile-links, .quick-links { width: 100%; max-width: 260px; }
 }
 
 .profile-img-wrap {
@@ -183,51 +182,16 @@ body::before {
 }
 .meta-item i { width: 14px; margin-top: 3px; color: var(--accent); opacity: 0.7; flex-shrink: 0; }
 
-/* ======================================
-   PROFILE LINKS — one labeled row each
-   (replaces the old icon-only .social-links)
-====================================== */
-.profile-links {
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
   margin-top: 1.2rem;
   padding-top: 1.2rem;
   border-top: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
 }
-.profile-links-label {
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.45rem;
-}
-.profile-links a {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.82rem;
-  color: var(--muted);
-  padding: 0.26rem 0.4rem 0.26rem 0;
-  border-radius: var(--radius);
-  transition: color var(--transition), padding-left var(--transition);
-}
-.profile-links a i {
-  width: 15px;
-  text-align: center;
-  font-size: 0.95rem;
-  color: var(--accent);
-  opacity: 0.7;
-  flex-shrink: 0;
-  transition: var(--transition);
-}
-.profile-links a:hover {
-  color: var(--accent);
-  text-decoration: none;
-  padding-left: 0.25rem;
-}
-.profile-links a:hover i { opacity: 1; }
+.social-links a { color: var(--muted); font-size: 1.05rem; transition: var(--transition); }
+.social-links a:hover { color: var(--accent); text-decoration: none; }
 
 /* --- Content --- */
 .content-area { min-width: 0; }
@@ -253,7 +217,7 @@ body::before {
   border: none;
   border-bottom: 2px solid transparent;
   color: var(--muted);
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1.2rem;
   cursor: pointer;
   margin-bottom: -1px;
   transition: var(--transition);
@@ -261,11 +225,6 @@ body::before {
 }
 .tab-btn:hover { color: var(--text); }
 .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-/* Narrower windows: tighten tabs before falling back to scrolling */
-@media (max-width: 1150px) {
-  .tab-btn { padding: 0.75rem 0.7rem; font-size: 0.78rem; letter-spacing: 0.04em; }
-}
 
 /* --- Tab pane --- */
 .tab-pane { display: none; animation: fadeIn 0.2s ease; }
@@ -574,17 +533,6 @@ body::before {
   font-weight: 600;
   color: var(--text);
 }
-
-/* Text + figure side by side */
-.research-block-body {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 1.8rem;
-  align-items: start;
-}
-.research-block-body.fig-left {
-  grid-template-columns: 320px 1fr;
-}
 .research-block-body p {
   font-size: 0.91rem;
   line-height: 1.72;
@@ -592,186 +540,6 @@ body::before {
   margin-bottom: 0.9rem;
 }
 .research-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-/* --- Research figure --- */
-.research-figure { margin: 0; }
-.research-figure-img {
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  line-height: 0;
-}
-.research-figure-img img { width: 100%; height: auto; display: block; }
-
-/* Shown when the image file is not there yet */
-.research-figure-img.is-placeholder {
-  aspect-ratio: 4 / 3;
-  border-style: dashed;
-  border-color: rgba(43,74,171,0.28);
-  background:
-    repeating-linear-gradient(45deg,
-      rgba(43,74,171,0.035) 0 10px,
-      transparent 10px 20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.research-figure-img.is-placeholder::after {
-  content: 'Figure';
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  opacity: 0.45;
-  line-height: 1;
-}
-
-.research-figure figcaption {
-  font-size: 0.76rem;
-  line-height: 1.55;
-  color: var(--muted);
-  margin-top: 0.5rem;
-}
-.research-figure figcaption .fig-ref {
-  display: block;
-  width: fit-content;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  background: var(--accent-light);
-  color: var(--accent);
-  padding: 0.08rem 0.4rem;
-  border-radius: 2px;
-  margin-top: 0.3rem;
-  white-space: nowrap;
-}
-.research-figure figcaption .fig-ref:hover {
-  background: var(--accent);
-  color: #fff;
-  text-decoration: none;
-}
-
-@media (max-width: 768px) {
-  .research-block-body,
-  .research-block-body.fig-left {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  /* Figure always below the text on mobile */
-  .research-block-body.fig-left .research-figure { order: 2; }
-  .research-block-body.fig-left .research-block-main { order: 1; }
-}
-
-/* ======================================
-   PEOPLE TAB
-====================================== */
-.people-section { margin-bottom: 2.5rem; }
-
-.people-section-title {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.1rem;
-  padding-bottom: 0.55rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.people-empty {
-  font-size: 0.86rem;
-  color: var(--muted);
-  font-style: italic;
-  padding: 0.4rem 0 0.2rem;
-}
-
-.person-item {
-  display: grid;
-  grid-template-columns: 76px 1fr;
-  gap: 0 1.1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.person-item:last-child { border-bottom: none; padding-bottom: 0.2rem; }
-
-/* Alumni rows are compact and photoless */
-.person-item.alumni { grid-template-columns: 1fr; }
-
-.person-avatar {
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  flex-shrink: 0;
-}
-.person-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.person-avatar.is-placeholder {
-  border-style: dashed;
-  border-color: rgba(43,74,171,0.28);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.person-avatar.is-placeholder::after {
-  content: '\f007'; /* Font Awesome user glyph */
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900;
-  font-size: 1.5rem;
-  color: var(--accent);
-  opacity: 0.25;
-}
-
-.person-body { min-width: 0; }
-
-.person-name {
-  font-size: 0.98rem;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.3;
-  margin-bottom: 0.15rem;
-}
-.person-role {
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  color: var(--accent);
-  margin-bottom: 0.25rem;
-}
-.person-role .person-date {
-  color: var(--muted);
-  margin-left: 0.5rem;
-}
-.person-meta { font-size: 0.85rem; color: var(--muted); }
-.person-topic {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-top: 0.2rem;
-}
-.person-topic em { font-style: italic; color: var(--text); }
-
-.person-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.4rem;
-}
-.person-links a {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-.person-links a:hover { color: var(--accent); text-decoration: none; }
-
-@media (max-width: 560px) {
-  .person-item { grid-template-columns: 56px 1fr; gap: 0 0.8rem; }
-  .person-avatar { width: 56px; height: 56px; }
-}
 
 /* ======================================
    JOIN US TAB
