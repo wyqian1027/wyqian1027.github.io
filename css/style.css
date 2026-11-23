@@ -508,7 +508,7 @@ a:hover { text-decoration: underline; }
 
 .talk-title { font-size: 0.93rem; font-weight: 500; color: var(--text); line-height: 1.45; margin-bottom: 0.2rem; }
 .talk-venue { font-size: 0.84rem; color: var(--muted); }
-.talk-venue em { font-style: normal; color: var(--text); }
+.talk-venue em { font-style: normal; }   /* conference name: same weight & colour as the rest of the line */
 
 /* ======================================
    TEACHING TAB

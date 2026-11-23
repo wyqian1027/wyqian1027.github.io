@@ -1,0 +1,96 @@
+# robots.txt — Wenyang Qian
+# This site is an academic homepage. Indexing, crawling and archiving are welcome.
+
+# ── Default: everything is open to everyone ──────────────
+User-agent: *
+Allow: /
+Disallow:
+
+# ── Search engines ───────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: Yisouspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# ── Academic / citation indexers ─────────────────────────
+User-agent: CCBot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+User-agent: archive.org_bot
+Allow: /
+
+User-agent: SemanticScholarBot
+Allow: /
+
+# ── AI / LLM crawlers ────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# ── No crawl-delay: crawl as fast as you like ────────────
+
+# Replace the host below with your real domain before publishing.
+Sitemap: https://wyqian1027.github.io/sitemap.xml
