@@ -7,9 +7,9 @@
 
 /* --- Variables --- */
 :root {
-  --bg:           #f5f3ef;
+  --bg:           #fbfaf8;
   --surface:      #ffffff;
-  --border:       #dedad4;
+  --border:       #e4e0d9;
   --text:         #1a1814;
   --muted:        #7a756c;
   --accent:       #2b4aab;
@@ -24,7 +24,7 @@
 
 /* --- Reset & Base --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
+html { font-size: 17px; scroll-behavior: smooth; }
 body {
   font-family: var(--sans);
   background: var(--bg);
@@ -34,19 +34,6 @@ body {
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
-
-/* --- Subtle grid background --- */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(43,74,171,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(43,74,171,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* --- Layout --- */
 .site-wrapper {
@@ -87,7 +74,7 @@ body::before {
 
 .last-updated {
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   letter-spacing: 0.04em;
   color: var(--muted);
   opacity: 0.5;
@@ -136,17 +123,8 @@ body::before {
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 1.5rem;
-  border: 3px solid var(--border);
+  border: 1px solid var(--border);
   background: var(--border);
-  position: relative;
-}
-.profile-img-wrap::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 1px solid var(--accent);
-  opacity: 0.3;
 }
 .profile-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -197,7 +175,7 @@ body::before {
 }
 .profile-links-label {
   font-family: var(--mono);
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -338,9 +316,11 @@ body::before {
 ====================================== */
 .cv-section { margin-bottom: 2.5rem; }
 
-.cv-section-title {
+.cv-section-title,
+.teaching-section-title,
+.people-section-title {
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -382,8 +362,8 @@ body::before {
 .award-item:last-child { border-bottom: none; }
 .award-year {
   font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--accent);
+  font-size: 0.76rem;
+  color: var(--muted);
   flex-shrink: 0;
   min-width: 4rem;
 }
@@ -404,8 +384,8 @@ body::before {
 .grant-title { font-size: 0.88rem; font-weight: 600; color: var(--text); }
 .grant-amount {
   font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--accent);
+  font-size: 0.76rem;
+  color: var(--muted);
   white-space: nowrap;
 }
 .grant-meta { font-size: 0.81rem; color: var(--muted); }
@@ -444,7 +424,7 @@ body::before {
 .pub-item::before {
   content: counter(pub-counter);
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   color: var(--muted);
   padding-top: 0.2rem;
 }
@@ -505,7 +485,7 @@ body::before {
 
 .talk-year {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   color: var(--muted);
   padding-top: 0.15rem;
   line-height: 1.4;
@@ -513,7 +493,7 @@ body::before {
 .talk-badge {
   display: inline-block;
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.1rem 0.4rem;
@@ -533,6 +513,16 @@ body::before {
 /* ======================================
    TEACHING TAB
 ====================================== */
+.teaching-section { margin-bottom: 2.5rem; }
+.teaching-section:last-child { margin-bottom: 0; }
+
+.teaching-section-note {
+  font-size: 0.86rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
 .teaching-item {
   padding: 1.1rem 0;
   border-bottom: 1px solid var(--border);
@@ -542,7 +532,7 @@ body::before {
 .teaching-item-meta {
   font-family: var(--mono);
   font-size: 0.76rem;
-  color: var(--accent);
+  color: var(--muted);
   margin-bottom: 0.35rem;
 }
 .teaching-item-desc { font-size: 0.88rem; color: var(--muted); }
@@ -563,7 +553,7 @@ body::before {
 }
 .research-block-num {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   color: var(--accent);
   opacity: 0.5;
   flex-shrink: 0;
@@ -669,17 +659,6 @@ body::before {
 ====================================== */
 .people-section { margin-bottom: 2.5rem; }
 
-.people-section-title {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.1rem;
-  padding-bottom: 0.55rem;
-  border-bottom: 1px solid var(--border);
-}
-
 .people-empty {
   font-size: 0.86rem;
   color: var(--muted);
@@ -741,6 +720,7 @@ body::before {
   margin-bottom: 0.25rem;
 }
 .person-role .person-date {
+  font-family: var(--mono);
   color: var(--muted);
   margin-left: 0.5rem;
 }
@@ -815,7 +795,7 @@ body::before {
 }
 .quick-links-label {
   font-family: var(--mono);
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
